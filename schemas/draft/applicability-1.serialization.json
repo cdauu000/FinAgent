@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "condition_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Condition Refs",
+      "type": "array"
+    },
+    "effect": {
+      "enum": [
+        "APPLICABLE",
+        "N_A",
+        "NOT_MEANINGFUL"
+      ],
+      "title": "Effect",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "mandatory_test_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Mandatory Test Refs",
+      "type": "array"
+    },
+    "required_evidence_concepts": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Required Evidence Concepts",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "applicability/1",
+      "default": "applicability/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Version",
+      "type": "string"
+    },
+    "warning_codes": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Warning Codes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "source_refs",
+    "mandatory_test_refs",
+    "condition_refs",
+    "required_evidence_concepts",
+    "effect",
+    "warning_codes"
+  ],
+  "title": "ApplicabilityDefinition",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "registry.bundle",
+      "models": [
+        "TemplateDefinition",
+        "RatioDefinition",
+        "RuleDefinition",
+        "SectorPack",
+        "RoleDefinition",
+        "ToolDefinition",
+        "ApplicabilityDefinition"
+      ],
+      "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+      "scope": "loader",
+      "symbol": "finagent.policy.registry.validate_bundle"
+    }
+  ],
+  "x-finagent-status": "draft",
+  "x-finagent-version": "applicability/1"
+}

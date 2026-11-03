@@ -1,0 +1,13 @@
+{
+  "schema_version": "split/1",
+  "status": "draft",
+  "groups": [
+    {
+      "group_id": "fpt-group",
+      "split": "visible_regression"
+    }
+  ],
+  "holdout_entities": [],
+  "seed": null,
+  "reason": "Single visible regression report; no generalization split claimed."
+}

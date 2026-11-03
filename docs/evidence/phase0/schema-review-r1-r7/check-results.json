@@ -1,0 +1,76 @@
+{
+  "scope": "P0.05 R1-R7 draft review",
+  "frozen": false,
+  "results": [
+    {
+      "name": "ruff",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:18:05.678076+00:00"
+    },
+    {
+      "name": "format",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "58 files already formatted\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:22:33.557828+00:00"
+    },
+    {
+      "name": "mypy",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "finagent",
+        "eval"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 30 source files\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:20.367105+00:00"
+    },
+    {
+      "name": "pytest",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=docs\\evidence\\phase0\\schema-review-r1-r7\\pytest.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 45%]\n........................................................................ [ 90%]\n................                                                         [100%]\n160 passed in 2.09s\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:23.125529+00:00"
+    },
+    {
+      "name": "schema_snapshots",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "finagent.schema_catalog",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Draft schemas: 14 versions; frozen=false\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:22:34.151907+00:00"
+    }
+  ]
+}

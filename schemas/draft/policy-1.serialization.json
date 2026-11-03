@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "archive_expanded_bytes": {
+          "const": 209715200,
+          "default": 209715200,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Archive Expanded Bytes",
+          "type": "integer"
+        },
+        "archive_expansion_ratio": {
+          "const": 100,
+          "default": 100,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Archive Expansion Ratio",
+          "type": "integer"
+        },
+        "file_bytes": {
+          "const": 52428800,
+          "default": 52428800,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "File Bytes",
+          "type": "integer"
+        },
+        "pages": {
+          "const": 300,
+          "default": 300,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Pages",
+          "type": "integer"
+        },
+        "url_body_bytes": {
+          "const": 20971520,
+          "default": 20971520,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Url Body Bytes",
+          "type": "integer"
+        },
+        "url_redirects": {
+          "const": 3,
+          "default": 3,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Url Redirects",
+          "type": "integer"
+        },
+        "url_timeout_seconds": {
+          "const": 15,
+          "default": 15,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Url Timeout Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "Limits",
+      "type": "object"
+    },
+    "Mode": {
+      "enum": [
+        "strict",
+        "useful"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "PrivatePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_retention_days": {
+          "const": 30,
+          "default": 30,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Artifact Retention Days",
+          "type": "integer"
+        },
+        "max_retention_days": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Retention Days"
+        },
+        "opt_in": {
+          "default": false,
+          "title": "Opt In",
+          "type": "boolean"
+        }
+      },
+      "title": "PrivatePolicy",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "content_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "limits": {
+      "$ref": "#/$defs/Limits",
+      "default": {
+        "archive_expanded_bytes": 209715200,
+        "archive_expansion_ratio": 100,
+        "file_bytes": 52428800,
+        "pages": 300,
+        "url_body_bytes": 20971520,
+        "url_redirects": 3,
+        "url_timeout_seconds": 15
+      }
+    },
+    "mode": {
+      "$ref": "#/$defs/Mode"
+    },
+    "paid_fallback": {
+      "default": false,
+      "title": "Paid Fallback",
+      "type": "boolean"
+    },
+    "policy_ref": {
+      "$ref": "#/$defs/RegistryRef"
+    },
+    "private": {
+      "$ref": "#/$defs/PrivatePolicy",
+      "default": {
+        "artifact_retention_days": 30,
+        "max_retention_days": null,
+        "opt_in": false
+      }
+    },
+    "registry_refs": {
+      "items": {
+        "$ref": "#/$defs/RegistryRef"
+      },
+      "title": "Registry Refs",
+      "type": "array"
+    },
+    "resolved_at": {
+      "format": "date-time",
+      "title": "Resolved At",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "policy/1",
+      "default": "policy/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_tier": {
+      "$ref": "#/$defs/Tier",
+      "default": "private"
+    }
+  },
+  "required": [
+    "policy_ref",
+    "mode",
+    "registry_refs",
+    "content_hash",
+    "resolved_at"
+  ],
+  "title": "PolicySnapshot",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    }
+  ],
+  "x-finagent-status": "draft",
+  "x-finagent-version": "policy/1"
+}

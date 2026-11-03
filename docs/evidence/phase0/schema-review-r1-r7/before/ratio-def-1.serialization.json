@@ -1,0 +1,387 @@
+{
+  "$defs": {
+    "AggregateExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "inputs": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "aggregate": "#/$defs/AggregateExpr",
+                "binary": "#/$defs/BinaryExpr",
+                "constant": "#/$defs/ConstantExpr",
+                "fact": "#/$defs/FactExpr"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/ConstantExpr"
+              },
+              {
+                "$ref": "#/$defs/FactExpr"
+              },
+              {
+                "$ref": "#/$defs/BinaryExpr"
+              },
+              {
+                "$ref": "#/$defs/AggregateExpr"
+              }
+            ]
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Inputs",
+          "type": "array"
+        },
+        "kind": {
+          "const": "aggregate",
+          "default": "aggregate",
+          "title": "Kind",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "sum",
+            "average"
+          ],
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "inputs"
+      ],
+      "title": "AggregateExpr",
+      "type": "object"
+    },
+    "BinaryExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "binary",
+          "default": "binary",
+          "title": "Kind",
+          "type": "string"
+        },
+        "left": {
+          "discriminator": {
+            "mapping": {
+              "aggregate": "#/$defs/AggregateExpr",
+              "binary": "#/$defs/BinaryExpr",
+              "constant": "#/$defs/ConstantExpr",
+              "fact": "#/$defs/FactExpr"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantExpr"
+            },
+            {
+              "$ref": "#/$defs/FactExpr"
+            },
+            {
+              "$ref": "#/$defs/BinaryExpr"
+            },
+            {
+              "$ref": "#/$defs/AggregateExpr"
+            }
+          ],
+          "title": "Left"
+        },
+        "op": {
+          "enum": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "right": {
+          "discriminator": {
+            "mapping": {
+              "aggregate": "#/$defs/AggregateExpr",
+              "binary": "#/$defs/BinaryExpr",
+              "constant": "#/$defs/ConstantExpr",
+              "fact": "#/$defs/FactExpr"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantExpr"
+            },
+            {
+              "$ref": "#/$defs/FactExpr"
+            },
+            {
+              "$ref": "#/$defs/BinaryExpr"
+            },
+            {
+              "$ref": "#/$defs/AggregateExpr"
+            }
+          ],
+          "title": "Right"
+        }
+      },
+      "required": [
+        "op",
+        "left",
+        "right"
+      ],
+      "title": "BinaryExpr",
+      "type": "object"
+    },
+    "ConstantExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "constant",
+          "default": "constant",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "ConstantExpr",
+      "type": "object"
+    },
+    "FactExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "concept_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "fact",
+          "default": "fact",
+          "title": "Kind",
+          "type": "string"
+        },
+        "period_role": {
+          "enum": [
+            "selected",
+            "opening",
+            "closing",
+            "prior_comparable"
+          ],
+          "title": "Period Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "concept_id",
+        "period_role"
+      ],
+      "title": "FactExpr",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_definition_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "decimal_precision": {
+      "const": 38,
+      "default": 38,
+      "title": "Decimal Precision",
+      "type": "integer"
+    },
+    "definition_role": {
+      "enum": [
+        "core",
+        "variant",
+        "reference",
+        "experimental"
+      ],
+      "title": "Definition Role",
+      "type": "string"
+    },
+    "dependencies": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RegistryRef"
+      },
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "display_kind": {
+      "enum": [
+        "decimal",
+        "percent",
+        "count",
+        "money"
+      ],
+      "title": "Display Kind",
+      "type": "string"
+    },
+    "formula": {
+      "discriminator": {
+        "mapping": {
+          "aggregate": "#/$defs/AggregateExpr",
+          "binary": "#/$defs/BinaryExpr",
+          "constant": "#/$defs/ConstantExpr",
+          "fact": "#/$defs/FactExpr"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ConstantExpr"
+        },
+        {
+          "$ref": "#/$defs/FactExpr"
+        },
+        {
+          "$ref": "#/$defs/BinaryExpr"
+        },
+        {
+          "$ref": "#/$defs/AggregateExpr"
+        }
+      ],
+      "title": "Formula"
+    },
+    "id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "input_concepts": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Input Concepts",
+      "type": "array"
+    },
+    "mandatory_test_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Mandatory Test Refs",
+      "type": "array"
+    },
+    "measure_kind": {
+      "enum": [
+        "ratio",
+        "percentage",
+        "count",
+        "money"
+      ],
+      "title": "Measure Kind",
+      "type": "string"
+    },
+    "period_basis": {
+      "enum": [
+        "stock",
+        "quarter",
+        "annual",
+        "ytd",
+        "ttm"
+      ],
+      "title": "Period Basis",
+      "type": "string"
+    },
+    "rounding": {
+      "const": "ROUND_HALF_UP",
+      "default": "ROUND_HALF_UP",
+      "title": "Rounding",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "ratio-def/1",
+      "default": "ratio-def/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "source_refs",
+    "mandatory_test_refs",
+    "formula",
+    "input_concepts",
+    "measure_kind",
+    "period_basis",
+    "display_kind",
+    "definition_role"
+  ],
+  "title": "RatioDefinition",
+  "type": "object",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "ratio-def/1"
+}

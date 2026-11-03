@@ -1,0 +1,384 @@
+{
+  "$defs": {
+    "AggregateExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "inputs": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "aggregate": "#/$defs/AggregateExpr",
+                "binary": "#/$defs/BinaryExpr",
+                "constant": "#/$defs/ConstantExpr",
+                "fact": "#/$defs/FactExpr"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/ConstantExpr"
+              },
+              {
+                "$ref": "#/$defs/FactExpr"
+              },
+              {
+                "$ref": "#/$defs/BinaryExpr"
+              },
+              {
+                "$ref": "#/$defs/AggregateExpr"
+              }
+            ]
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Inputs",
+          "type": "array"
+        },
+        "kind": {
+          "const": "aggregate",
+          "default": "aggregate",
+          "title": "Kind",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "sum",
+            "average"
+          ],
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "inputs"
+      ],
+      "title": "AggregateExpr",
+      "type": "object"
+    },
+    "BinaryExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "binary",
+          "default": "binary",
+          "title": "Kind",
+          "type": "string"
+        },
+        "left": {
+          "discriminator": {
+            "mapping": {
+              "aggregate": "#/$defs/AggregateExpr",
+              "binary": "#/$defs/BinaryExpr",
+              "constant": "#/$defs/ConstantExpr",
+              "fact": "#/$defs/FactExpr"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantExpr"
+            },
+            {
+              "$ref": "#/$defs/FactExpr"
+            },
+            {
+              "$ref": "#/$defs/BinaryExpr"
+            },
+            {
+              "$ref": "#/$defs/AggregateExpr"
+            }
+          ],
+          "title": "Left"
+        },
+        "op": {
+          "enum": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "right": {
+          "discriminator": {
+            "mapping": {
+              "aggregate": "#/$defs/AggregateExpr",
+              "binary": "#/$defs/BinaryExpr",
+              "constant": "#/$defs/ConstantExpr",
+              "fact": "#/$defs/FactExpr"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantExpr"
+            },
+            {
+              "$ref": "#/$defs/FactExpr"
+            },
+            {
+              "$ref": "#/$defs/BinaryExpr"
+            },
+            {
+              "$ref": "#/$defs/AggregateExpr"
+            }
+          ],
+          "title": "Right"
+        }
+      },
+      "required": [
+        "op",
+        "left",
+        "right"
+      ],
+      "title": "BinaryExpr",
+      "type": "object"
+    },
+    "ConstantExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "constant",
+          "default": "constant",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "ConstantExpr",
+      "type": "object"
+    },
+    "FactExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "concept_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "fact",
+          "default": "fact",
+          "title": "Kind",
+          "type": "string"
+        },
+        "period_role": {
+          "enum": [
+            "selected",
+            "opening",
+            "closing",
+            "prior_comparable"
+          ],
+          "title": "Period Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "concept_id",
+        "period_role"
+      ],
+      "title": "FactExpr",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "comparison": {
+      "enum": [
+        "equal",
+        "less_equal",
+        "greater_equal"
+      ],
+      "title": "Comparison",
+      "type": "string"
+    },
+    "group": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "title": "Group",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "left": {
+      "discriminator": {
+        "mapping": {
+          "aggregate": "#/$defs/AggregateExpr",
+          "binary": "#/$defs/BinaryExpr",
+          "constant": "#/$defs/ConstantExpr",
+          "fact": "#/$defs/FactExpr"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ConstantExpr"
+        },
+        {
+          "$ref": "#/$defs/FactExpr"
+        },
+        {
+          "$ref": "#/$defs/BinaryExpr"
+        },
+        {
+          "$ref": "#/$defs/AggregateExpr"
+        }
+      ],
+      "title": "Left"
+    },
+    "mandatory_test_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Mandatory Test Refs",
+      "type": "array"
+    },
+    "right": {
+      "discriminator": {
+        "mapping": {
+          "aggregate": "#/$defs/AggregateExpr",
+          "binary": "#/$defs/BinaryExpr",
+          "constant": "#/$defs/ConstantExpr",
+          "fact": "#/$defs/FactExpr"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ConstantExpr"
+        },
+        {
+          "$ref": "#/$defs/FactExpr"
+        },
+        {
+          "$ref": "#/$defs/BinaryExpr"
+        },
+        {
+          "$ref": "#/$defs/AggregateExpr"
+        }
+      ],
+      "title": "Right"
+    },
+    "schema_version": {
+      "const": "rule/1",
+      "default": "rule/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "BLOCK",
+        "WARN",
+        "INFO"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "template_ref": {
+      "$ref": "#/$defs/RegistryRef"
+    },
+    "tolerance": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "Tolerance"
+    },
+    "version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "source_refs",
+    "mandatory_test_refs",
+    "template_ref",
+    "group",
+    "severity",
+    "left",
+    "right",
+    "comparison",
+    "tolerance"
+  ],
+  "title": "RuleDefinition",
+  "type": "object",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "rule/1"
+}

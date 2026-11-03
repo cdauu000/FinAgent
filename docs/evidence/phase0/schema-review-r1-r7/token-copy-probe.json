@@ -1,0 +1,66 @@
+{
+  "schema_version": "token-copy-probe/1",
+  "status": "NOT_RUN",
+  "reason": "Prepared synthetic prompts only; no provider calls or model responses.",
+  "cases": [
+    {
+      "id": "copy-0",
+      "task": "intent_parse",
+      "tokens": [
+        "ent_4ra7t2cs",
+        "num_xcbtwmc3"
+      ],
+      "prompt": "Return only JSON with a tokens array. Copy these aliases exactly, in order: [\"ent_4ra7t2cs\", \"num_xcbtwmc3\"]"
+    },
+    {
+      "id": "copy-1",
+      "task": "answer_compose",
+      "tokens": [
+        "ent_56401xp4",
+        "num_v7e6jv7j",
+        "ent_ahm7y1za",
+        "num_pnv8s5ew"
+      ],
+      "prompt": "Return only JSON with a tokens array. Copy these aliases exactly, in order: [\"ent_56401xp4\", \"num_v7e6jv7j\", \"ent_ahm7y1za\", \"num_pnv8s5ew\"]"
+    },
+    {
+      "id": "copy-2",
+      "task": "intent_parse",
+      "tokens": [
+        "ent_thg0hk5a",
+        "num_g9gxzz45",
+        "ent_68ebbnba",
+        "num_wr2qn8jt",
+        "ent_jyvpvzwx",
+        "num_23gs441y",
+        "ent_cknr7rre",
+        "num_15b0mpwp"
+      ],
+      "prompt": "Return only JSON with a tokens array. Copy these aliases exactly, in order: [\"ent_thg0hk5a\", \"num_g9gxzz45\", \"ent_68ebbnba\", \"num_wr2qn8jt\", \"ent_jyvpvzwx\", \"num_23gs441y\", \"ent_cknr7rre\", \"num_15b0mpwp\"]"
+    },
+    {
+      "id": "copy-3",
+      "task": "answer_compose",
+      "tokens": [
+        "ent_hrdnz6vk",
+        "num_dcshqkk6",
+        "ent_j9nec6xb",
+        "num_3wp3qxnm",
+        "ent_zv240jaa",
+        "num_9mqw9pjz",
+        "ent_wdsstv6v",
+        "num_4jcv7v8b",
+        "ent_2tn80qgh",
+        "num_stcnkcfn",
+        "ent_nf3dq5f0",
+        "num_wewp683x",
+        "ent_rt099c72",
+        "num_r5s5fzx0",
+        "ent_92kkcdpv",
+        "num_bcz25ey9"
+      ],
+      "prompt": "Return only JSON with a tokens array. Copy these aliases exactly, in order: [\"ent_hrdnz6vk\", \"num_dcshqkk6\", \"ent_j9nec6xb\", \"num_3wp3qxnm\", \"ent_zv240jaa\", \"num_9mqw9pjz\", \"ent_wdsstv6v\", \"num_4jcv7v8b\", \"ent_2tn80qgh\", \"num_stcnkcfn\", \"ent_nf3dq5f0\", \"num_wewp683x\", \"ent_rt099c72\", \"num_r5s5fzx0\", \"ent_92kkcdpv\", \"num_bcz25ey9\"]"
+    }
+  ],
+  "quality_threshold": null
+}

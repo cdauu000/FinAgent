@@ -1,0 +1,189 @@
+{
+  "$defs": {
+    "CountDetail": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Count",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "count"
+      ],
+      "title": "CountDetail",
+      "type": "object"
+    },
+    "MetricObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Denominator"
+        },
+        "details": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CountDetail"
+          },
+          "title": "Details",
+          "type": "array"
+        },
+        "metric_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Metric Id",
+          "type": "string"
+        },
+        "numerator": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Numerator"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "PARTIAL",
+            "NOT_RUN",
+            "NOT_EVALUATED",
+            "INSUFFICIENT_DATA",
+            "PENDING_APPROVAL"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Threshold"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "metric_id",
+        "status",
+        "reason"
+      ],
+      "title": "MetricObservation",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cohort_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Cohort Sha256",
+      "type": "string"
+    },
+    "metrics": {
+      "items": {
+        "$ref": "#/$defs/MetricObservation"
+      },
+      "title": "Metrics",
+      "type": "array"
+    },
+    "phase_gate": {
+      "enum": [
+        "GO",
+        "NO_GO"
+      ],
+      "title": "Phase Gate",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eval/1",
+      "default": "eval/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "title": "Scope",
+      "type": "string"
+    },
+    "suite": {
+      "title": "Suite",
+      "type": "string"
+    }
+  },
+  "required": [
+    "suite",
+    "cohort_sha256",
+    "scope",
+    "metrics",
+    "phase_gate",
+    "reason"
+  ],
+  "title": "EvalReport",
+  "type": "object",
+  "x-finagent-scope": "Phase0 tooling DTO; outside the fourteen frozen groups",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "eval/1"
+}

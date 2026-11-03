@@ -1,0 +1,3884 @@
+{
+  "templates": [
+    {
+      "id": "fpt-separate-observed-2026",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-template-contracts"
+      ],
+      "statement_family": "corporate",
+      "observed_source_hashes": [
+        "11c9709914cdc5f1561f47045283598c359f7466f94e5ffbc21893e28b0315fa"
+      ],
+      "mappings": [
+        {
+          "statement_type": "B01",
+          "code": "100",
+          "concept_id": "current_assets",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "110",
+          "concept_id": "cash_and_equivalents",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "120",
+          "concept_id": "short_term_investments",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "130",
+          "concept_id": "total_short_receivables",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "131",
+          "concept_id": "customer_receivables",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "136",
+          "concept_id": "receivables_provision",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "140",
+          "concept_id": "inventory",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "200",
+          "concept_id": "noncurrent_assets",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "280",
+          "concept_id": "total_assets",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "300",
+          "concept_id": "total_liabilities",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "310",
+          "concept_id": "current_liabilities",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "321",
+          "concept_id": "current_borrowings",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "330",
+          "concept_id": "noncurrent_liabilities",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "337",
+          "concept_id": "deferred_revenue_noncurrent",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "338",
+          "concept_id": "other_noncurrent_payables",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "400",
+          "concept_id": "total_equity",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "411",
+          "concept_id": "contributed_capital",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "420b",
+          "concept_id": "current_period_retained_profit",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B01",
+          "code": "440",
+          "concept_id": "total_funding",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "01",
+          "concept_id": "gross_revenue",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "02",
+          "concept_id": "revenue_deductions",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "10",
+          "concept_id": "net_revenue",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "11",
+          "concept_id": "cost_of_sales",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "20",
+          "concept_id": "gross_profit",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "22",
+          "concept_id": "finance_revenue",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "23",
+          "concept_id": "finance_cost",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "24",
+          "concept_id": "interest_expense",
+          "is_memo": true
+        },
+        {
+          "statement_type": "B02",
+          "code": "25",
+          "concept_id": "selling_expense",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "26",
+          "concept_id": "administrative_expense",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "30",
+          "concept_id": "operating_profit",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "50",
+          "concept_id": "profit_before_tax",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B02",
+          "code": "60",
+          "concept_id": "net_income",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "01",
+          "concept_id": "cf_profit_before_tax",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "02",
+          "concept_id": "cf_depreciation",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "04",
+          "concept_id": "cf_unrealized_fx",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "20",
+          "concept_id": "operating_cash_flow",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "30",
+          "concept_id": "investing_cash_flow",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "40",
+          "concept_id": "financing_cash_flow",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "50",
+          "concept_id": "net_cash_flow",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "60",
+          "concept_id": "opening_cash",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "61",
+          "concept_id": "cash_fx",
+          "is_memo": false
+        },
+        {
+          "statement_type": "B03",
+          "code": "70",
+          "concept_id": "closing_cash",
+          "is_memo": false
+        }
+      ],
+      "required_total_codes": [
+        "100",
+        "200",
+        "280",
+        "300",
+        "310",
+        "330",
+        "400",
+        "440"
+      ]
+    }
+  ],
+  "ratios": [
+    {
+      "id": "current_ratio",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "current_assets",
+          "period_role": "closing"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "quick_ratio",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "subtract",
+          "left": {
+            "kind": "fact",
+            "concept_id": "current_assets",
+            "period_role": "closing"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "inventory",
+            "period_role": "closing"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_assets",
+        "current_liabilities",
+        "inventory"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "cash_ratio",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "cash_and_equivalents",
+          "period_role": "closing"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "cash_and_equivalents",
+        "current_liabilities"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "debt_ratio",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "total_liabilities",
+          "period_role": "closing"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "total_assets",
+        "total_liabilities"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "debt_to_equity",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "total_liabilities",
+          "period_role": "closing"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "total_equity",
+        "total_liabilities"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "interest_coverage",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "profit_before_tax",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "interest_expense",
+            "period_role": "selected"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "interest_expense",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "interest_expense",
+        "profit_before_tax"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "inventory_turnover",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "cost_of_sales",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "cost_of_sales",
+        "inventory"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "receivables_turnover",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "customer_receivables",
+        "net_revenue"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "asset_turnover",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_revenue",
+        "total_assets"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "gross_margin",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "gross_profit",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "gross_profit",
+        "net_revenue"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "core"
+    },
+    {
+      "id": "net_margin",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "net_revenue"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "core"
+    },
+    {
+      "id": "roa",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_assets"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "core"
+    },
+    {
+      "id": "roe",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_equity"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "core"
+    },
+    {
+      "id": "ocf_current_liabilities",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_liabilities",
+        "operating_cash_flow"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "core"
+    },
+    {
+      "id": "ocf_total_assets",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "operating_cash_flow",
+        "total_assets"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "core"
+    },
+    {
+      "id": "cash_ratio_expanded",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "cash_and_equivalents",
+            "period_role": "closing"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "short_term_investments",
+            "period_role": "closing"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "cash_and_equivalents",
+        "current_liabilities",
+        "short_term_investments"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "cash_ratio",
+        "version": "1"
+      }
+    },
+    {
+      "id": "quick_ratio_liquid_assets",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "aggregate",
+          "op": "sum",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "cash_and_equivalents",
+              "period_role": "closing"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "short_term_investments",
+              "period_role": "closing"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_short_receivables",
+              "period_role": "closing"
+            }
+          ]
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "cash_and_equivalents",
+        "current_liabilities",
+        "short_term_investments",
+        "total_short_receivables"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "quick_ratio",
+        "version": "1"
+      }
+    },
+    {
+      "id": "receivables_turnover_total_130",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_short_receivables",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_short_receivables",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_revenue",
+        "total_short_receivables"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "receivables_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roa_average",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_assets"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roa",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roe_average",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_equity",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_equity",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_equity"
+      ],
+      "period_basis": "quarter",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roe",
+        "version": "1"
+      }
+    },
+    {
+      "id": "inventory_turnover_annualized_quarter",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "multiply",
+        "left": {
+          "kind": "binary",
+          "op": "divide",
+          "left": {
+            "kind": "fact",
+            "concept_id": "cost_of_sales",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "aggregate",
+            "op": "average",
+            "inputs": [
+              {
+                "kind": "fact",
+                "concept_id": "inventory",
+                "period_role": "opening"
+              },
+              {
+                "kind": "fact",
+                "concept_id": "inventory",
+                "period_role": "closing"
+              }
+            ]
+          }
+        },
+        "right": {
+          "kind": "constant",
+          "value": "4"
+        }
+      },
+      "input_concepts": [
+        "cost_of_sales",
+        "inventory"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "inventory_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "receivables_turnover_annualized_quarter",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "multiply",
+        "left": {
+          "kind": "binary",
+          "op": "divide",
+          "left": {
+            "kind": "fact",
+            "concept_id": "net_revenue",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "aggregate",
+            "op": "average",
+            "inputs": [
+              {
+                "kind": "fact",
+                "concept_id": "customer_receivables",
+                "period_role": "opening"
+              },
+              {
+                "kind": "fact",
+                "concept_id": "customer_receivables",
+                "period_role": "closing"
+              }
+            ]
+          }
+        },
+        "right": {
+          "kind": "constant",
+          "value": "4"
+        }
+      },
+      "input_concepts": [
+        "customer_receivables",
+        "net_revenue"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "receivables_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "asset_turnover_annualized_quarter",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "multiply",
+        "left": {
+          "kind": "binary",
+          "op": "divide",
+          "left": {
+            "kind": "fact",
+            "concept_id": "net_revenue",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "aggregate",
+            "op": "average",
+            "inputs": [
+              {
+                "kind": "fact",
+                "concept_id": "total_assets",
+                "period_role": "opening"
+              },
+              {
+                "kind": "fact",
+                "concept_id": "total_assets",
+                "period_role": "closing"
+              }
+            ]
+          }
+        },
+        "right": {
+          "kind": "constant",
+          "value": "4"
+        }
+      },
+      "input_concepts": [
+        "net_revenue",
+        "total_assets"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "asset_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roa_annualized_quarter",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "multiply",
+        "left": {
+          "kind": "binary",
+          "op": "divide",
+          "left": {
+            "kind": "fact",
+            "concept_id": "net_income",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "total_assets",
+            "period_role": "closing"
+          }
+        },
+        "right": {
+          "kind": "constant",
+          "value": "4"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_assets"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roa",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roe_annualized_quarter",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "multiply",
+        "left": {
+          "kind": "binary",
+          "op": "divide",
+          "left": {
+            "kind": "fact",
+            "concept_id": "net_income",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "total_equity",
+            "period_role": "closing"
+          }
+        },
+        "right": {
+          "kind": "constant",
+          "value": "4"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_equity"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roe",
+        "version": "1"
+      }
+    },
+    {
+      "id": "interest_bearing_debt_assets",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "current_borrowings",
+            "period_role": "closing"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "noncurrent_borrowings",
+            "period_role": "closing"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_borrowings",
+        "noncurrent_borrowings",
+        "total_assets"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "reference",
+      "base_definition_ref": {
+        "id": "debt_ratio",
+        "version": "1"
+      }
+    },
+    {
+      "id": "interest_bearing_debt_equity",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "current_borrowings",
+            "period_role": "closing"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "noncurrent_borrowings",
+            "period_role": "closing"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_borrowings",
+        "noncurrent_borrowings",
+        "total_equity"
+      ],
+      "period_basis": "stock",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "reference",
+      "base_definition_ref": {
+        "id": "debt_to_equity",
+        "version": "1"
+      }
+    },
+    {
+      "id": "interest_coverage_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "profit_before_tax",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "interest_expense",
+            "period_role": "selected"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "interest_expense",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "interest_expense",
+        "profit_before_tax"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "interest_coverage",
+        "version": "1"
+      }
+    },
+    {
+      "id": "interest_coverage_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "profit_before_tax",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "interest_expense",
+            "period_role": "selected"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "interest_expense",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "interest_expense",
+        "profit_before_tax"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "interest_coverage",
+        "version": "1"
+      }
+    },
+    {
+      "id": "interest_coverage_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "binary",
+          "op": "add",
+          "left": {
+            "kind": "fact",
+            "concept_id": "profit_before_tax",
+            "period_role": "selected"
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "interest_expense",
+            "period_role": "selected"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "interest_expense",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "interest_expense",
+        "profit_before_tax"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "interest_coverage",
+        "version": "1"
+      }
+    },
+    {
+      "id": "inventory_turnover_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "cost_of_sales",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "cost_of_sales",
+        "inventory"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "inventory_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "inventory_turnover_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "cost_of_sales",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "cost_of_sales",
+        "inventory"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "inventory_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "inventory_turnover_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "cost_of_sales",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "inventory",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "cost_of_sales",
+        "inventory"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "inventory_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "receivables_turnover_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "customer_receivables",
+        "net_revenue"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "receivables_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "receivables_turnover_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "customer_receivables",
+        "net_revenue"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "receivables_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "receivables_turnover_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "customer_receivables",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "customer_receivables",
+        "net_revenue"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "receivables_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "asset_turnover_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_revenue",
+        "total_assets"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "asset_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "asset_turnover_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_revenue",
+        "total_assets"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "asset_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "asset_turnover_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "opening"
+            },
+            {
+              "kind": "fact",
+              "concept_id": "total_assets",
+              "period_role": "closing"
+            }
+          ]
+        }
+      },
+      "input_concepts": [
+        "net_revenue",
+        "total_assets"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "asset_turnover",
+        "version": "1"
+      }
+    },
+    {
+      "id": "gross_margin_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "gross_profit",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "gross_profit",
+        "net_revenue"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "gross_margin",
+        "version": "1"
+      }
+    },
+    {
+      "id": "gross_margin_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "gross_profit",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "gross_profit",
+        "net_revenue"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "gross_margin",
+        "version": "1"
+      }
+    },
+    {
+      "id": "gross_margin_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "gross_profit",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "gross_profit",
+        "net_revenue"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "gross_margin",
+        "version": "1"
+      }
+    },
+    {
+      "id": "net_margin_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "net_revenue"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "net_margin",
+        "version": "1"
+      }
+    },
+    {
+      "id": "net_margin_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "net_revenue"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "net_margin",
+        "version": "1"
+      }
+    },
+    {
+      "id": "net_margin_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "net_revenue",
+          "period_role": "selected"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "net_revenue"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "net_margin",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roa_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_assets"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roa",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roa_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_assets"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roa",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roa_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_assets"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roa",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roe_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_equity"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roe",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roe_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_equity"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roe",
+        "version": "1"
+      }
+    },
+    {
+      "id": "roe_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "net_income",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "net_income",
+        "total_equity"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "roe",
+        "version": "1"
+      }
+    },
+    {
+      "id": "ocf_current_liabilities_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_liabilities",
+        "operating_cash_flow"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "ocf_current_liabilities",
+        "version": "1"
+      }
+    },
+    {
+      "id": "ocf_current_liabilities_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_liabilities",
+        "operating_cash_flow"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "ocf_current_liabilities",
+        "version": "1"
+      }
+    },
+    {
+      "id": "ocf_current_liabilities_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "current_liabilities",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "current_liabilities",
+        "operating_cash_flow"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "decimal",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "ocf_current_liabilities",
+        "version": "1"
+      }
+    },
+    {
+      "id": "ocf_total_assets_per_annual",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "operating_cash_flow",
+        "total_assets"
+      ],
+      "period_basis": "annual",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "ocf_total_assets",
+        "version": "1"
+      }
+    },
+    {
+      "id": "ocf_total_assets_per_ytd",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "operating_cash_flow",
+        "total_assets"
+      ],
+      "period_basis": "ytd",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "ocf_total_assets",
+        "version": "1"
+      }
+    },
+    {
+      "id": "ocf_total_assets_per_ttm",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-decisions-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-core-definition-contracts"
+      ],
+      "formula": {
+        "kind": "binary",
+        "op": "divide",
+        "left": {
+          "kind": "fact",
+          "concept_id": "operating_cash_flow",
+          "period_role": "selected"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_assets",
+          "period_role": "closing"
+        }
+      },
+      "input_concepts": [
+        "operating_cash_flow",
+        "total_assets"
+      ],
+      "period_basis": "ttm",
+      "measure_kind": "ratio",
+      "display_kind": "percent",
+      "definition_role": "variant",
+      "base_definition_ref": {
+        "id": "ocf_total_assets",
+        "version": "1"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "B003-assets",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-rule-contracts"
+      ],
+      "template_ref": {
+        "id": "fpt-separate-observed-2026",
+        "version": "1"
+      },
+      "group": "B",
+      "severity": "BLOCK",
+      "left": {
+        "kind": "fact",
+        "concept_id": "total_assets",
+        "period_role": "closing"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "add",
+        "left": {
+          "kind": "fact",
+          "concept_id": "current_assets",
+          "period_role": "closing"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "noncurrent_assets",
+          "period_role": "closing"
+        }
+      },
+      "comparison": "equal",
+      "tolerance": "0"
+    },
+    {
+      "id": "B003-funding",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-rule-contracts"
+      ],
+      "template_ref": {
+        "id": "fpt-separate-observed-2026",
+        "version": "1"
+      },
+      "group": "B",
+      "severity": "BLOCK",
+      "left": {
+        "kind": "fact",
+        "concept_id": "total_funding",
+        "period_role": "closing"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "add",
+        "left": {
+          "kind": "fact",
+          "concept_id": "total_liabilities",
+          "period_role": "closing"
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "total_equity",
+          "period_role": "closing"
+        }
+      },
+      "comparison": "equal",
+      "tolerance": "0"
+    },
+    {
+      "id": "B003-balance",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-rule-contracts"
+      ],
+      "template_ref": {
+        "id": "fpt-separate-observed-2026",
+        "version": "1"
+      },
+      "group": "B",
+      "severity": "BLOCK",
+      "left": {
+        "kind": "fact",
+        "concept_id": "total_assets",
+        "period_role": "closing"
+      },
+      "right": {
+        "kind": "fact",
+        "concept_id": "total_funding",
+        "period_role": "closing"
+      },
+      "comparison": "equal",
+      "tolerance": "0"
+    },
+    {
+      "id": "B005-operating",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-rule-contracts"
+      ],
+      "template_ref": {
+        "id": "fpt-separate-observed-2026",
+        "version": "1"
+      },
+      "group": "B",
+      "severity": "BLOCK",
+      "left": {
+        "kind": "fact",
+        "concept_id": "operating_profit",
+        "period_role": "selected"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "subtract",
+        "left": {
+          "kind": "binary",
+          "op": "subtract",
+          "left": {
+            "kind": "binary",
+            "op": "subtract",
+            "left": {
+              "kind": "binary",
+              "op": "add",
+              "left": {
+                "kind": "fact",
+                "concept_id": "gross_profit",
+                "period_role": "selected"
+              },
+              "right": {
+                "kind": "fact",
+                "concept_id": "finance_revenue",
+                "period_role": "selected"
+              }
+            },
+            "right": {
+              "kind": "fact",
+              "concept_id": "finance_cost",
+              "period_role": "selected"
+            }
+          },
+          "right": {
+            "kind": "fact",
+            "concept_id": "selling_expense",
+            "period_role": "selected"
+          }
+        },
+        "right": {
+          "kind": "fact",
+          "concept_id": "administrative_expense",
+          "period_role": "selected"
+        }
+      },
+      "comparison": "equal",
+      "tolerance": "0"
+    },
+    {
+      "id": "C001-cash",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-rule-contracts"
+      ],
+      "template_ref": {
+        "id": "fpt-separate-observed-2026",
+        "version": "1"
+      },
+      "group": "C",
+      "severity": "BLOCK",
+      "left": {
+        "kind": "fact",
+        "concept_id": "closing_cash",
+        "period_role": "selected"
+      },
+      "right": {
+        "kind": "fact",
+        "concept_id": "cash_and_equivalents",
+        "period_role": "closing"
+      },
+      "comparison": "equal",
+      "tolerance": "0"
+    },
+    {
+      "id": "C002-profit",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-fpt-q1-2026"
+      ],
+      "mandatory_test_refs": [
+        "test-fpt-rule-contracts"
+      ],
+      "template_ref": {
+        "id": "fpt-separate-observed-2026",
+        "version": "1"
+      },
+      "group": "C",
+      "severity": "BLOCK",
+      "left": {
+        "kind": "fact",
+        "concept_id": "net_income",
+        "period_role": "selected"
+      },
+      "right": {
+        "kind": "fact",
+        "concept_id": "current_period_retained_profit",
+        "period_role": "closing"
+      },
+      "comparison": "equal",
+      "tolerance": "0"
+    }
+  ],
+  "packs": [
+    {
+      "id": "generic",
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "source-ratio-definitions",
+        "owner-2026-11-02"
+      ],
+      "mandatory_test_refs": [
+        "test-generic-profile-contracts"
+      ],
+      "min_core_version": "0.0.1",
+      "template_refs": [
+        {
+          "id": "fpt-separate-observed-2026",
+          "version": "1"
+        }
+      ],
+      "ratio_memberships": [
+        {
+          "ratio_ref": {
+            "id": "current_ratio",
+            "version": "1"
+          },
+          "display_pillars": [
+            "liquidity"
+          ],
+          "scoring_pillar": "liquidity",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "quick_ratio",
+            "version": "1"
+          },
+          "display_pillars": [
+            "liquidity"
+          ],
+          "scoring_pillar": "liquidity",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "cash_ratio",
+            "version": "1"
+          },
+          "display_pillars": [
+            "liquidity"
+          ],
+          "scoring_pillar": "liquidity",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_ratio",
+            "version": "1"
+          },
+          "display_pillars": [
+            "leverage"
+          ],
+          "scoring_pillar": "leverage",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_to_equity",
+            "version": "1"
+          },
+          "display_pillars": [
+            "leverage"
+          ],
+          "scoring_pillar": "leverage",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "interest_coverage",
+            "version": "1"
+          },
+          "display_pillars": [
+            "leverage"
+          ],
+          "scoring_pillar": "leverage",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "inventory_turnover",
+            "version": "1"
+          },
+          "display_pillars": [
+            "efficiency"
+          ],
+          "scoring_pillar": "efficiency",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "receivables_turnover",
+            "version": "1"
+          },
+          "display_pillars": [
+            "efficiency"
+          ],
+          "scoring_pillar": "efficiency",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "asset_turnover",
+            "version": "1"
+          },
+          "display_pillars": [
+            "efficiency"
+          ],
+          "scoring_pillar": "efficiency",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "gross_margin",
+            "version": "1"
+          },
+          "display_pillars": [
+            "profitability"
+          ],
+          "scoring_pillar": "profitability",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "net_margin",
+            "version": "1"
+          },
+          "display_pillars": [
+            "profitability"
+          ],
+          "scoring_pillar": "profitability",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "roa",
+            "version": "1"
+          },
+          "display_pillars": [
+            "profitability"
+          ],
+          "scoring_pillar": "profitability",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "roe",
+            "version": "1"
+          },
+          "display_pillars": [
+            "profitability"
+          ],
+          "scoring_pillar": "profitability",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_current_liabilities",
+            "version": "1"
+          },
+          "display_pillars": [
+            "liquidity",
+            "cashflow"
+          ],
+          "scoring_pillar": "cashflow",
+          "role": "scoring"
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_total_assets",
+            "version": "1"
+          },
+          "display_pillars": [
+            "cashflow"
+          ],
+          "scoring_pillar": "cashflow",
+          "role": "scoring"
+        }
+      ],
+      "thresholds": [
+        {
+          "ratio_ref": {
+            "id": "current_ratio",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "current_ratio",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "quick_ratio",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "quick_ratio",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "cash_ratio",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "cash_ratio",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "current_ratio",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1.5",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "2.5",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_ratio",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.5",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_ratio",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.5",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_ratio",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.4",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "0.6",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_to_equity",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_to_equity",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "debt_to_equity",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "stock",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "2.5",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "interest_coverage",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "1.5",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "interest_coverage",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1.5",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "3",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "interest_coverage",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "3",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "inventory_turnover",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "3",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "inventory_turnover",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "3",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "5",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "inventory_turnover",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "5",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "receivables_turnover",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "4",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "receivables_turnover",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "5",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "7",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "receivables_turnover",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "7",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "asset_turnover",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "asset_turnover",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1.2",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "1.5",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "asset_turnover",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1.5",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "gross_margin",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.2",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "gross_margin",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.25",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "0.5",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "gross_margin",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.4",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "net_margin",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.05",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "net_margin",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.05",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "0.15",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "net_margin",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "quarter",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.15",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "roa",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.05",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "roa",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.05",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "0.1",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "roa",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "roe",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "roe",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.1",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "0.15",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "roe",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.15",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_current_liabilities",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.5",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_current_liabilities",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.5",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "1",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_current_liabilities",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_total_assets",
+            "version": "1"
+          },
+          "label": "weak",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "upper": {
+            "value": "0.1",
+            "inclusive": false
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_total_assets",
+            "version": "1"
+          },
+          "label": "medium",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.1",
+            "inclusive": true
+          },
+          "upper": {
+            "value": "0.2",
+            "inclusive": true
+          }
+        },
+        {
+          "ratio_ref": {
+            "id": "ocf_total_assets",
+            "version": "1"
+          },
+          "label": "good",
+          "period_basis": "annual",
+          "source_ref": "source-ratio-definitions",
+          "status": "draft",
+          "lower": {
+            "value": "0.2",
+            "inclusive": false
+          }
+        }
+      ],
+      "assessment_policy": {
+        "basis_approval_ref": "owner-2026-11-02",
+        "pillar_weights": [
+          {
+            "pillar_id": "liquidity",
+            "weight": "0.2"
+          },
+          {
+            "pillar_id": "leverage",
+            "weight": "0.2"
+          },
+          {
+            "pillar_id": "efficiency",
+            "weight": "0.2"
+          },
+          {
+            "pillar_id": "profitability",
+            "weight": "0.2"
+          },
+          {
+            "pillar_id": "cashflow",
+            "weight": "0.2"
+          }
+        ]
+      },
+      "applicability_refs": [
+        {
+          "id": "inventory-immaterial",
+          "version": "1"
+        },
+        {
+          "id": "holding-profitability",
+          "version": "1"
+        }
+      ]
+    }
+  ],
+  "applicability": [
+    {
+      "id": "inventory-immaterial",
+      "effect": "N_A",
+      "condition_refs": [
+        "inventory_asset_fraction_lt_0_001",
+        "service_business_direct_evidence"
+      ],
+      "required_evidence_concepts": [
+        "inventory",
+        "total_assets",
+        "service_business_evidence"
+      ],
+      "warning_codes": [
+        "INVENTORY_NOT_APPLICABLE"
+      ],
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "owner-2026-11-02-A20"
+      ],
+      "mandatory_test_refs": [
+        "test-applicability-contracts"
+      ]
+    },
+    {
+      "id": "holding-profitability",
+      "effect": "NOT_MEANINGFUL",
+      "condition_refs": [
+        "separate_scope",
+        "intragroup_or_investment_evidence",
+        "dividends_gt_half_positive_pretax"
+      ],
+      "required_evidence_concepts": [
+        "dividend_income",
+        "profit_before_tax",
+        "holding_evidence"
+      ],
+      "warning_codes": [
+        "DIVIDEND_DEPENDENT"
+      ],
+      "version": "1",
+      "status": "approved",
+      "source_refs": [
+        "owner-2026-11-02-A20"
+      ],
+      "mandatory_test_refs": [
+        "test-applicability-contracts"
+      ]
+    }
+  ]
+}

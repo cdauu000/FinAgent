@@ -1,0 +1,3223 @@
+{
+  "$defs": {
+    "AnalysisRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "assumption_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Assumption Ids",
+          "type": "array"
+        },
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/NumericClaim"
+          },
+          "title": "Claims",
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "missing_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Missing Refs",
+          "type": "array"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "snapshot_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Snapshot Ref",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "trace_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Trace Ref",
+          "type": "string"
+        },
+        "verdict": {
+          "$ref": "#/$defs/Verdict"
+        },
+        "verifier_receipt_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verifier Receipt Ref"
+        },
+        "warning_codes": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "snapshot_ref",
+        "policy_ref",
+        "claims",
+        "verdict",
+        "warning_codes",
+        "assumption_ids",
+        "missing_refs",
+        "trace_ref"
+      ],
+      "title": "AnalysisRecord",
+      "type": "object"
+    },
+    "AvailablePeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "statement_ref": {
+          "$ref": "#/$defs/StatementRevisionRef"
+        },
+        "statement_type": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B09"
+          ],
+          "title": "Statement Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "period",
+        "scope",
+        "statement_type",
+        "statement_ref"
+      ],
+      "title": "AvailablePeriod",
+      "type": "object"
+    },
+    "BlobMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "mime_type": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Mime Type",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "source_tier",
+        "sha256",
+        "mime_type"
+      ],
+      "title": "BlobMetadata",
+      "type": "object"
+    },
+    "BoundingBox": {
+      "additionalProperties": false,
+      "properties": {
+        "x1": {
+          "minimum": 0,
+          "title": "X1",
+          "type": "number"
+        },
+        "x2": {
+          "exclusiveMinimum": 0,
+          "title": "X2",
+          "type": "number"
+        },
+        "y1": {
+          "minimum": 0,
+          "title": "Y1",
+          "type": "number"
+        },
+        "y2": {
+          "exclusiveMinimum": 0,
+          "title": "Y2",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x1",
+        "y1",
+        "x2",
+        "y2"
+      ],
+      "title": "BoundingBox",
+      "type": "object"
+    },
+    "CanonicalSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "admitted_fact_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Admitted Fact Refs",
+          "type": "array"
+        },
+        "conflict_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Conflict Refs",
+          "type": "array"
+        },
+        "content_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pack_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "ruleset_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "schema_version": {
+          "const": "canonical/1",
+          "default": "canonical/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "selection": {
+          "$ref": "#/$defs/Selection"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "statement_refs": {
+          "items": {
+            "$ref": "#/$defs/StatementRevisionRef"
+          },
+          "minItems": 1,
+          "title": "Statement Refs",
+          "type": "array"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "unavailable_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Unavailable Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "selection",
+        "statement_refs",
+        "admitted_fact_refs",
+        "ruleset_ref",
+        "policy_ref",
+        "pack_ref",
+        "content_hash"
+      ],
+      "title": "CanonicalSnapshot",
+      "type": "object"
+    },
+    "CountValue": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "count",
+          "default": "count",
+          "title": "Kind",
+          "type": "string"
+        },
+        "unit": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "CountValue",
+      "type": "object"
+    },
+    "CropRef": {
+      "additionalProperties": false,
+      "properties": {
+        "blob_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Blob Ref",
+          "type": "string"
+        },
+        "original_bbox": {
+          "$ref": "#/$defs/BoundingBox"
+        },
+        "transform_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transform Ref"
+        }
+      },
+      "required": [
+        "blob_ref",
+        "original_bbox"
+      ],
+      "title": "CropRef",
+      "type": "object"
+    },
+    "DecimalValue": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "ratio",
+            "percentage"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ],
+      "title": "DecimalValue",
+      "type": "object"
+    },
+    "DerivedFact": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "definition_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "financial_value": {
+          "discriminator": {
+            "mapping": {
+              "count": "#/$defs/CountValue",
+              "money": "#/$defs/MonetaryValue",
+              "percentage": "#/$defs/DecimalValue",
+              "ratio": "#/$defs/DecimalValue"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/MonetaryValue"
+            },
+            {
+              "$ref": "#/$defs/CountValue"
+            },
+            {
+              "$ref": "#/$defs/DecimalValue"
+            }
+          ],
+          "title": "Financial Value"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "input_fact_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Input Fact Refs",
+          "type": "array"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "warning_codes": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "definition_ref",
+        "input_fact_refs",
+        "financial_value",
+        "period"
+      ],
+      "title": "DerivedFact",
+      "type": "object"
+    },
+    "Dimensions": {
+      "additionalProperties": false,
+      "properties": {
+        "counterparty_id": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Counterparty Id"
+        },
+        "debt_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "loan",
+                "bond",
+                "lease",
+                "other"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Debt Type"
+        },
+        "maturity": {
+          "anyOf": [
+            {
+              "enum": [
+                "current",
+                "noncurrent"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maturity"
+        },
+        "measurement_basis": {
+          "anyOf": [
+            {
+              "enum": [
+                "gross",
+                "net"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Measurement Basis"
+        },
+        "relationship": {
+          "anyOf": [
+            {
+              "enum": [
+                "related",
+                "unrelated",
+                "unknown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Relationship"
+        },
+        "subcategory": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Subcategory"
+        }
+      },
+      "title": "Dimensions",
+      "type": "object"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "blob_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Blob Ref",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Id"
+        },
+        "filename": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Filename",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "job_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Job Ref",
+          "type": "string"
+        },
+        "language": {
+          "default": "unknown",
+          "enum": [
+            "vi",
+            "en",
+            "bilingual",
+            "unknown"
+          ],
+          "title": "Language",
+          "type": "string"
+        },
+        "mime_type": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Mime Type",
+          "type": "string"
+        },
+        "page_count": {
+          "minimum": 0,
+          "title": "Page Count",
+          "type": "integer"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "public_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Public Evidence Refs",
+          "type": "array"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "source_kind": {
+          "enum": [
+            "upload",
+            "official_url",
+            "text"
+          ],
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Url"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "filename",
+        "source_kind",
+        "sha256",
+        "mime_type",
+        "blob_ref",
+        "page_count",
+        "job_ref"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "aliases": {
+          "default": [],
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Aliases",
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "industry_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Industry Evidence Refs",
+          "type": "array"
+        },
+        "industry_label": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Industry Label"
+        },
+        "legal_name": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Legal Name",
+          "type": "string"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "ticker": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ticker"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "legal_name"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "EvidenceChunk": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "document_revision": {
+          "minimum": 1,
+          "title": "Document Revision",
+          "type": "integer"
+        },
+        "embedding_model_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Embedding Model Ref"
+        },
+        "entity_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "heading_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Heading Ref"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "index_version": {
+          "title": "Index Version",
+          "type": "string"
+        },
+        "note_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note Ref"
+        },
+        "numeric_fact_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Numeric Fact Refs",
+          "type": "array"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "provenance_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Provenance Refs",
+          "type": "array"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "trust_grade": {
+          "$ref": "#/$defs/TrustGrade"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "document_id",
+        "document_revision",
+        "text",
+        "provenance_refs",
+        "entity_id",
+        "scope",
+        "period",
+        "trust_grade",
+        "numeric_fact_refs",
+        "index_version"
+      ],
+      "title": "EvidenceChunk",
+      "type": "object"
+    },
+    "FlowPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "derivation_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Derivation Refs",
+          "type": "array"
+        },
+        "end": {
+          "format": "date",
+          "title": "End",
+          "type": "string"
+        },
+        "fiscal_quarter": {
+          "anyOf": [
+            {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fiscal Quarter"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "flow",
+          "default": "flow",
+          "title": "Kind",
+          "type": "string"
+        },
+        "months": {
+          "anyOf": [
+            {
+              "maximum": 12,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Months"
+        },
+        "period_type": {
+          "enum": [
+            "quarter",
+            "ytd",
+            "annual",
+            "ttm",
+            "custom"
+          ],
+          "title": "Period Type",
+          "type": "string"
+        },
+        "start": {
+          "format": "date",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "period_type",
+        "fiscal_year"
+      ],
+      "title": "FlowPeriod",
+      "type": "object"
+    },
+    "LineItem": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Canonical Id",
+          "type": "string"
+        },
+        "code": {
+          "minLength": 1,
+          "pattern": "^[0-9]+[a-z]?$",
+          "title": "Code",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "derivation_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Derivation Ref"
+        },
+        "dimensions": {
+          "$ref": "#/$defs/Dimensions",
+          "default": {
+            "counterparty_id": null,
+            "debt_type": null,
+            "maturity": null,
+            "measurement_basis": null,
+            "relationship": null,
+            "subcategory": null
+          }
+        },
+        "financial_value": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Financial Value"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "is_memo": {
+          "default": false,
+          "title": "Is Memo",
+          "type": "boolean"
+        },
+        "is_total": {
+          "default": false,
+          "title": "Is Total",
+          "type": "boolean"
+        },
+        "label_en": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label En"
+        },
+        "label_vi": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Label Vi",
+          "type": "string"
+        },
+        "original_display": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Original Display"
+        },
+        "original_unit_scale": {
+          "anyOf": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Original Unit Scale"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Id"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "presence": {
+          "enum": [
+            "value",
+            "explicit_zero",
+            "derived_zero",
+            "missing"
+          ],
+          "title": "Presence",
+          "type": "string"
+        },
+        "provenance_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Provenance Refs",
+          "type": "array"
+        },
+        "source_column_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Source Column Id",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "statement_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "statement_revision": {
+          "minimum": 1,
+          "title": "Statement Revision",
+          "type": "integer"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "trust_grade": {
+          "$ref": "#/$defs/TrustGrade"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "statement_id",
+        "statement_revision",
+        "source_column_id",
+        "code",
+        "canonical_id",
+        "label_vi",
+        "presence",
+        "trust_grade",
+        "provenance_refs"
+      ],
+      "title": "LineItem",
+      "type": "object"
+    },
+    "MonetaryValue": {
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "const": "VND",
+          "default": "VND",
+          "title": "Currency",
+          "type": "string"
+        },
+        "kind": {
+          "const": "money",
+          "default": "money",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "MonetaryValue",
+      "type": "object"
+    },
+    "NoteTableView": {
+      "additionalProperties": false,
+      "properties": {
+        "facts": {
+          "items": {
+            "$ref": "#/$defs/LineItem"
+          },
+          "title": "Facts",
+          "type": "array"
+        },
+        "table": {
+          "$ref": "#/$defs/Table"
+        }
+      },
+      "required": [
+        "table",
+        "facts"
+      ],
+      "title": "NoteTableView",
+      "type": "object"
+    },
+    "NumericClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_display_strings": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Allowed Display Strings",
+          "type": "array"
+        },
+        "calculation_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Calculation Ref"
+        },
+        "claim_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "definition_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistryRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "entity_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "financial_value": {
+          "discriminator": {
+            "mapping": {
+              "count": "#/$defs/CountValue",
+              "money": "#/$defs/MonetaryValue",
+              "percentage": "#/$defs/DecimalValue",
+              "ratio": "#/$defs/DecimalValue"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/MonetaryValue"
+            },
+            {
+              "$ref": "#/$defs/CountValue"
+            },
+            {
+              "$ref": "#/$defs/DecimalValue"
+            }
+          ],
+          "title": "Financial Value"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "variant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Variant Id",
+          "type": "string"
+        },
+        "warning_codes": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "claim_id",
+        "financial_value",
+        "entity_id",
+        "scope",
+        "period",
+        "variant_id",
+        "evidence_refs",
+        "allowed_display_strings"
+      ],
+      "title": "NumericClaim",
+      "type": "object"
+    },
+    "Page": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "number"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "page_kind": {
+          "enum": [
+            "native",
+            "scan",
+            "hybrid",
+            "unknown"
+          ],
+          "title": "Page Kind",
+          "type": "string"
+        },
+        "physical_index": {
+          "minimum": 0,
+          "title": "Physical Index",
+          "type": "integer"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "printed_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Printed Label"
+        },
+        "raster_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raster Ref"
+        },
+        "rotation": {
+          "default": 0,
+          "enum": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "title": "Rotation",
+          "type": "integer"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "transform_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transform Ref"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "document_id",
+        "physical_index",
+        "width",
+        "height",
+        "page_kind"
+      ],
+      "title": "Page",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "bbox": {
+          "$ref": "#/$defs/BoundingBox"
+        },
+        "chosen_reading": {
+          "minimum": 0,
+          "title": "Chosen Reading",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "document_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Document Sha256",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "page_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Page Id",
+          "type": "string"
+        },
+        "physical_index": {
+          "minimum": 0,
+          "title": "Physical Index",
+          "type": "integer"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "printed_page": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Printed Page"
+        },
+        "readings": {
+          "items": {
+            "$ref": "#/$defs/Reading"
+          },
+          "minItems": 1,
+          "title": "Readings",
+          "type": "array"
+        },
+        "review_action_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Review Action Refs",
+          "type": "array"
+        },
+        "source_cell_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Cell Ids",
+          "type": "array"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "transform_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transform Ref"
+        },
+        "trust_grade": {
+          "$ref": "#/$defs/TrustGrade"
+        },
+        "validation_run_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Validation Run Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "document_id",
+        "document_sha256",
+        "page_id",
+        "physical_index",
+        "bbox",
+        "source_cell_ids",
+        "readings",
+        "chosen_reading",
+        "trust_grade"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "PurgeReport": {
+      "additionalProperties": false,
+      "properties": {
+        "blocked_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Blocked Refs",
+          "type": "array"
+        },
+        "deleted_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Deleted Refs",
+          "type": "array"
+        },
+        "pending_backup_expiry_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Pending Backup Expiry Refs",
+          "type": "array"
+        },
+        "resource_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Resource Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource_ref",
+        "deleted_refs",
+        "pending_backup_expiry_refs",
+        "blocked_refs"
+      ],
+      "title": "PurgeReport",
+      "type": "object"
+    },
+    "Reading": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "engine": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Engine",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "native",
+            "ocr",
+            "human"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "raw_text": {
+          "title": "Raw Text",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "engine",
+        "version",
+        "raw_text",
+        "kind"
+      ],
+      "title": "Reading",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    },
+    "ReviewAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "confirm_reading",
+            "correct_reading",
+            "acknowledge_source_conflict"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "after_value": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "After Value"
+        },
+        "before_value": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Before Value"
+        },
+        "case_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Case Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "expected_revision": {
+          "minimum": 1,
+          "title": "Expected Revision",
+          "type": "integer"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "reason": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "resulting_revision": {
+          "minimum": 1,
+          "title": "Resulting Revision",
+          "type": "integer"
+        },
+        "reviewer_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Reviewer Id",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "case_id",
+        "expected_revision",
+        "reviewer_id",
+        "action",
+        "reason",
+        "idempotency_key",
+        "resulting_revision"
+      ],
+      "title": "ReviewAction",
+      "type": "object"
+    },
+    "ReviewCase": {
+      "additionalProperties": false,
+      "properties": {
+        "action_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Action Refs",
+          "type": "array"
+        },
+        "candidate_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Candidate Refs",
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "crop_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Crop Refs",
+          "type": "array"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "issue_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Issue Refs",
+          "type": "array"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "statement_ref": {
+          "$ref": "#/$defs/StatementRevisionRef"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "resolved",
+            "source_conflict_acknowledged"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "statement_ref",
+        "crop_refs",
+        "candidate_refs",
+        "issue_refs",
+        "status"
+      ],
+      "title": "ReviewCase",
+      "type": "object"
+    },
+    "Scope": {
+      "enum": [
+        "separate",
+        "consolidated"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "Selection": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "revision_policy": {
+          "default": "pinned",
+          "enum": [
+            "pinned",
+            "latest_approved"
+          ],
+          "title": "Revision Policy",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "snapshot_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Snapshot Refs",
+          "type": "array"
+        },
+        "statement_family": {
+          "default": "corporate",
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Statement Family",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "scope",
+        "period"
+      ],
+      "title": "Selection",
+      "type": "object"
+    },
+    "SnapshotRef": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "snapshot_id",
+        "content_hash"
+      ],
+      "title": "SnapshotRef",
+      "type": "object"
+    },
+    "SourceCell": {
+      "additionalProperties": false,
+      "properties": {
+        "bbox": {
+          "$ref": "#/$defs/BoundingBox"
+        },
+        "candidate_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Candidate Refs",
+          "type": "array"
+        },
+        "column_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Column Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "page_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Page Id",
+          "type": "string"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "raw_text": {
+          "title": "Raw Text",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "code",
+            "note",
+            "label",
+            "value"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "row_index": {
+          "minimum": 0,
+          "title": "Row Index",
+          "type": "integer"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "table_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Table Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "table_id",
+        "page_id",
+        "row_index",
+        "column_id",
+        "role",
+        "raw_text",
+        "bbox"
+      ],
+      "title": "SourceCell",
+      "type": "object"
+    },
+    "Statement": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Audit Evidence Refs",
+          "type": "array"
+        },
+        "audit_status": {
+          "default": "unknown",
+          "enum": [
+            "audited",
+            "reviewed",
+            "unaudited",
+            "unknown"
+          ],
+          "title": "Audit Status",
+          "type": "string"
+        },
+        "complete": {
+          "title": "Complete",
+          "type": "boolean"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "currency": {
+          "const": "VND",
+          "default": "VND",
+          "title": "Currency",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "entity_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "line_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Line Refs",
+          "type": "array"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "canonical/1",
+          "default": "canonical/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "statement_family": {
+          "default": "corporate",
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Statement Family",
+          "type": "string"
+        },
+        "statement_type": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B09"
+          ],
+          "title": "Statement Type",
+          "type": "string"
+        },
+        "supersedes_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supersedes Ref"
+        },
+        "template_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "unit_scale": {
+          "enum": [
+            1,
+            1000,
+            1000000,
+            1000000000
+          ],
+          "title": "Unit Scale",
+          "type": "integer"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/VerificationStatus"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "revision",
+        "document_id",
+        "entity_id",
+        "template_ref",
+        "statement_type",
+        "scope",
+        "period",
+        "unit_scale",
+        "verification_status",
+        "line_refs",
+        "complete"
+      ],
+      "title": "Statement",
+      "type": "object"
+    },
+    "StatementRevisionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "statement_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Statement Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_id",
+        "revision"
+      ],
+      "title": "StatementRevisionRef",
+      "type": "object"
+    },
+    "StockPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date",
+          "title": "As Of",
+          "type": "string"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "stock",
+          "default": "stock",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "as_of",
+        "fiscal_year"
+      ],
+      "title": "StockPeriod",
+      "type": "object"
+    },
+    "Table": {
+      "additionalProperties": false,
+      "properties": {
+        "columns": {
+          "items": {
+            "$ref": "#/$defs/TableColumn"
+          },
+          "minItems": 1,
+          "title": "Columns",
+          "type": "array"
+        },
+        "complete": {
+          "default": false,
+          "title": "Complete",
+          "type": "boolean"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "note_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note Number"
+        },
+        "page_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Page Refs",
+          "type": "array"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "statement_type": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B09",
+            "unknown"
+          ],
+          "title": "Statement Type",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "unit_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Unit Evidence Refs",
+          "type": "array"
+        },
+        "unit_scale": {
+          "anyOf": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit Scale"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "document_id",
+        "page_refs",
+        "columns",
+        "statement_type"
+      ],
+      "title": "Table",
+      "type": "object"
+    },
+    "TableColumn": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "flow": "#/$defs/FlowPeriod",
+                  "stock": "#/$defs/StockPeriod"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/StockPeriod"
+                },
+                {
+                  "$ref": "#/$defs/FlowPeriod"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "role": {
+          "enum": [
+            "code",
+            "note",
+            "label",
+            "value"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "role"
+      ],
+      "title": "TableColumn",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "TrustGrade": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "title": "TrustGrade",
+      "type": "string"
+    },
+    "ValidatedBundle": {
+      "additionalProperties": false,
+      "properties": {
+        "issues": {
+          "items": {
+            "$ref": "#/$defs/ValidationIssue"
+          },
+          "title": "Issues",
+          "type": "array"
+        },
+        "lines": {
+          "items": {
+            "$ref": "#/$defs/LineItem"
+          },
+          "title": "Lines",
+          "type": "array"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "statements": {
+          "items": {
+            "$ref": "#/$defs/Statement"
+          },
+          "title": "Statements",
+          "type": "array"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "validation_run_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Validation Run Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "source_tier",
+        "statements",
+        "lines",
+        "issues",
+        "validation_run_refs"
+      ],
+      "title": "ValidatedBundle",
+      "type": "object"
+    },
+    "ValidationIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Affected Refs",
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "discrepancy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Discrepancy"
+        },
+        "explanation_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Explanation Evidence Refs",
+          "type": "array"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "READING",
+            "SOURCE",
+            "CLASSIFICATION",
+            "UNKNOWN"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_EVALUATED",
+            "NOT_APPLICABLE"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "reason_code": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "rule_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "severity": {
+          "enum": [
+            "BLOCK",
+            "WARN",
+            "INFO"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "statement_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "tolerance": {
+          "title": "Tolerance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "statement_id",
+        "rule_ref",
+        "outcome",
+        "severity",
+        "origin",
+        "affected_refs",
+        "tolerance",
+        "reason_code"
+      ],
+      "title": "ValidationIssue",
+      "type": "object"
+    },
+    "ValidationReport": {
+      "additionalProperties": false,
+      "properties": {
+        "issues": {
+          "items": {
+            "$ref": "#/$defs/ValidationIssue"
+          },
+          "title": "Issues",
+          "type": "array"
+        },
+        "ruleset_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "statement_ref": {
+          "$ref": "#/$defs/StatementRevisionRef"
+        }
+      },
+      "required": [
+        "statement_ref",
+        "issues",
+        "ruleset_ref"
+      ],
+      "title": "ValidationReport",
+      "type": "object"
+    },
+    "Verdict": {
+      "enum": [
+        "ANSWER",
+        "ANSWER_WITH_CAVEATS",
+        "ABSTAIN"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "VerificationStatus": {
+      "enum": [
+        "VERIFIED",
+        "PARTIAL",
+        "REJECTED"
+      ],
+      "title": "VerificationStatus",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Schema root for review; no in-memory database or persistence implementation.",
+  "properties": {
+    "analysis_records": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AnalysisRecord"
+      },
+      "title": "Analysis Records",
+      "type": "array"
+    },
+    "available_periods": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AvailablePeriod"
+      },
+      "title": "Available Periods",
+      "type": "array"
+    },
+    "blob_metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/BlobMetadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cells": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SourceCell"
+      },
+      "title": "Cells",
+      "type": "array"
+    },
+    "crop_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CropRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "derived": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DerivedFact"
+      },
+      "title": "Derived",
+      "type": "array"
+    },
+    "documents": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Document"
+      },
+      "title": "Documents",
+      "type": "array"
+    },
+    "entities": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "evidence_chunks": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EvidenceChunk"
+      },
+      "title": "Evidence Chunks",
+      "type": "array"
+    },
+    "issues": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ValidationIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "lines": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/LineItem"
+      },
+      "title": "Lines",
+      "type": "array"
+    },
+    "note_table_view": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/NoteTableView"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "pages": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Page"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "provenance": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Provenance"
+      },
+      "title": "Provenance",
+      "type": "array"
+    },
+    "purge_report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PurgeReport"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "review_actions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ReviewAction"
+      },
+      "title": "Review Actions",
+      "type": "array"
+    },
+    "review_cases": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ReviewCase"
+      },
+      "title": "Review Cases",
+      "type": "array"
+    },
+    "snapshot_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SnapshotRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "snapshots": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/CanonicalSnapshot"
+      },
+      "title": "Snapshots",
+      "type": "array"
+    },
+    "statements": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Statement"
+      },
+      "title": "Statements",
+      "type": "array"
+    },
+    "tables": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Table"
+      },
+      "title": "Tables",
+      "type": "array"
+    },
+    "validated_bundle": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ValidatedBundle"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "validation_report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ValidationReport"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "CanonicalCatalog",
+  "type": "object",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "canonical/1"
+}

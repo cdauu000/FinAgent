@@ -1,0 +1,203 @@
+{
+  "frozen": false,
+  "owner_review_required": true,
+  "schemas": [
+    {
+      "file": "api-1.validation.json",
+      "mode": "validation",
+      "sha256": "2ef7f3186fc80125dd732c256ee7c0aeb872629d2aa2837965888537cb90d758",
+      "status": "draft",
+      "version": "api/1"
+    },
+    {
+      "file": "api-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "acee4e9c153076aef008d964189e9b38966b9f4ed846fc5c65d366d47ba3ea5d",
+      "status": "draft",
+      "version": "api/1"
+    },
+    {
+      "file": "applicability-1.validation.json",
+      "mode": "validation",
+      "sha256": "1ebed57aaffa88d0d745bdd7028960f812b1972455f9685d44a520f31f44eb75",
+      "status": "draft",
+      "version": "applicability/1"
+    },
+    {
+      "file": "applicability-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "1ebed57aaffa88d0d745bdd7028960f812b1972455f9685d44a520f31f44eb75",
+      "status": "draft",
+      "version": "applicability/1"
+    },
+    {
+      "file": "canonical-1.validation.json",
+      "mode": "validation",
+      "sha256": "e02a1f2ad4f94206c0b74415aebf7c0c19c82a5c4abe73c86844423cf401433f",
+      "status": "draft",
+      "version": "canonical/1"
+    },
+    {
+      "file": "canonical-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "92688837a90b134a77959b1fd615685c0d542df270839f629bc05ebffbcb1379",
+      "status": "draft",
+      "version": "canonical/1"
+    },
+    {
+      "file": "event-1.validation.json",
+      "mode": "validation",
+      "sha256": "501b53ae966da0917ac990723d4ba2062031d55ee3ce58f02aa120dddf27b886",
+      "status": "draft",
+      "version": "event/1"
+    },
+    {
+      "file": "event-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "501b53ae966da0917ac990723d4ba2062031d55ee3ce58f02aa120dddf27b886",
+      "status": "draft",
+      "version": "event/1"
+    },
+    {
+      "file": "gateway-1.validation.json",
+      "mode": "validation",
+      "sha256": "764d1e4a476533a1341c375211f8b005e1324f01db75aafbc3a21b2ca9267969",
+      "status": "draft",
+      "version": "gateway/1"
+    },
+    {
+      "file": "gateway-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "e310c9f87ef3c50f945df179311b289de60ae2f3386fa4ba3fdf177c127815de",
+      "status": "draft",
+      "version": "gateway/1"
+    },
+    {
+      "file": "model-registry-1.validation.json",
+      "mode": "validation",
+      "sha256": "733c1ee942a1ce0f243f2c90459540363ce0d753a91e18d67b954274143b3688",
+      "status": "draft",
+      "version": "model-registry/1"
+    },
+    {
+      "file": "model-registry-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "733c1ee942a1ce0f243f2c90459540363ce0d753a91e18d67b954274143b3688",
+      "status": "draft",
+      "version": "model-registry/1"
+    },
+    {
+      "file": "policy-1.validation.json",
+      "mode": "validation",
+      "sha256": "7422823dc580d2e65e136ca89725cdbdf83751fb4f1adcf827e6a8d86b250526",
+      "status": "draft",
+      "version": "policy/1"
+    },
+    {
+      "file": "policy-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "7422823dc580d2e65e136ca89725cdbdf83751fb4f1adcf827e6a8d86b250526",
+      "status": "draft",
+      "version": "policy/1"
+    },
+    {
+      "file": "prompt-1.validation.json",
+      "mode": "validation",
+      "sha256": "6304e13b05b4bcee47b81aea09dab81a3978d59e6b6cb41dff2d4ace614169b2",
+      "status": "draft",
+      "version": "prompt/1"
+    },
+    {
+      "file": "prompt-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "6304e13b05b4bcee47b81aea09dab81a3978d59e6b6cb41dff2d4ace614169b2",
+      "status": "draft",
+      "version": "prompt/1"
+    },
+    {
+      "file": "ratio-def-1.validation.json",
+      "mode": "validation",
+      "sha256": "da3368cf71f0354958cf75cbaa11517cca3bee68aab49225fd71fb29b6c9058e",
+      "status": "draft",
+      "version": "ratio-def/1"
+    },
+    {
+      "file": "ratio-def-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "3a34eb8a66d14839eac5ac395605cfcff92bd9f590f51b3ba840cb8b0b008476",
+      "status": "draft",
+      "version": "ratio-def/1"
+    },
+    {
+      "file": "role-1.validation.json",
+      "mode": "validation",
+      "sha256": "327e5ba14fa35c787ed61c36491177ce88b1e8cbe1a8856c52da4ff9ee322e68",
+      "status": "draft",
+      "version": "role/1"
+    },
+    {
+      "file": "role-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "327e5ba14fa35c787ed61c36491177ce88b1e8cbe1a8856c52da4ff9ee322e68",
+      "status": "draft",
+      "version": "role/1"
+    },
+    {
+      "file": "rule-1.validation.json",
+      "mode": "validation",
+      "sha256": "074161190da7d2470552570b18b42fbe3baacb8fe9dd2db9223c7ffdb368972a",
+      "status": "draft",
+      "version": "rule/1"
+    },
+    {
+      "file": "rule-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "85176193327eae2476a8d3977d4752afc97d573e7960086bbf3f680050e10861",
+      "status": "draft",
+      "version": "rule/1"
+    },
+    {
+      "file": "spack-1.validation.json",
+      "mode": "validation",
+      "sha256": "7eeb46e9d3e79b9a75b23f542282bc97427dd8b4652687126df96fc5f43843ae",
+      "status": "draft",
+      "version": "spack/1"
+    },
+    {
+      "file": "spack-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "804c625c667899edc57d55166285050576d9997389d3c1502fc57abded57c477",
+      "status": "draft",
+      "version": "spack/1"
+    },
+    {
+      "file": "template-1.validation.json",
+      "mode": "validation",
+      "sha256": "faacae3a341dbc9729a53f69b277446623e7f5e00b5dde7776439aedb2e7de7b",
+      "status": "draft",
+      "version": "template/1"
+    },
+    {
+      "file": "template-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "faacae3a341dbc9729a53f69b277446623e7f5e00b5dde7776439aedb2e7de7b",
+      "status": "draft",
+      "version": "template/1"
+    },
+    {
+      "file": "tool-1.validation.json",
+      "mode": "validation",
+      "sha256": "226642f64039cf0ac93d460e4b20255d359266e2455af367741c04c3211a39bc",
+      "status": "draft",
+      "version": "tool/1"
+    },
+    {
+      "file": "tool-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "226642f64039cf0ac93d460e4b20255d359266e2455af367741c04c3211a39bc",
+      "status": "draft",
+      "version": "tool/1"
+    }
+  ],
+  "status": "draft"
+}

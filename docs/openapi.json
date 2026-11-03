@@ -1,0 +1,448 @@
+{
+  "components": {
+    "schemas": {
+      "Health": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "const": "alive",
+            "default": "alive",
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version"
+        ],
+        "title": "Health",
+        "type": "object"
+      },
+      "Readiness": {
+        "additionalProperties": false,
+        "properties": {
+          "reasons": {
+            "items": {
+              "enum": [
+                "SCHEMA_DRAFT",
+                "PERSISTENCE_NOT_IMPLEMENTED"
+              ],
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "status": {
+            "const": "not_ready",
+            "default": "not_ready",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "reasons"
+        ],
+        "title": "Readiness",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "FinAgent",
+    "version": "0.0.1"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "readiness_health_ready_get",
+        "responses": {
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Readiness"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Readiness"
+      }
+    }
+  },
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.wire",
+      "models": [
+        "MonetaryValue",
+        "CountValue"
+      ],
+      "rule": "Reject bool/float and noncanonical strings; unsafe numeric integers require strings; precision38.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_integer"
+    },
+    {
+      "id": "decimal.exact",
+      "models": [
+        "DecimalValue",
+        "ValidationIssue",
+        "ConstantExpr",
+        "RuleDefinition",
+        "ThresholdBoundary",
+        "PillarWeight",
+        "AssessmentPolicy",
+        "ProviderResult"
+      ],
+      "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_decimal"
+    },
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "period.interval",
+      "models": [
+        "FlowPeriod"
+      ],
+      "rule": "start<=end; fiscal_quarter required for quarter.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.FlowPeriod.valid_interval"
+    },
+    {
+      "id": "document.public_evidence",
+      "models": [
+        "Document"
+      ],
+      "rule": "Public classification requires evidence refs; does not itself authenticate those refs.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.Document.public_requires_evidence"
+    },
+    {
+      "id": "bbox.ordered",
+      "models": [
+        "BoundingBox"
+      ],
+      "rule": "x2>x1 and y2>y1.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.BoundingBox.ordered"
+    },
+    {
+      "id": "provenance.chosen",
+      "models": [
+        "Provenance"
+      ],
+      "rule": "chosen_reading indexes an existing reading.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.Provenance.chosen_exists"
+    },
+    {
+      "id": "ratio.infer_scale",
+      "models": [
+        "DecimalValue"
+      ],
+      "rule": "Derive absent scale from the exact fraction without rounding or multiplying by100.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.DecimalValue.infer_scale"
+    },
+    {
+      "id": "ratio.scale",
+      "models": [
+        "DecimalValue"
+      ],
+      "rule": "Declared scale equals fractional decimal places; percentage is display only.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.DecimalValue.scale_matches_fraction"
+    },
+    {
+      "id": "line.presence",
+      "models": [
+        "LineItem"
+      ],
+      "rule": "Missing iff null; zero states require zero; derived_zero requires lineage.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.LineItem.presence_matches_value"
+    },
+    {
+      "id": "statement.period_audit",
+      "models": [
+        "Statement"
+      ],
+      "rule": "B01 stock; B02/B03 flow; audited/reviewed requires audit evidence.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.Statement.correct_period_kind"
+    },
+    {
+      "id": "intent.rewrite",
+      "models": [
+        "ReadAction"
+      ],
+      "rule": "Rewrite contains letters/whitespace only; name checking remains a later local guard.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ReadAction.rewrite_has_no_numbers"
+    },
+    {
+      "id": "intent.selection",
+      "models": [
+        "ReadAction"
+      ],
+      "rule": "Financial actions need entity/scope/period; statement type and exactly two comparison periods where applicable.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ReadAction.explicit_selectors_for_financial_actions"
+    },
+    {
+      "id": "intent.clarification",
+      "models": [
+        "IntentPlan"
+      ],
+      "rule": "Clarification and dispatch are exclusive; an action or clarification is required.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.IntentPlan.unresolved_does_not_dispatch"
+    },
+    {
+      "id": "compose.claim_refs",
+      "models": [
+        "FinalAnswerPayload"
+      ],
+      "rule": "Claim IDs unique; qualitative relation refs must exist.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.FinalAnswerPayload.unique_claims_and_known_relations"
+    },
+    {
+      "id": "draft.numeric_prose",
+      "models": [
+        "ProseSegment"
+      ],
+      "rule": "Reject Unicode numeric characters. Full name/number-word/semantic checks remain Phase4.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ProseSegment.no_numeric_characters"
+    },
+    {
+      "id": "draft.manifest_refs",
+      "models": [
+        "ReferenceManifest"
+      ],
+      "rule": "Required claims/warnings/render slots are subsets of allowed refs; full draft binding is Phase4.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ReferenceManifest.required_refs_are_allowed"
+    },
+    {
+      "id": "gateway.manifest",
+      "models": [
+        "GatewayRequest"
+      ],
+      "rule": "Composition requires a value-free reference manifest.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.GatewayRequest.composition_requires_manifest"
+    },
+    {
+      "id": "provider.task",
+      "models": [
+        "ProviderRequest"
+      ],
+      "rule": "Request task, typed user payload and output-schema ref agree.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ProviderRequest.task_matches_payload_and_schema"
+    },
+    {
+      "id": "provider.result",
+      "models": [
+        "ProviderResult"
+      ],
+      "rule": "Intent task returns IntentPlan; compose task returns AnswerDraft.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ProviderResult.result_matches_task"
+    },
+    {
+      "id": "permit.tier",
+      "models": [
+        "EgressPermit"
+      ],
+      "rule": "Strict-private denied; private needs opt-in. Runtime model terms/deadlines/one-use checks are later controls.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.EgressPermit.tier_allows_external"
+    },
+    {
+      "id": "model.evidence",
+      "models": [
+        "ModelCapability"
+      ],
+      "rule": "Verified capability needs dated evidence/probes; verified training/retention needs terms refs.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.model_registry.ModelCapability.verified_requires_evidence"
+    },
+    {
+      "id": "model.registry_refs",
+      "models": [
+        "ModelRegistry"
+      ],
+      "rule": "Evidence IDs/model account keys unique; every quota/probe/terms evidence ref resolves.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.model_registry.ModelRegistry.references_exist"
+    },
+    {
+      "id": "prompt.binding_hash",
+      "models": [
+        "PromptDefinition"
+      ],
+      "rule": "Task matches input/output schemas and template SHA256 matches exact UTF-8 bytes.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.prompts.PromptDefinition.task_contract_matches"
+    },
+    {
+      "id": "prompt.unique",
+      "models": [
+        "PromptRegistry"
+      ],
+      "rule": "Prompt ID/version/language keys unique.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.prompts.PromptRegistry.unique_versions"
+    },
+    {
+      "id": "ast.budget",
+      "models": [
+        "RatioDefinition",
+        "RuleDefinition"
+      ],
+      "rule": "Iterative pre-validation: depth32, total1024 occurrences, fanout100; reject cycles.",
+      "scope": "preflight",
+      "symbol": "finagent.policy.expression_limits.guard_expression"
+    },
+    {
+      "id": "rule.combined_budget",
+      "models": [
+        "RuleDefinition"
+      ],
+      "rule": "Node budget shared by both rule expression sides.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.RuleDefinition.combined_expression_budget"
+    },
+    {
+      "id": "rule.tolerance",
+      "models": [
+        "RuleDefinition"
+      ],
+      "rule": "Tolerance cannot be negative.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.RuleDefinition.nonnegative_tolerance"
+    },
+    {
+      "id": "template.codes",
+      "models": [
+        "TemplateDefinition"
+      ],
+      "rule": "Statement-type/code keys unique.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.TemplateDefinition.unique_codes"
+    },
+    {
+      "id": "threshold.bounds",
+      "models": [
+        "ThresholdBand"
+      ],
+      "rule": "Bounds ordered; equal endpoints require both inclusive. Overlap/gap classification remains Phase3.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.ThresholdBand.ordered_bounds"
+    },
+    {
+      "id": "membership.scoring",
+      "models": [
+        "RatioMembership"
+      ],
+      "rule": "Scoring pillar is displayed; scoring role and pillar presence agree.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.RatioMembership.scoring_is_displayed"
+    },
+    {
+      "id": "assessment.owner_policy",
+      "models": [
+        "AssessmentPolicy"
+      ],
+      "rule": "Five distinct equal pillars, fixed ICR cap boundary; APPROVED requires corpus-run approval ref.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.AssessmentPolicy.profile_matches_owner_decision"
+    },
+    {
+      "id": "pack.memberships",
+      "models": [
+        "SectorPack"
+      ],
+      "rule": "No duplicate ratio membership; OCF14 scores only at cashflow.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.SectorPack.single_scoring_membership"
+    },
+    {
+      "id": "registry.bundle",
+      "models": [
+        "TemplateDefinition",
+        "RatioDefinition",
+        "RuleDefinition",
+        "SectorPack",
+        "RoleDefinition",
+        "ToolDefinition",
+        "ApplicabilityDefinition"
+      ],
+      "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+      "scope": "loader",
+      "symbol": "finagent.policy.registry.validate_bundle"
+    },
+    {
+      "id": "token.collision",
+      "models": [
+        "GatewayReviewCatalog"
+      ],
+      "rule": "Run-local random8 aliases; normalized query/used-suffix collision checks and bounded retries; IDs128 remain local.",
+      "scope": "preflight",
+      "symbol": "finagent.llm_gateway.tokens.RunTokenAllocator.allocate"
+    }
+  ],
+  "x-finagent-schema-review": {
+    "approval": "project_owner_explicit_freeze",
+    "deferred_controls": [
+      "full_query_guard",
+      "name_and_number_word_guard",
+      "renderer",
+      "output_verifier",
+      "Redis_quota_fairness",
+      "provider_adapters"
+    ],
+    "frozen": true,
+    "groups": 14,
+    "scope": "Frozen DTOs, preflight and loader validators; not deployed business endpoints",
+    "status": "frozen"
+  }
+}

@@ -1,0 +1,2327 @@
+{
+  "$defs": {
+    "AnswerDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "segments": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "claim_ref": "#/$defs/ClaimRefSegment",
+                "entity_ref": "#/$defs/EntityRefSegment",
+                "prose": "#/$defs/ProseSegment",
+                "warning_ref": "#/$defs/WarningRefSegment"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/ProseSegment"
+              },
+              {
+                "$ref": "#/$defs/ClaimRefSegment"
+              },
+              {
+                "$ref": "#/$defs/WarningRefSegment"
+              },
+              {
+                "$ref": "#/$defs/EntityRefSegment"
+              }
+            ]
+          },
+          "minItems": 1,
+          "title": "Segments",
+          "type": "array"
+        }
+      },
+      "required": [
+        "segments"
+      ],
+      "title": "AnswerDraft",
+      "type": "object"
+    },
+    "ClaimDescriptor": {
+      "additionalProperties": false,
+      "properties": {
+        "band": {
+          "default": "unscored",
+          "enum": [
+            "weak",
+            "medium",
+            "good",
+            "unscored"
+          ],
+          "title": "Band",
+          "type": "string"
+        },
+        "claim_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "concept_label": {
+          "maxLength": 160,
+          "pattern": "^[a-z][a-z_.]*$",
+          "title": "Concept Label",
+          "type": "string"
+        },
+        "period_code": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Period Code",
+          "type": "string"
+        },
+        "qualitative_relations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/QualitativeRelation"
+          },
+          "title": "Qualitative Relations",
+          "type": "array"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "status": {
+          "enum": [
+            "NORMAL",
+            "N_A",
+            "NOT_MEANINGFUL",
+            "UNAVAILABLE",
+            "UNVERIFIED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "warning_codes": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "claim_id",
+        "concept_label",
+        "status",
+        "period_code",
+        "scope"
+      ],
+      "title": "ClaimDescriptor",
+      "type": "object"
+    },
+    "ClaimRefSegment": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "render": {
+          "enum": [
+            "value",
+            "label",
+            "period",
+            "scope",
+            "status"
+          ],
+          "title": "Render",
+          "type": "string"
+        },
+        "type": {
+          "const": "claim_ref",
+          "default": "claim_ref",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "render"
+      ],
+      "title": "ClaimRefSegment",
+      "type": "object"
+    },
+    "Clarification": {
+      "enum": [
+        "ENTITY",
+        "PERIOD",
+        "SCOPE",
+        "RATIO",
+        "AMBIGUOUS_REQUEST"
+      ],
+      "title": "Clarification",
+      "type": "string"
+    },
+    "DeclineAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "decline",
+          "default": "decline",
+          "title": "Action",
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "OUT_OF_DOMAIN_ADVICE",
+            "FORECAST",
+            "MARKET_PRICE",
+            "UNSUPPORTED"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason"
+      ],
+      "title": "DeclineAction",
+      "type": "object"
+    },
+    "EgressPermit": {
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "enum": [
+            "runtime",
+            "development"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "max_tokens": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Max Tokens",
+          "type": "integer"
+        },
+        "model": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Model",
+          "type": "string"
+        },
+        "payload_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Payload Hash",
+          "type": "string"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "provider": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Provider",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "task": {
+          "$ref": "#/$defs/GatewayTask"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "tenant_opt_in": {
+          "title": "Tenant Opt In",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "task",
+        "environment",
+        "tenant_id",
+        "source_tier",
+        "tenant_opt_in",
+        "provider",
+        "model",
+        "payload_hash",
+        "policy_ref",
+        "expires_at",
+        "max_tokens"
+      ],
+      "title": "EgressPermit",
+      "type": "object"
+    },
+    "EntityRefSegment": {
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+          "title": "Token",
+          "type": "string"
+        },
+        "type": {
+          "const": "entity_ref",
+          "default": "entity_ref",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ],
+      "title": "EntityRefSegment",
+      "type": "object"
+    },
+    "ExecutionContext": {
+      "additionalProperties": false,
+      "properties": {
+        "deadline": {
+          "format": "date-time",
+          "title": "Deadline",
+          "type": "string"
+        },
+        "mode": {
+          "$ref": "#/$defs/Mode"
+        },
+        "permissions": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "principal_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Principal Id",
+          "type": "string"
+        },
+        "request_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "trace_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Trace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "principal_id",
+        "permissions",
+        "request_id",
+        "trace_id",
+        "policy_ref",
+        "mode",
+        "deadline"
+      ],
+      "title": "ExecutionContext",
+      "type": "object"
+    },
+    "FinalAnswerPayload": {
+      "additionalProperties": false,
+      "properties": {
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/ClaimDescriptor"
+          },
+          "title": "Claims",
+          "type": "array"
+        },
+        "entity_tokens": {
+          "default": [],
+          "items": {
+            "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+            "type": "string"
+          },
+          "title": "Entity Tokens",
+          "type": "array"
+        },
+        "language": {
+          "default": "vi",
+          "enum": [
+            "vi",
+            "en"
+          ],
+          "title": "Language",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/Verdict"
+        },
+        "task": {
+          "const": "answer_compose",
+          "default": "answer_compose",
+          "title": "Task",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claims",
+        "status"
+      ],
+      "title": "FinalAnswerPayload",
+      "type": "object"
+    },
+    "GatewayError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "TIMEOUT",
+            "UPSTREAM_5XX",
+            "NETWORK_ERROR",
+            "RATE_LIMITED",
+            "AUTH_FAILED",
+            "POLICY_DENIED",
+            "SCHEMA_INVALID",
+            "CONTENT_BLOCKED",
+            "MODEL_UNAVAILABLE",
+            "CONTEXT_TOO_LARGE",
+            "BUDGET_EXCEEDED",
+            "UNKNOWN_OUTCOME"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "trace_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Trace Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "retryable",
+        "trace_ref"
+      ],
+      "title": "GatewayError",
+      "type": "object"
+    },
+    "GatewayOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "degraded": {
+          "title": "Degraded",
+          "type": "boolean"
+        },
+        "fallback_reason": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fallback Reason"
+        },
+        "prompt_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/IntentPlan"
+            },
+            {
+              "$ref": "#/$defs/AnswerDraft"
+            }
+          ],
+          "title": "Result"
+        },
+        "schema_version": {
+          "const": "gateway/1",
+          "default": "gateway/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "provider",
+            "local"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "trace_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Trace Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "result",
+        "degraded",
+        "trace_ref",
+        "prompt_ref",
+        "registry_version"
+      ],
+      "title": "GatewayOutcome",
+      "type": "object"
+    },
+    "GatewayRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "answer_set_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Answer Set Hash"
+        },
+        "context": {
+          "$ref": "#/$defs/ExecutionContext"
+        },
+        "idempotency_key": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "payload": {
+          "discriminator": {
+            "mapping": {
+              "answer_compose": "#/$defs/FinalAnswerPayload",
+              "intent_parse": "#/$defs/IntentPayload"
+            },
+            "propertyName": "task"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/IntentPayload"
+            },
+            {
+              "$ref": "#/$defs/FinalAnswerPayload"
+            }
+          ],
+          "title": "Payload"
+        },
+        "prompt_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "reference_manifest": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReferenceManifest"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "request_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "gateway/1",
+          "default": "gateway/1",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "payload",
+        "context",
+        "prompt_ref",
+        "registry_version",
+        "idempotency_key"
+      ],
+      "title": "GatewayRequest",
+      "type": "object"
+    },
+    "GatewayTask": {
+      "enum": [
+        "intent_parse",
+        "answer_compose"
+      ],
+      "title": "GatewayTask",
+      "type": "string"
+    },
+    "IndefiniteRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "indefinite",
+          "default": "indefinite",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "IndefiniteRetention",
+      "type": "object"
+    },
+    "IntentPayload": {
+      "additionalProperties": false,
+      "properties": {
+        "history": {
+          "default": [],
+          "maxItems": 0,
+          "minItems": 0,
+          "title": "History",
+          "type": "array"
+        },
+        "language": {
+          "default": "vi",
+          "enum": [
+            "vi",
+            "en"
+          ],
+          "title": "Language",
+          "type": "string"
+        },
+        "number_placeholders": {
+          "default": [],
+          "items": {
+            "pattern": "^num_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+            "type": "string"
+          },
+          "title": "Number Placeholders",
+          "type": "array"
+        },
+        "query": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        },
+        "selection": {
+          "$ref": "#/$defs/SessionSelection"
+        },
+        "task": {
+          "const": "intent_parse",
+          "default": "intent_parse",
+          "title": "Task",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query",
+        "selection"
+      ],
+      "title": "IntentPayload",
+      "type": "object"
+    },
+    "IntentPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "default": [],
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "assess_health": "#/$defs/ReadAction",
+                "compare_periods": "#/$defs/ReadAction",
+                "compute_piotroski": "#/$defs/ReadAction",
+                "compute_ratios": "#/$defs/ReadAction",
+                "compute_trend": "#/$defs/ReadAction",
+                "decline": "#/$defs/DeclineAction",
+                "explain_ratio": "#/$defs/ReadAction",
+                "get_document_status": "#/$defs/ReadAction",
+                "get_industry_context": "#/$defs/ReadAction",
+                "get_note_table": "#/$defs/ReadAction",
+                "get_statement": "#/$defs/ReadAction",
+                "get_validation_report": "#/$defs/ReadAction",
+                "list_documents": "#/$defs/ReadAction",
+                "list_periods": "#/$defs/ReadAction",
+                "request_export": "#/$defs/RequestExportAction",
+                "search_evidence": "#/$defs/ReadAction",
+                "verify_user_claim": "#/$defs/VerifyUserClaimAction"
+              },
+              "propertyName": "action"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/ReadAction"
+              },
+              {
+                "$ref": "#/$defs/VerifyUserClaimAction"
+              },
+              {
+                "$ref": "#/$defs/RequestExportAction"
+              },
+              {
+                "$ref": "#/$defs/DeclineAction"
+              }
+            ]
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "clarification": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Clarification"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "IntentPlan",
+      "type": "object"
+    },
+    "LimitedRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "days": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Days",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "limited",
+          "default": "limited",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "days"
+      ],
+      "title": "LimitedRetention",
+      "type": "object"
+    },
+    "Mode": {
+      "enum": [
+        "strict",
+        "useful"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "ModelCapability": {
+      "additionalProperties": false,
+      "properties": {
+        "account_scope": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Account Scope",
+          "type": "string"
+        },
+        "checked_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checked At"
+        },
+        "context_tokens": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Context Tokens"
+        },
+        "evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "model": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Model",
+          "type": "string"
+        },
+        "provider": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Provider",
+          "type": "string"
+        },
+        "quota_records": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/QuotaRecord"
+          },
+          "title": "Quota Records",
+          "type": "array"
+        },
+        "retention": {
+          "default": {
+            "kind": "unknown"
+          },
+          "discriminator": {
+            "mapping": {
+              "indefinite": "#/$defs/IndefiniteRetention",
+              "limited": "#/$defs/LimitedRetention",
+              "none_verified": "#/$defs/NoRetention",
+              "unknown": "#/$defs/UnknownRetention"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoRetention"
+            },
+            {
+              "$ref": "#/$defs/LimitedRetention"
+            },
+            {
+              "$ref": "#/$defs/IndefiniteRetention"
+            },
+            {
+              "$ref": "#/$defs/UnknownRetention"
+            }
+          ],
+          "title": "Retention"
+        },
+        "status": {
+          "default": "unverified",
+          "enum": [
+            "unverified",
+            "verified",
+            "deprecated"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "structured_capabilities": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StructuredCapability"
+          },
+          "title": "Structured Capabilities",
+          "type": "array"
+        },
+        "terms_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Terms Evidence Refs",
+          "type": "array"
+        },
+        "training_use": {
+          "default": "unknown",
+          "enum": [
+            "none_verified",
+            "may_use",
+            "unknown"
+          ],
+          "title": "Training Use",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "model",
+        "account_scope"
+      ],
+      "title": "ModelCapability",
+      "type": "object"
+    },
+    "NoRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "none_verified",
+          "default": "none_verified",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "NoRetention",
+      "type": "object"
+    },
+    "ProbeResult": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "items": {
+            "$ref": "#/$defs/ModelCapability"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checked_at",
+        "capabilities",
+        "status",
+        "evidence_refs"
+      ],
+      "title": "ProbeResult",
+      "type": "object"
+    },
+    "ProseSegment": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "prose",
+          "default": "prose",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "ProseSegment",
+      "type": "object"
+    },
+    "ProviderRequest": {
+      "additionalProperties": false,
+      "description": "Closed message shapes; adapters may serialize but never append tool/history data.",
+      "properties": {
+        "hedging": {
+          "const": false,
+          "default": false,
+          "title": "Hedging",
+          "type": "boolean"
+        },
+        "messages": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/SystemMessage"
+            },
+            {
+              "$ref": "#/$defs/UserPayloadMessage"
+            }
+          ],
+          "title": "Messages",
+          "type": "array"
+        },
+        "model": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Model",
+          "type": "string"
+        },
+        "output_schema_ref": {
+          "enum": [
+            "IntentPlan",
+            "AnswerDraft"
+          ],
+          "title": "Output Schema Ref",
+          "type": "string"
+        },
+        "permit_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Permit Id",
+          "type": "string"
+        },
+        "prompt_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "provider": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Provider",
+          "type": "string"
+        },
+        "stream": {
+          "const": false,
+          "default": false,
+          "title": "Stream",
+          "type": "boolean"
+        },
+        "structured_strategy": {
+          "enum": [
+            "native_schema",
+            "tool_call_schema",
+            "json_mode"
+          ],
+          "title": "Structured Strategy",
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/$defs/GatewayTask"
+        },
+        "timeout_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Timeout Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "provider",
+        "model",
+        "task",
+        "messages",
+        "prompt_ref",
+        "output_schema_ref",
+        "structured_strategy",
+        "timeout_seconds",
+        "permit_id"
+      ],
+      "title": "ProviderRequest",
+      "type": "object"
+    },
+    "ProviderResult": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/IntentPlan"
+            },
+            {
+              "$ref": "#/$defs/AnswerDraft"
+            }
+          ],
+          "title": "Candidate"
+        },
+        "estimated_cost": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Estimated Cost"
+        },
+        "latency_seconds": {
+          "minimum": 0,
+          "title": "Latency Seconds",
+          "type": "number"
+        },
+        "model": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Model",
+          "type": "string"
+        },
+        "price_evidence_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Evidence Ref"
+        },
+        "prompt_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "provider": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Provider",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "gateway/1",
+          "default": "gateway/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/$defs/GatewayTask"
+        },
+        "usage": {
+          "$ref": "#/$defs/Usage"
+        }
+      },
+      "required": [
+        "provider",
+        "model",
+        "task",
+        "candidate",
+        "usage",
+        "latency_seconds",
+        "prompt_ref",
+        "registry_version"
+      ],
+      "title": "ProviderResult",
+      "type": "object"
+    },
+    "QualitativeRelation": {
+      "additionalProperties": false,
+      "properties": {
+        "other_claim_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Other Claim Id",
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "higher",
+            "lower",
+            "equal",
+            "increased",
+            "decreased",
+            "unchanged"
+          ],
+          "title": "Relation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "other_claim_id",
+        "relation"
+      ],
+      "title": "QualitativeRelation",
+      "type": "object"
+    },
+    "QuotaBucketKey": {
+      "additionalProperties": false,
+      "properties": {
+        "account_scope": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Account Scope",
+          "type": "string"
+        },
+        "model": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Model",
+          "type": "string"
+        },
+        "provider": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Provider",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "account_scope",
+        "model"
+      ],
+      "title": "QuotaBucketKey",
+      "type": "object"
+    },
+    "QuotaDenied": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "enum": [
+            "QUOTA_EXHAUSTED",
+            "NO_TENANT_ALLOCATION",
+            "BACKEND_UNAVAILABLE"
+          ],
+          "title": "Reason",
+          "type": "string"
+        },
+        "retry_after": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retry After"
+        },
+        "status": {
+          "const": "denied",
+          "default": "denied",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason"
+      ],
+      "title": "QuotaDenied",
+      "type": "object"
+    },
+    "QuotaRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "dimension": {
+          "enum": [
+            "rpm",
+            "tpm",
+            "rpd",
+            "tpd",
+            "input_tpm",
+            "output_tpm",
+            "concurrency"
+          ],
+          "title": "Dimension",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Evidence Ref",
+          "type": "string"
+        },
+        "limit": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Observed At"
+        },
+        "source": {
+          "enum": [
+            "manual_console",
+            "probe",
+            "header_hint"
+          ],
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "limit",
+        "source",
+        "checked_at",
+        "evidence_ref"
+      ],
+      "title": "QuotaRecord",
+      "type": "object"
+    },
+    "QuotaReservation": {
+      "additionalProperties": false,
+      "properties": {
+        "bucket": {
+          "$ref": "#/$defs/QuotaBucketKey"
+        },
+        "deadline": {
+          "format": "date-time",
+          "title": "Deadline",
+          "type": "string"
+        },
+        "estimated_tokens": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Estimated Tokens",
+          "type": "integer"
+        },
+        "reservation_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Reservation Id",
+          "type": "string"
+        },
+        "status": {
+          "const": "reserved",
+          "default": "reserved",
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reservation_id",
+        "bucket",
+        "tenant_id",
+        "estimated_tokens",
+        "deadline"
+      ],
+      "title": "QuotaReservation",
+      "type": "object"
+    },
+    "ReadAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "get_statement",
+            "list_periods",
+            "list_documents",
+            "get_document_status",
+            "compute_ratios",
+            "compute_trend",
+            "compare_periods",
+            "compute_piotroski",
+            "assess_health",
+            "explain_ratio",
+            "search_evidence",
+            "get_note_table",
+            "get_validation_report",
+            "get_industry_context"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "cash_basis": {
+          "anyOf": [
+            {
+              "enum": [
+                "cash_only",
+                "cash_and_short_term_investments"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cash Basis"
+        },
+        "comparison_mode": {
+          "anyOf": [
+            {
+              "enum": [
+                "annual_yoy",
+                "same_quarter_yoy",
+                "adjacent",
+                "ttm"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comparison Mode"
+        },
+        "concept_ids": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Concept Ids",
+          "type": "array"
+        },
+        "entity_token": {
+          "anyOf": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Token"
+        },
+        "period_codes": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Period Codes",
+          "type": "array"
+        },
+        "query_rewrite": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query Rewrite"
+        },
+        "ratio_ids": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Ratio Ids",
+          "type": "array"
+        },
+        "receivables_basis": {
+          "anyOf": [
+            {
+              "enum": [
+                "customer_131",
+                "total_130"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Receivables Basis"
+        },
+        "resource_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Resource Refs",
+          "type": "array"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Scope"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "statement_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "B01",
+                "B02",
+                "B03",
+                "B09"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Statement Type"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "title": "ReadAction",
+      "type": "object"
+    },
+    "ReferenceManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "entity_tokens": {
+          "items": {
+            "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+            "type": "string"
+          },
+          "title": "Entity Tokens",
+          "type": "array"
+        },
+        "required_claim_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Required Claim Ids",
+          "type": "array"
+        },
+        "required_slots": {
+          "items": {
+            "$ref": "#/$defs/RequiredClaimSlot"
+          },
+          "title": "Required Slots",
+          "type": "array"
+        },
+        "required_warning_codes": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Required Warning Codes",
+          "type": "array"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        },
+        "warning_codes": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "claim_ids",
+        "required_claim_ids",
+        "warning_codes",
+        "required_warning_codes",
+        "entity_tokens",
+        "required_slots",
+        "version"
+      ],
+      "title": "ReferenceManifest",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    },
+    "RequestExportAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "request_export",
+          "default": "request_export",
+          "title": "Action",
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "json",
+            "md",
+            "xlsx"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "interactive",
+            "official"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        }
+      },
+      "required": [
+        "format",
+        "purpose"
+      ],
+      "title": "RequestExportAction",
+      "type": "object"
+    },
+    "RequiredClaimSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "render": {
+          "enum": [
+            "value",
+            "label",
+            "period",
+            "scope",
+            "status"
+          ],
+          "title": "Render",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "render"
+      ],
+      "title": "RequiredClaimSlot",
+      "type": "object"
+    },
+    "Scope": {
+      "enum": [
+        "separate",
+        "consolidated"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "SessionSelection": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_token": {
+          "anyOf": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Token"
+        },
+        "period_code": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period Code"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Scope"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "selection_revision": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "title": "Selection Revision",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "selection_revision"
+      ],
+      "title": "SessionSelection",
+      "type": "object"
+    },
+    "StructuredCapability": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "probe_evidence_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Probe Evidence Ref",
+          "type": "string"
+        },
+        "structured_strategy": {
+          "enum": [
+            "native_schema",
+            "tool_call_schema",
+            "json_mode"
+          ],
+          "title": "Structured Strategy",
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/$defs/GatewayTask"
+        }
+      },
+      "required": [
+        "task",
+        "structured_strategy",
+        "checked_at",
+        "probe_evidence_ref"
+      ],
+      "title": "StructuredCapability",
+      "type": "object"
+    },
+    "SyntheticProbeRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "case": {
+          "enum": [
+            "intent_schema",
+            "compose_schema",
+            "json_validation",
+            "token_copy"
+          ],
+          "title": "Case",
+          "type": "string"
+        },
+        "environment": {
+          "const": "development",
+          "default": "development",
+          "title": "Environment",
+          "type": "string"
+        }
+      },
+      "required": [
+        "case"
+      ],
+      "title": "SyntheticProbeRequest",
+      "type": "object"
+    },
+    "SystemMessage": {
+      "additionalProperties": false,
+      "description": "Content must come from PromptRegistry, never documents, tools or user history.",
+      "properties": {
+        "content": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Content",
+          "type": "string"
+        },
+        "prompt_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Prompt Hash",
+          "type": "string"
+        },
+        "role": {
+          "const": "system",
+          "default": "system",
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content",
+        "prompt_hash"
+      ],
+      "title": "SystemMessage",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "UnknownRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "unknown",
+          "default": "unknown",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "UnknownRetention",
+      "type": "object"
+    },
+    "Usage": {
+      "additionalProperties": false,
+      "properties": {
+        "cached_tokens": {
+          "default": 0,
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Cached Tokens",
+          "type": "integer"
+        },
+        "input_tokens": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Input Tokens",
+          "type": "integer"
+        },
+        "output_tokens": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Output Tokens",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "input_tokens",
+        "output_tokens"
+      ],
+      "title": "Usage",
+      "type": "object"
+    },
+    "UserPayloadMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "payload": {
+          "discriminator": {
+            "mapping": {
+              "answer_compose": "#/$defs/FinalAnswerPayload",
+              "intent_parse": "#/$defs/IntentPayload"
+            },
+            "propertyName": "task"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/IntentPayload"
+            },
+            {
+              "$ref": "#/$defs/FinalAnswerPayload"
+            }
+          ],
+          "title": "Payload"
+        },
+        "role": {
+          "const": "user",
+          "default": "user",
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "payload"
+      ],
+      "title": "UserPayloadMessage",
+      "type": "object"
+    },
+    "Verdict": {
+      "enum": [
+        "ANSWER",
+        "ANSWER_WITH_CAVEATS",
+        "ABSTAIN"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "VerifyUserClaimAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "verify_user_claim",
+          "default": "verify_user_claim",
+          "title": "Action",
+          "type": "string"
+        },
+        "claim_kind": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Claim Kind",
+          "type": "string"
+        },
+        "entity_token": {
+          "anyOf": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Token"
+        },
+        "period_code": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period Code"
+        },
+        "placeholder_ref": {
+          "pattern": "^num_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+          "title": "Placeholder Ref",
+          "type": "string"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Scope"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "placeholder_ref",
+        "claim_kind"
+      ],
+      "title": "VerifyUserClaimAction",
+      "type": "object"
+    },
+    "WarningRefSegment": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Code",
+          "type": "string"
+        },
+        "type": {
+          "const": "warning_ref",
+          "default": "warning_ref",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "title": "WarningRefSegment",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Schema-only composition; Gateway runtime imports no business modules.",
+  "properties": {
+    "draft": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AnswerDraft"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GatewayError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "manifest": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReferenceManifest"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GatewayOutcome"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "permit": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EgressPermit"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "probe_result": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ProbeResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "provider_request": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ProviderRequest"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "provider_result": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ProviderResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "quota_denied": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/QuotaDenied"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "quota_reservation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/QuotaReservation"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "request": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GatewayRequest"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "synthetic_probe": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SyntheticProbeRequest"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "GatewayReviewCatalog",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "decimal.exact",
+      "models": [
+        "DecimalValue",
+        "ValidationIssue",
+        "ConstantExpr",
+        "RuleDefinition",
+        "ThresholdBoundary",
+        "PillarWeight",
+        "AssessmentPolicy",
+        "ProviderResult"
+      ],
+      "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_decimal"
+    },
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "intent.rewrite",
+      "models": [
+        "ReadAction"
+      ],
+      "rule": "Rewrite contains letters/whitespace only; name checking remains a later local guard.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ReadAction.rewrite_has_no_numbers"
+    },
+    {
+      "id": "intent.selection",
+      "models": [
+        "ReadAction"
+      ],
+      "rule": "Financial actions need entity/scope/period; statement type and exactly two comparison periods where applicable.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ReadAction.explicit_selectors_for_financial_actions"
+    },
+    {
+      "id": "intent.clarification",
+      "models": [
+        "IntentPlan"
+      ],
+      "rule": "Clarification and dispatch are exclusive; an action or clarification is required.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.IntentPlan.unresolved_does_not_dispatch"
+    },
+    {
+      "id": "compose.claim_refs",
+      "models": [
+        "FinalAnswerPayload"
+      ],
+      "rule": "Claim IDs unique; qualitative relation refs must exist.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.FinalAnswerPayload.unique_claims_and_known_relations"
+    },
+    {
+      "id": "draft.numeric_prose",
+      "models": [
+        "ProseSegment"
+      ],
+      "rule": "Reject Unicode numeric characters. Full name/number-word/semantic checks remain Phase4.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ProseSegment.no_numeric_characters"
+    },
+    {
+      "id": "draft.manifest_refs",
+      "models": [
+        "ReferenceManifest"
+      ],
+      "rule": "Required claims/warnings/render slots are subsets of allowed refs; full draft binding is Phase4.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ReferenceManifest.required_refs_are_allowed"
+    },
+    {
+      "id": "gateway.manifest",
+      "models": [
+        "GatewayRequest"
+      ],
+      "rule": "Composition requires a value-free reference manifest.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.GatewayRequest.composition_requires_manifest"
+    },
+    {
+      "id": "provider.task",
+      "models": [
+        "ProviderRequest"
+      ],
+      "rule": "Request task, typed user payload and output-schema ref agree.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ProviderRequest.task_matches_payload_and_schema"
+    },
+    {
+      "id": "provider.result",
+      "models": [
+        "ProviderResult"
+      ],
+      "rule": "Intent task returns IntentPlan; compose task returns AnswerDraft.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.ProviderResult.result_matches_task"
+    },
+    {
+      "id": "permit.tier",
+      "models": [
+        "EgressPermit"
+      ],
+      "rule": "Strict-private denied; private needs opt-in. Runtime model terms/deadlines/one-use checks are later controls.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.contracts.EgressPermit.tier_allows_external"
+    },
+    {
+      "id": "model.evidence",
+      "models": [
+        "ModelCapability"
+      ],
+      "rule": "Verified capability needs dated evidence/probes; verified training/retention needs terms refs.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.model_registry.ModelCapability.verified_requires_evidence"
+    },
+    {
+      "id": "token.collision",
+      "models": [
+        "GatewayReviewCatalog"
+      ],
+      "rule": "Run-local random8 aliases; normalized query/used-suffix collision checks and bounded retries; IDs128 remain local.",
+      "scope": "preflight",
+      "symbol": "finagent.llm_gateway.tokens.RunTokenAllocator.allocate"
+    }
+  ],
+  "x-finagent-status": "draft",
+  "x-finagent-version": "gateway/1"
+}

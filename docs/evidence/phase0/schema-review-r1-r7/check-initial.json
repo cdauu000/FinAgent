@@ -1,0 +1,76 @@
+{
+  "scope": "P0.05 R1-R7 draft review",
+  "frozen": false,
+  "results": [
+    {
+      "name": "ruff",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 1,
+      "stdout": "E501 Line too long (102 > 100)\n  --> finagent\\contracts\\validator_catalog.py:50:101\n   |\n48 |         \"finagent.contracts.base.Contract.__get_pydantic_json_schema__\",\n49 |         (),\n50 |         \"Normalize constrained integer keywords, then intersect safe bounds without widening fields.\",\n   |                                                                                                     ^^\n51 |         \"common\",\n52 |     ),\n   |\n\nFound 1 error.\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:19.591408+00:00"
+    },
+    {
+      "name": "format",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "58 files already formatted\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:19.697671+00:00"
+    },
+    {
+      "name": "mypy",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "finagent",
+        "eval"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 30 source files\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:20.367105+00:00"
+    },
+    {
+      "name": "pytest",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=docs\\evidence\\phase0\\schema-review-r1-r7\\pytest.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 45%]\n........................................................................ [ 90%]\n................                                                         [100%]\n160 passed in 2.09s\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:23.125529+00:00"
+    },
+    {
+      "name": "schema_snapshots",
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "finagent.schema_catalog",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Draft schemas: 14 versions; frozen=false\n",
+      "stderr": "",
+      "checked_at": "2026-11-02T07:17:23.715957+00:00"
+    }
+  ]
+}

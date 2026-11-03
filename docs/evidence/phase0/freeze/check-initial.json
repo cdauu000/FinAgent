@@ -1,0 +1,57 @@
+[
+  {
+    "name": "ruff",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "."
+    ],
+    "exit_code": 1,
+    "stdout": "UP017 [*] Use `datetime.UTC` alias\n   --> finagent\\schema_catalog.py:159:30\n    |\n157 |         check=False,\n158 |     )\n159 |     frozen_at = datetime.now(timezone.utc).isoformat()\n    |                              ^^^^^^^^^^^^\n160 |     archive = root / \"schemas/reviews/at-freeze\"\n161 |     archive.mkdir(parents=True)\n    |\nhelp: Convert to `datetime.UTC` alias\n    |\n8   | import subprocess\n    - from datetime import datetime, timezone\n9   + from datetime import datetime, timezone, UTC\n10  | from pathlib import Path\n--------------------------------------------------------------------------------\n158 |     )\n    -     frozen_at = datetime.now(timezone.utc).isoformat()\n159 +     frozen_at = datetime.now(UTC).isoformat()\n160 |     archive = root / \"schemas/reviews/at-freeze\"\n    |\n\nFound 1 error.\n[*] 1 fixable with `--fix`.\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:37:25.505666+00:00"
+  },
+  {
+    "name": "mypy",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "finagent",
+      "eval"
+    ],
+    "exit_code": 0,
+    "stdout": "Success: no issues found in 31 source files\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:37:25.901786+00:00"
+  },
+  {
+    "name": "pytest",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=docs\\evidence\\phase0\\freeze\\pytest.xml"
+    ],
+    "exit_code": 1,
+    "stdout": "........................................................................ [ 44%]\n..........................................................F............. [ 88%]\n..................                                                       [100%]\n================================== FAILURES ===================================\n_____________ test_liveness_does_not_claim_draft_backend_is_ready _____________\n\nprocess_loop = <ProactorEventLoop running=False closed=False debug=False>\n\n    def test_liveness_does_not_claim_draft_backend_is_ready(\n        process_loop: asyncio.AbstractEventLoop,\n    ) -> None:\n        async def exercise_asgi() -> None:\n            transport = httpx.ASGITransport(app=create_app())\n            async with httpx.AsyncClient(transport=transport, base_url=\"http://test\") as client:\n                assert (await client.get(\"/health\")).status_code == 200\n                response = await client.get(\"/health/ready\")\n                assert response.status_code == 503\n                assert \"SCHEMA_DRAFT\" in response.json()[\"reasons\"]\n                assert (await client.get(\"/docs\")).status_code == 404\n    \n>       process_loop.run_until_complete(exercise_asgi())\n\ntests\\unit\\test_process_health.py:22: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\base_events.py:691: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    async def exercise_asgi() -> None:\n        transport = httpx.ASGITransport(app=create_app())\n        async with httpx.AsyncClient(transport=transport, base_url=\"http://test\") as client:\n            assert (await client.get(\"/health\")).status_code == 200\n            response = await client.get(\"/health/ready\")\n            assert response.status_code == 503\n>           assert \"SCHEMA_DRAFT\" in response.json()[\"reasons\"]\nE           AssertionError: assert 'SCHEMA_DRAFT' in ['PERSISTENCE_NOT_IMPLEMENTED']\n\ntests\\unit\\test_process_health.py:19: AssertionError\n=========================== short test summary info ===========================\nFAILED tests/unit/test_process_health.py::test_liveness_does_not_claim_draft_backend_is_ready\n1 failed, 161 passed in 3.06s\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:37:29.566727+00:00"
+  },
+  {
+    "name": "schema_snapshots",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "finagent.schema_catalog",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Schemas: 14 versions; frozen=true\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:37:30.038259+00:00"
+  }
+]

@@ -1,0 +1,33 @@
+# Manual/CI use only: pre-commit run --all-files. Never pre-commit install.
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check-manual
+        name: Ruff check
+        entry: python -m ruff check .
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [manual]
+      - id: ruff-format-manual
+        name: Ruff format check
+        entry: python -m ruff format --check .
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [manual]
+      - id: mypy-manual
+        name: Mypy strict
+        entry: python -m mypy finagent eval
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [manual]
+      - id: pytest-manual
+        name: Pytest
+        entry: python -m pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [manual]
+

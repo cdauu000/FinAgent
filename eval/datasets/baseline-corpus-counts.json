@@ -1,0 +1,14 @@
+{
+  "unique_real_reports": 1,
+  "complete_manifests": 0,
+  "gold_approved": 0,
+  "required_manifests": 30,
+  "required_gold": 10,
+  "status": "INSUFFICIENT_DATA",
+  "scope_counts": {
+    "separate": 1
+  },
+  "industry_counts": {
+    "unknown": 1
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "template_id": "fpt-separate-observed-2026",
+  "recognition": "exact_observed_hash_only",
+  "authority_effective_dates": null,
+  "scope": "separate",
+  "currency": "VND",
+  "source_ref": "source-fpt-q1-2026",
+  "note": "Not a universal statutory-form mapping; no unknown row is zero.",
+  "unresolved_refs": [
+    "full_total_catalog_phase2",
+    "long_term_borrowing_zero_requires_complete_330_337_338_proof"
+  ],
+  "ratio_semantics": {
+    "default": "per_period_not_annualized",
+    "consolidated_roe": "parent_profit_and_parent_equity_required",
+    "annualized_quarter": "separate_ids_only_with_quarter_input_and_seasonality_warning",
+    "annualized_ytd": "future_variant_requires_exact_fiscal_month_count",
+    "receivables_fallback": "only_if_131_missing_not_explicit_zero",
+    "expanded_cash_warning": "SHORT_TERM_INVESTMENTS_NOT_ALL_CASHLIKE",
+    "total_130_warning_key": "ratios.receivables.total_130_warning",
+    "bands": "overlap_or_gap_UNCLASSIFIED_and_unscored; draft_until_corpus_review",
+    "period_routes": {
+      "current_ratio": {
+        "stock": "current_ratio"
+      },
+      "quick_ratio": {
+        "stock": "quick_ratio"
+      },
+      "cash_ratio": {
+        "stock": "cash_ratio"
+      },
+      "debt_ratio": {
+        "stock": "debt_ratio"
+      },
+      "debt_to_equity": {
+        "stock": "debt_to_equity"
+      },
+      "interest_coverage": {
+        "quarter": "interest_coverage",
+        "annual": "interest_coverage_per_annual",
+        "ytd": "interest_coverage_per_ytd",
+        "ttm": "interest_coverage_per_ttm"
+      },
+      "inventory_turnover": {
+        "quarter": "inventory_turnover",
+        "annual": "inventory_turnover_per_annual",
+        "ytd": "inventory_turnover_per_ytd",
+        "ttm": "inventory_turnover_per_ttm"
+      },
+      "receivables_turnover": {
+        "quarter": "receivables_turnover",
+        "annual": "receivables_turnover_per_annual",
+        "ytd": "receivables_turnover_per_ytd",
+        "ttm": "receivables_turnover_per_ttm"
+      },
+      "asset_turnover": {
+        "quarter": "asset_turnover",
+        "annual": "asset_turnover_per_annual",
+        "ytd": "asset_turnover_per_ytd",
+        "ttm": "asset_turnover_per_ttm"
+      },
+      "gross_margin": {
+        "quarter": "gross_margin",
+        "annual": "gross_margin_per_annual",
+        "ytd": "gross_margin_per_ytd",
+        "ttm": "gross_margin_per_ttm"
+      },
+      "net_margin": {
+        "quarter": "net_margin",
+        "annual": "net_margin_per_annual",
+        "ytd": "net_margin_per_ytd",
+        "ttm": "net_margin_per_ttm"
+      },
+      "roa": {
+        "quarter": "roa",
+        "annual": "roa_per_annual",
+        "ytd": "roa_per_ytd",
+        "ttm": "roa_per_ttm"
+      },
+      "roe": {
+        "quarter": "roe",
+        "annual": "roe_per_annual",
+        "ytd": "roe_per_ytd",
+        "ttm": "roe_per_ttm"
+      },
+      "ocf_current_liabilities": {
+        "quarter": "ocf_current_liabilities",
+        "annual": "ocf_current_liabilities_per_annual",
+        "ytd": "ocf_current_liabilities_per_ytd",
+        "ttm": "ocf_current_liabilities_per_ttm"
+      },
+      "ocf_total_assets": {
+        "quarter": "ocf_total_assets",
+        "annual": "ocf_total_assets_per_annual",
+        "ytd": "ocf_total_assets_per_ytd",
+        "ttm": "ocf_total_assets_per_ttm"
+      }
+    },
+    "per_period_variants": "Annual/YTD/TTM variants retain the formula and do not annualize; TTM requires four nonoverlapping quarters."
+  },
+  "source_records": [
+    {
+      "id": "source-ratio-definitions",
+      "path": "docs/15_financial_ratios.md",
+      "sha256": "14c3942526334d05207468865909c1effaf7b87bcec57fc53a08a1b70e24d121"
+    },
+    {
+      "id": "source-fpt-q1-2026",
+      "path": "data/public_reports/20260424_-_FPT_-_BCTC_rieng_Quy_1_nam_2026_1777344035.pdf",
+      "sha256": "11c9709914cdc5f1561f47045283598c359f7466f94e5ffbc21893e28b0315fa"
+    },
+    {
+      "id": "owner-decisions-2026-11-02",
+      "path": "docs/ASSUMPTIONS.md",
+      "authority": "explicit_project_owner_decisions_2026-11-02"
+    },
+    {
+      "id": "owner-2026-11-02",
+      "path": "docs/ASSUMPTIONS.md",
+      "authority": "explicit_project_owner_decisions_2026-11-02"
+    },
+    {
+      "id": "owner-2026-11-02-A20",
+      "path": "docs/ASSUMPTIONS.md",
+      "authority": "explicit_project_owner_decisions_2026-11-02"
+    }
+  ],
+  "test_records": [
+    {
+      "id": "test-core-definition-contracts",
+      "path": "tests/contract/test_registry_loaders.py",
+      "scope": "declaration/source conformance only; not runtime engine proof"
+    },
+    {
+      "id": "test-fpt-template-contracts",
+      "path": "tests/contract/test_registry_drafts.py",
+      "scope": "declaration/source conformance only; not runtime engine proof"
+    },
+    {
+      "id": "test-fpt-rule-contracts",
+      "path": "tests/golden/test_fpt_source_correction.py",
+      "scope": "declaration/source conformance only; not runtime engine proof"
+    },
+    {
+      "id": "test-generic-profile-contracts",
+      "path": "tests/contract/test_registry_drafts.py",
+      "scope": "declaration/source conformance only; not runtime engine proof"
+    },
+    {
+      "id": "test-applicability-contracts",
+      "path": "tests/contract/test_registry_loaders.py",
+      "scope": "declaration/source conformance only; not runtime engine proof"
+    }
+  ]
+}

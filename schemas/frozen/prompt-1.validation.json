@@ -1,0 +1,164 @@
+{
+  "$defs": {
+    "GatewayTask": {
+      "enum": [
+        "intent_parse",
+        "answer_compose"
+      ],
+      "title": "GatewayTask",
+      "type": "string"
+    },
+    "PromptDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "input_schema_ref": {
+          "enum": [
+            "IntentPayload",
+            "FinalAnswerPayload"
+          ],
+          "title": "Input Schema Ref",
+          "type": "string"
+        },
+        "language": {
+          "enum": [
+            "vi",
+            "en"
+          ],
+          "title": "Language",
+          "type": "string"
+        },
+        "mandatory_test_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Mandatory Test Refs",
+          "type": "array"
+        },
+        "output_schema_ref": {
+          "enum": [
+            "IntentPlan",
+            "AnswerDraft"
+          ],
+          "title": "Output Schema Ref",
+          "type": "string"
+        },
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "approved",
+            "deprecated"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/$defs/GatewayTask"
+        },
+        "template": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Template",
+          "type": "string"
+        },
+        "template_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Template Sha256",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "task",
+        "language",
+        "template",
+        "template_sha256",
+        "input_schema_ref",
+        "output_schema_ref",
+        "mandatory_test_refs"
+      ],
+      "title": "PromptDefinition",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PromptDefinition"
+      },
+      "title": "Entries",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "prompt/1",
+      "default": "prompt/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "title": "PromptRegistry",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "prompt.binding_hash",
+      "models": [
+        "PromptDefinition"
+      ],
+      "rule": "Task matches input/output schemas and template SHA256 matches exact UTF-8 bytes.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.prompts.PromptDefinition.task_contract_matches"
+    },
+    {
+      "id": "prompt.unique",
+      "models": [
+        "PromptRegistry"
+      ],
+      "rule": "Prompt ID/version/language keys unique.",
+      "scope": "pydantic",
+      "symbol": "finagent.llm_gateway.prompts.PromptRegistry.unique_versions"
+    }
+  ],
+  "x-finagent-status": "frozen",
+  "x-finagent-version": "prompt/1"
+}

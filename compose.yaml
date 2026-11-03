@@ -1,0 +1,46 @@
+name: finagent
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg17-bookworm
+    environment:
+      POSTGRES_DB: finagent
+      POSTGRES_USER: finagent
+      POSTGRES_PASSWORD: finagent_dev_only
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finagent -d finagent"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  redis:
+    image: redis:7.4.12-alpine
+    ports: ["127.0.0.1:6379:6379"]
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: ["redis-data:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  api:
+    profiles: ["api"]
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      FINAGENT_DATABASE_URL: postgresql://finagent:finagent_dev_only@postgres:5432/finagent
+      FINAGENT_REDIS_URL: redis://redis:6379/0
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker:
+    profiles: ["worker"]
+    build: .
+    command: ["python", "-m", "finagent.jobs.worker"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+volumes:
+  postgres-data:
+  redis-data:
+

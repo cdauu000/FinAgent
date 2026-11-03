@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-11-02T11:47:20.180033+00:00",
+  "sources_unchanged": {
+    "CLAUDE.md": "81705c15fb3a086b1fd360785773d2fd6068eaf5592cf087d53a61c37b12dab2",
+    "docs/15_financial_ratios.md": "14c3942526334d05207468865909c1effaf7b87bcec57fc53a08a1b70e24d121",
+    "docs/Báo cáo 2 Hướng phát triển FinAgent sau khi hoàn thành core.md": "b5b50ebe7f5a4994266f197ba74d157948adb815b625d4fbcb29b4b89498ac26",
+    "docs/Báo cáo tiền dự án FinAgent – Hệ thống Agent phân tích báo cáo tài chính.md": "02951ad91d78bf7098e43b8493a71ef523f6f96c28b548f5c2a04cae2d691a1e",
+    "docs/LLM_GATEWAY_DESIGN.md": "e0ffbca7a92323cc519b9c2e6a0d47edd7482b502e25a3c6934f19e084cc6df3",
+    "data/public_reports/20260424_-_FPT_-_BCTC_rieng_Quy_1_nam_2026_1777344035.pdf": "11c9709914cdc5f1561f47045283598c359f7466f94e5ffbc21893e28b0315fa"
+  },
+  "local_links_checked": 142,
+  "AGENTS_retains_CLAUDE": true,
+  "frozen": true,
+  "frozen_snapshots": 28,
+  "git_commit": null,
+  "enum_extensible": [],
+  "junit": {
+    "tests": 219,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "baseline_gate": "NO_GO",
+  "real_pdf_files": 1
+}

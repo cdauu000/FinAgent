@@ -1,0 +1,244 @@
+{
+  "schema_version": "corpus/1",
+  "entries": [
+    {
+      "id": "doc-11c9709914cdc5f1",
+      "local_path": "data/public_reports/20260424_-_FPT_-_BCTC_rieng_Quy_1_nam_2026_1777344035.pdf",
+      "sha256": "11c9709914cdc5f1561f47045283598c359f7466f94e5ffbc21893e28b0315fa",
+      "source_origin": "owner_supplied",
+      "source_url": null,
+      "source_date": null,
+      "filename_date_hint": "2026-04-24",
+      "source_evidence_ref": "docs/READING_NOTES.md#41",
+      "terms_status": "unknown",
+      "terms_evidence_ref": null,
+      "effective_tier": "private",
+      "entity_id": "fpt-parent",
+      "group_id": "fpt-group",
+      "scope": "separate",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "industry": null,
+      "audit_status": "unknown",
+      "pages": [
+        {
+          "physical_index": 0,
+          "printed_label": null,
+          "content_label": "disclosure",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 1,
+          "printed_label": null,
+          "content_label": "cover",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 2,
+          "printed_label": null,
+          "content_label": "contents",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 3,
+          "printed_label": "3",
+          "content_label": "B01-assets",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 4,
+          "printed_label": "4",
+          "content_label": "B01-funding",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 5,
+          "printed_label": "5",
+          "content_label": "B02-landscape",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 6,
+          "printed_label": "6",
+          "content_label": "management-explanation",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 7,
+          "printed_label": "7",
+          "content_label": "B03-operating",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 8,
+          "printed_label": "8",
+          "content_label": "B03-investing-financing",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 9,
+          "printed_label": "9",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 10,
+          "printed_label": "10",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 11,
+          "printed_label": "11",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 12,
+          "printed_label": "12",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 13,
+          "printed_label": "13",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 14,
+          "printed_label": "14",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 15,
+          "printed_label": "15",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 16,
+          "printed_label": "16",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 17,
+          "printed_label": "17",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 18,
+          "printed_label": "18",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 19,
+          "printed_label": "19",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 20,
+          "printed_label": "20",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 21,
+          "printed_label": "21",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 22,
+          "printed_label": "22",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 23,
+          "printed_label": "23",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 24,
+          "printed_label": "24",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 25,
+          "printed_label": "25",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 26,
+          "printed_label": "26",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        },
+        {
+          "physical_index": 27,
+          "printed_label": "27",
+          "content_label": "notes-and-policies",
+          "route_label": "unknown",
+          "difficulty": "unknown"
+        }
+      ],
+      "split": "visible_regression",
+      "gold_path": "eval/datasets/fpt-q1-2026-draft.json",
+      "gold_approval_ref": null,
+      "missing": [
+        "original_official_url",
+        "verified_source_date",
+        "terms_review",
+        "gold_approval",
+        "industry_label",
+        "per_page_route_gold"
+      ]
+    }
+  ],
+  "supplied_only": true,
+  "split_path": "eval/datasets/split.json"
+}

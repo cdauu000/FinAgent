@@ -1,0 +1,357 @@
+{
+  "$defs": {
+    "Mode": {
+      "enum": [
+        "strict",
+        "useful"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    },
+    "RoleDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_tool_refs": {
+          "items": {
+            "$ref": "#/$defs/RegistryRef"
+          },
+          "title": "Allowed Tool Refs",
+          "type": "array"
+        },
+        "deadline_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Deadline Seconds",
+          "type": "number"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "input_schema_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Input Schema Ref",
+          "type": "string"
+        },
+        "mandatory_test_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Mandatory Test Refs",
+          "type": "array"
+        },
+        "max_tokens": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Max Tokens",
+          "type": "integer"
+        },
+        "max_tool_calls": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Max Tool Calls",
+          "type": "integer"
+        },
+        "model_task_route_refs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RegistryRef"
+          },
+          "title": "Model Task Route Refs",
+          "type": "array"
+        },
+        "output_schema_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Output Schema Ref",
+          "type": "string"
+        },
+        "purpose_key": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Purpose Key",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "role/1",
+          "default": "role/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "source_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "approved",
+            "deprecated"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "strategy": {
+          "default": "single",
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Strategy",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "source_refs",
+        "mandatory_test_refs",
+        "purpose_key",
+        "allowed_tool_refs",
+        "input_schema_ref",
+        "output_schema_ref",
+        "max_tool_calls",
+        "max_tokens",
+        "deadline_seconds"
+      ],
+      "title": "RoleDefinition",
+      "type": "object"
+    },
+    "RoleMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "consumed_steps": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Consumed Steps",
+          "type": "integer"
+        },
+        "consumed_tokens": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Consumed Tokens",
+          "type": "integer"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "from_role": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "From Role",
+          "type": "string"
+        },
+        "input_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Input Ref",
+          "type": "string"
+        },
+        "message_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Message Id",
+          "type": "string"
+        },
+        "mode": {
+          "$ref": "#/$defs/Mode"
+        },
+        "output_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output Ref"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Id"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "purpose": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Purpose",
+          "type": "string"
+        },
+        "run_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "to_role": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "To Role",
+          "type": "string"
+        },
+        "trace_parent": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Trace Parent"
+        }
+      },
+      "required": [
+        "message_id",
+        "run_id",
+        "from_role",
+        "to_role",
+        "purpose",
+        "input_ref",
+        "evidence_ids",
+        "policy_ref",
+        "source_tier",
+        "mode",
+        "consumed_steps",
+        "consumed_tokens"
+      ],
+      "title": "RoleMessage",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "definition": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RoleDefinition"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "message": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RoleMessage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "RoleCatalog",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "registry.bundle",
+      "models": [
+        "TemplateDefinition",
+        "RatioDefinition",
+        "RuleDefinition",
+        "SectorPack",
+        "RoleDefinition",
+        "ToolDefinition",
+        "ApplicabilityDefinition"
+      ],
+      "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+      "scope": "loader",
+      "symbol": "finagent.policy.registry.validate_bundle"
+    }
+  ],
+  "x-finagent-status": "frozen",
+  "x-finagent-version": "role/1"
+}

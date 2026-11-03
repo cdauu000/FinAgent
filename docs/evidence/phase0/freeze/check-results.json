@@ -1,0 +1,57 @@
+[
+  {
+    "name": "ruff",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:38:02.330761+00:00"
+  },
+  {
+    "name": "mypy",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "finagent",
+      "eval"
+    ],
+    "exit_code": 0,
+    "stdout": "Success: no issues found in 31 source files\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:38:02.718722+00:00"
+  },
+  {
+    "name": "pytest",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=docs\\evidence\\phase0\\freeze\\pytest.xml"
+    ],
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 44%]\n........................................................................ [ 88%]\n..................                                                       [100%]\n162 passed in 2.44s\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:38:05.751866+00:00"
+  },
+  {
+    "name": "schema_snapshots",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "finagent.schema_catalog",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Schemas: 14 versions; frozen=true\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T10:38:06.234902+00:00"
+  }
+]

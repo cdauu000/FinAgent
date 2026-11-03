@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-11-02T02:58:48.490838+00:00",
+  "sources_unchanged": 6,
+  "local_links_checked": 86,
+  "markdown_tables_utf8_fences": "PASS",
+  "AGENTS_retains_CLAUDE": "PASS",
+  "draft_versions": 14,
+  "snapshots": 28,
+  "frozen": false,
+  "junit_skips": 0
+}

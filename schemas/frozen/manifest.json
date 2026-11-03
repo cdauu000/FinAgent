@@ -1,0 +1,362 @@
+{
+  "approved_by": "project_owner_explicit_freeze",
+  "case_catalog": {
+    "counting_unit": "one dedicated review-case row, validated once in JSON mode",
+    "groups": {
+      "api/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "applicability/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "canonical/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 3,
+        "positive_passed": 3
+      },
+      "event/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "gateway/1": {
+        "failed": 0,
+        "negative_cases": 4,
+        "negative_passed": 4,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "model-registry/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "policy/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "prompt/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "ratio-def/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "role/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "rule/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "spack/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "template/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      },
+      "tool/1": {
+        "failed": 0,
+        "negative_cases": 2,
+        "negative_passed": 2,
+        "positive_cases": 2,
+        "positive_passed": 2
+      }
+    },
+    "path": "schemas/reviews/at-freeze/schema_review_cases.json",
+    "sha256": "93aa69f0e7a2e07e01dd045123577182992c0932eded4d40f2eab80516ade27d"
+  },
+  "compat_policy": {
+    "a61": "approved_technical_bounds_never_truncate_real_data",
+    "breaking": "major_bump_with_ADR_migration_full_snapshot_suite",
+    "canonical_window": {
+      "after_first_write": "strict_major_version_policy",
+      "before_first_write": "breaking_requires_ADR_previous_hash_and_diff",
+      "ends_at": "first_real_data_persistence_P2.01",
+      "lifecycle_ref": "schemas/lifecycle/canonical-1.json",
+      "version": "canonical/1"
+    },
+    "enum_policy": {
+      "default": "closed",
+      "exhaustive_error_event_effect_task_status_changes": "breaking",
+      "extensible": [],
+      "extensible_requires": "explicit_declaration_and_tested_fallback_branch"
+    },
+    "registry_loads": "all_disk_and_DB_paths_must_pass_registry.bundle",
+    "regressions": "each_discovered_defect_requires_negative_schema_review_case",
+    "same_major": "optional_fields_and_new_DTOs_only",
+    "token_copy_probe": "NOT_RUN_until_owner_supplies_keys_no_threshold"
+  },
+  "frozen": true,
+  "frozen_at": "2026-11-02T10:36:55.888100+00:00",
+  "git_commit": null,
+  "git_commit_reason": "NO_HEAD_COMMIT",
+  "owner_review_required": false,
+  "schemas": [
+    {
+      "approved_draft_sha256": "e295fa6ed133777cb211f60bd5236022536567cacd2b18226c42ea61ddb1030f",
+      "file": "api-1.validation.json",
+      "mode": "validation",
+      "sha256": "24a338b188ca52b4633b69a62480d003785711507dc176ee3174a576a9b97628",
+      "status": "frozen",
+      "version": "api/1"
+    },
+    {
+      "approved_draft_sha256": "22dfd1fd6a1ea4657220cc83729f89ccf2a52177ec8d8e93f244e80f80d362f0",
+      "file": "api-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "ae0cac28d0ce3676332b6e524725b7f41a667b851c9fe18949f466a29085e35b",
+      "status": "frozen",
+      "version": "api/1"
+    },
+    {
+      "approved_draft_sha256": "26351e2e0369d287b29509e68fe204b2d7c05bf09de7b6981a68834e01072f1e",
+      "file": "applicability-1.validation.json",
+      "mode": "validation",
+      "sha256": "55aed5c0adfdb02c96c2f9072db0772418927b8fd2df84407c228b0b33381a20",
+      "status": "frozen",
+      "version": "applicability/1"
+    },
+    {
+      "approved_draft_sha256": "26351e2e0369d287b29509e68fe204b2d7c05bf09de7b6981a68834e01072f1e",
+      "file": "applicability-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "55aed5c0adfdb02c96c2f9072db0772418927b8fd2df84407c228b0b33381a20",
+      "status": "frozen",
+      "version": "applicability/1"
+    },
+    {
+      "approved_draft_sha256": "0f5100b7963ea8fa6a8daac642435854563b40c99de8c50eb91373deaaaf7fbf",
+      "file": "canonical-1.validation.json",
+      "mode": "validation",
+      "sha256": "a06c0397d0aedf2230ac8ab27686928b172d93362724d3dbdadb88bf143e2106",
+      "status": "frozen",
+      "version": "canonical/1"
+    },
+    {
+      "approved_draft_sha256": "25523efe3fbcc6754c1e85af0a1bda1bb7ded420febb2f777b783a84a1d2a60e",
+      "file": "canonical-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "ea78ac35f55d923540b56f42460fbcd1d6dd845052ee52cc6b70bdda63fdf335",
+      "status": "frozen",
+      "version": "canonical/1"
+    },
+    {
+      "approved_draft_sha256": "2db4d945e1d1c8a7e14bcc25c7600c39c2f596d10a43d79be72291de1029949a",
+      "file": "event-1.validation.json",
+      "mode": "validation",
+      "sha256": "e7c3009846309c0d592a4364674e5995c899010152c4375e2739de0e15cf97d6",
+      "status": "frozen",
+      "version": "event/1"
+    },
+    {
+      "approved_draft_sha256": "2db4d945e1d1c8a7e14bcc25c7600c39c2f596d10a43d79be72291de1029949a",
+      "file": "event-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "e7c3009846309c0d592a4364674e5995c899010152c4375e2739de0e15cf97d6",
+      "status": "frozen",
+      "version": "event/1"
+    },
+    {
+      "approved_draft_sha256": "540a7ac8782f61a0f3ca0953eca3db389cf0faac09f2f3919931d50733a62d6a",
+      "file": "gateway-1.validation.json",
+      "mode": "validation",
+      "sha256": "531b36107f8d534276433f029f5eb21dde3019db7039119eef01b12ca4cef672",
+      "status": "frozen",
+      "version": "gateway/1"
+    },
+    {
+      "approved_draft_sha256": "03b9bff3f7c9e92badeb75387456733d01f40bf165df085e0475f43eb26987dd",
+      "file": "gateway-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "deaeb2fd660199c4139cf68e76507c7b30eaaea36abd48f7376dd54229138ea3",
+      "status": "frozen",
+      "version": "gateway/1"
+    },
+    {
+      "approved_draft_sha256": "dc14760013155e0700c6279e31424f59f52ffe710ac114dd81b5d89c20de7945",
+      "file": "model-registry-1.validation.json",
+      "mode": "validation",
+      "sha256": "94f2953a9e93433163d744a776d241d40d524200790af92ad95c0ea518e09d2f",
+      "status": "frozen",
+      "version": "model-registry/1"
+    },
+    {
+      "approved_draft_sha256": "dc14760013155e0700c6279e31424f59f52ffe710ac114dd81b5d89c20de7945",
+      "file": "model-registry-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "94f2953a9e93433163d744a776d241d40d524200790af92ad95c0ea518e09d2f",
+      "status": "frozen",
+      "version": "model-registry/1"
+    },
+    {
+      "approved_draft_sha256": "bff9a3f522d3d5d68450db9d99fb32ea56bf5d257b46cda4f41d0e31f5c41c3a",
+      "file": "policy-1.validation.json",
+      "mode": "validation",
+      "sha256": "b1622553abd66d14bb7dae3283dff1c8a2347d8a10370e06d972efa8a6a5b953",
+      "status": "frozen",
+      "version": "policy/1"
+    },
+    {
+      "approved_draft_sha256": "bff9a3f522d3d5d68450db9d99fb32ea56bf5d257b46cda4f41d0e31f5c41c3a",
+      "file": "policy-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "b1622553abd66d14bb7dae3283dff1c8a2347d8a10370e06d972efa8a6a5b953",
+      "status": "frozen",
+      "version": "policy/1"
+    },
+    {
+      "approved_draft_sha256": "42da03e3b184d1bf25003000ab56b0ec1ad586038cf4b44fcf7ab5a5ae4c87bd",
+      "file": "prompt-1.validation.json",
+      "mode": "validation",
+      "sha256": "60991c16de77d8e40d2c6e4c5192f6d0492bcf8e1b48742e5004670e6bbd7c92",
+      "status": "frozen",
+      "version": "prompt/1"
+    },
+    {
+      "approved_draft_sha256": "42da03e3b184d1bf25003000ab56b0ec1ad586038cf4b44fcf7ab5a5ae4c87bd",
+      "file": "prompt-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "60991c16de77d8e40d2c6e4c5192f6d0492bcf8e1b48742e5004670e6bbd7c92",
+      "status": "frozen",
+      "version": "prompt/1"
+    },
+    {
+      "approved_draft_sha256": "71a92ac18ae63c960e7f0999a20606cd0816e24188c76459e3bb5dd65337f0ee",
+      "file": "ratio-def-1.validation.json",
+      "mode": "validation",
+      "sha256": "b49124bd316833f37eaa2ace43ba9de19a70a2600a6cb7f0824293df184c15ee",
+      "status": "frozen",
+      "version": "ratio-def/1"
+    },
+    {
+      "approved_draft_sha256": "3bfb422e1db3c1a78d53de343e9dd10ce55e98c99092e8b2628d739339762d64",
+      "file": "ratio-def-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "ee5ae523a524f6805ebd29f9656228c78a839052fd7e3878a6f8851c6ad37a0a",
+      "status": "frozen",
+      "version": "ratio-def/1"
+    },
+    {
+      "approved_draft_sha256": "f2848b0ca087f61ffa257f93b781710e95df60df8ca20e276c8c09bfbb03928f",
+      "file": "role-1.validation.json",
+      "mode": "validation",
+      "sha256": "27b3424edcc2cc41c9ad1ecbb64500d17f5ee33fe6932b043bedeee66dbfeb94",
+      "status": "frozen",
+      "version": "role/1"
+    },
+    {
+      "approved_draft_sha256": "f2848b0ca087f61ffa257f93b781710e95df60df8ca20e276c8c09bfbb03928f",
+      "file": "role-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "27b3424edcc2cc41c9ad1ecbb64500d17f5ee33fe6932b043bedeee66dbfeb94",
+      "status": "frozen",
+      "version": "role/1"
+    },
+    {
+      "approved_draft_sha256": "5ebdf389505ab76be65c82ac7578e3d98d368e3df28c758400a74ac6721111d3",
+      "file": "rule-1.validation.json",
+      "mode": "validation",
+      "sha256": "b16203fc7423f118b5e3bba1541024d7308a011516ee727b059f59a219045944",
+      "status": "frozen",
+      "version": "rule/1"
+    },
+    {
+      "approved_draft_sha256": "5525acad3a25e270870e72d3b51b03e7ab74ea7a51d58852f6a208b4688d5c1b",
+      "file": "rule-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "3d82047ba63f2f54d6fbb7afec699c9d22ec1ca69aee93f08dcc74df30716f89",
+      "status": "frozen",
+      "version": "rule/1"
+    },
+    {
+      "approved_draft_sha256": "8b1f511c0cb9d7fb83d102be83f7428ff8953080513d997e44737a6e3a35c414",
+      "file": "spack-1.validation.json",
+      "mode": "validation",
+      "sha256": "1541ecce23fbaa941d872facb050f46b82fce6ba5ddc3328355e2372c9cc4162",
+      "status": "frozen",
+      "version": "spack/1"
+    },
+    {
+      "approved_draft_sha256": "e00e0ed3caf810cf0fc136ac3ebb37de94e767eb1c00476ac9eebfc5f6362278",
+      "file": "spack-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "0b6507ba4e69a6a337efbc224918f2d151cc812c7b5936e79819bce86ca6d8eb",
+      "status": "frozen",
+      "version": "spack/1"
+    },
+    {
+      "approved_draft_sha256": "335be8a299deecb6758e369d5874211d6e3e2f475b756777c73b1c33c107c0a3",
+      "file": "template-1.validation.json",
+      "mode": "validation",
+      "sha256": "c26da1df9abd8433292320eabb55f96e89759cc6a3a71ac4f400c228b909f0e0",
+      "status": "frozen",
+      "version": "template/1"
+    },
+    {
+      "approved_draft_sha256": "335be8a299deecb6758e369d5874211d6e3e2f475b756777c73b1c33c107c0a3",
+      "file": "template-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "c26da1df9abd8433292320eabb55f96e89759cc6a3a71ac4f400c228b909f0e0",
+      "status": "frozen",
+      "version": "template/1"
+    },
+    {
+      "approved_draft_sha256": "fb5c98db74f70a4594087ccef469497a1ab1736b7fa6e5c9bbcbcd3c2616be53",
+      "file": "tool-1.validation.json",
+      "mode": "validation",
+      "sha256": "74a92414cf65fea0cf792bade87fdaf823ec7c6f465a42a0233882c71e973c83",
+      "status": "frozen",
+      "version": "tool/1"
+    },
+    {
+      "approved_draft_sha256": "fb5c98db74f70a4594087ccef469497a1ab1736b7fa6e5c9bbcbcd3c2616be53",
+      "file": "tool-1.serialization.json",
+      "mode": "serialization",
+      "sha256": "74a92414cf65fea0cf792bade87fdaf823ec7c6f465a42a0233882c71e973c83",
+      "status": "frozen",
+      "version": "tool/1"
+    }
+  ],
+  "status": "frozen",
+  "working_tree_committed": false
+}

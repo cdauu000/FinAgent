@@ -1,0 +1,76 @@
+{
+  "checked_at": "2026-11-03T04:25:23.271965+00:00",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "checks": [
+    {
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "started_at": "2026-11-03T04:24:23.861278+00:00",
+      "elapsed_ns": 84614700,
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "started_at": "2026-11-03T04:24:23.946034+00:00",
+      "elapsed_ns": 83546000,
+      "exit_code": 0,
+      "stdout": "105 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "finagent",
+        "eval"
+      ],
+      "started_at": "2026-11-03T04:24:24.025367+00:00",
+      "elapsed_ns": 318677900,
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 62 source files\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--junitxml=docs/evidence/phase1a/pytest.xml"
+      ],
+      "started_at": "2026-11-03T04:24:24.348092+00:00",
+      "elapsed_ns": 9137302400,
+      "exit_code": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-9.2.0, pluggy-1.7.0\nrootdir: C:\\FinAgent\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: anyio-4.16.0, platformdirs-4.14.3\ncollected 300 items\n\ntests\\contract\\test_freeze_policy.py ..                                  [  0%]\ntests\\contract\\test_gateway_drafts.py .......................            [  8%]\ntests\\contract\\test_import_boundaries.py ..                              [  9%]\ntests\\contract\\test_privacy_and_event_drafts.py ...                      [ 10%]\ntests\\contract\\test_registry_drafts.py .........                         [ 13%]\ntests\\contract\\test_registry_loaders.py ......                           [ 15%]\ntests\\contract\\test_schema_review_catalog.py ........................... [ 24%]\n.................................................................        [ 45%]\ntests\\contract\\test_schema_snapshots.py ..                               [ 46%]\ntests\\golden\\test_fpt_source_correction.py .....                         [ 48%]\ntests\\integration\\test_windows_preprocessing.py ..                       [ 48%]\ntests\\security\\test_query_guard.py ..........................            [ 57%]\ntests\\unit\\test_canonical_contracts.py .....................             [ 64%]\ntests\\unit\\test_corpus.py ...                                            [ 65%]\ntests\\unit\\test_eval_harness.py ...                                      [ 66%]\ntests\\unit\\test_ingestion_memory.py .........                            [ 69%]\ntests\\unit\\test_jobs_memory.py ...                                       [ 70%]\ntests\\unit\\test_number_normalizer.py .....................               [ 77%]\ntests\\unit\\test_page_preprocessing.py ........                           [ 80%]\ntests\\unit\\test_phase1a_tools.py .....                                   [ 81%]\ntests\\unit\\test_process_health.py ..                                     [ 82%]\ntests\\unit\\test_review_revisions.py ...........................          [ 91%]\ntests\\unit\\test_token_copy_probe.py ...                                  [ 92%]\ntests\\unit\\test_url_safety.py .......................                    [100%]\n\n------ generated xml file: C:\\FinAgent\\docs\\evidence\\phase1a\\pytest.xml -------\n============================= 300 passed in 8.49s =============================\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+        "-m",
+        "finagent.schema_catalog",
+        "--check"
+      ],
+      "started_at": "2026-11-03T04:24:33.485496+00:00",
+      "elapsed_ns": 568798000,
+      "exit_code": 0,
+      "stdout": "Schemas: 14 versions; frozen=true\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "$defs": {
+    "Mode": {
+      "enum": [
+        "strict",
+        "useful"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "ProgressPayload": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "progress",
+          "default": "progress",
+          "title": "Kind",
+          "type": "string"
+        },
+        "message_key": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Message Key",
+          "type": "string"
+        },
+        "stage": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Stage",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "queued",
+            "running",
+            "waiting_review",
+            "completed",
+            "failed"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "stage",
+        "status",
+        "message_key"
+      ],
+      "title": "ProgressPayload",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "VerifiedResultRef": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "result_ref",
+          "default": "result_ref",
+          "title": "Kind",
+          "type": "string"
+        },
+        "result_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Result Ref",
+          "type": "string"
+        },
+        "verifier_receipt_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Verifier Receipt Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "result_ref",
+        "verifier_receipt_ref"
+      ],
+      "title": "VerifiedResultRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "mode": {
+      "$ref": "#/$defs/Mode"
+    },
+    "parent_trace_id": {
+      "anyOf": [
+        {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Trace Id"
+    },
+    "payload": {
+      "discriminator": {
+        "mapping": {
+          "progress": "#/$defs/ProgressPayload",
+          "result_ref": "#/$defs/VerifiedResultRef"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ProgressPayload"
+        },
+        {
+          "$ref": "#/$defs/VerifiedResultRef"
+        }
+      ],
+      "title": "Payload"
+    },
+    "policy_version": {
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "resource_id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Resource Id",
+      "type": "string"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "schema_version": {
+      "const": "event/1",
+      "default": "event/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "seq": {
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "source_tier": {
+      "$ref": "#/$defs/Tier"
+    },
+    "tenant_id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "time_utc": {
+      "format": "date-time",
+      "title": "Time Utc",
+      "type": "string"
+    },
+    "trace_id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Trace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "seq",
+    "time_utc",
+    "tenant_id",
+    "resource_id",
+    "trace_id",
+    "mode",
+    "source_tier",
+    "policy_version",
+    "payload"
+  ],
+  "title": "EventEnvelope",
+  "type": "object",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "event/1"
+}

@@ -1,0 +1,434 @@
+{
+  "$defs": {
+    "EvidenceSource": {
+      "additionalProperties": false,
+      "properties": {
+        "account_scope": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Account Scope"
+        },
+        "artifact_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Artifact Ref"
+        },
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "official_url": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Official Url",
+          "type": "string"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plan"
+        },
+        "region": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Region"
+        }
+      },
+      "required": [
+        "id",
+        "official_url",
+        "checked_at"
+      ],
+      "title": "EvidenceSource",
+      "type": "object"
+    },
+    "GatewayTask": {
+      "enum": [
+        "intent_parse",
+        "answer_compose"
+      ],
+      "title": "GatewayTask",
+      "type": "string"
+    },
+    "IndefiniteRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "indefinite",
+          "default": "indefinite",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "IndefiniteRetention",
+      "type": "object"
+    },
+    "LimitedRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "days": {
+          "minimum": 0,
+          "title": "Days",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "limited",
+          "default": "limited",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "days"
+      ],
+      "title": "LimitedRetention",
+      "type": "object"
+    },
+    "ModelCapability": {
+      "additionalProperties": false,
+      "properties": {
+        "account_scope": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Account Scope",
+          "type": "string"
+        },
+        "checked_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checked At"
+        },
+        "context_tokens": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Context Tokens"
+        },
+        "evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "model": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Model",
+          "type": "string"
+        },
+        "provider": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Provider",
+          "type": "string"
+        },
+        "quota_records": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/QuotaRecord"
+          },
+          "title": "Quota Records",
+          "type": "array"
+        },
+        "retention": {
+          "default": {
+            "kind": "unknown"
+          },
+          "discriminator": {
+            "mapping": {
+              "indefinite": "#/$defs/IndefiniteRetention",
+              "limited": "#/$defs/LimitedRetention",
+              "none_verified": "#/$defs/NoRetention",
+              "unknown": "#/$defs/UnknownRetention"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoRetention"
+            },
+            {
+              "$ref": "#/$defs/LimitedRetention"
+            },
+            {
+              "$ref": "#/$defs/IndefiniteRetention"
+            },
+            {
+              "$ref": "#/$defs/UnknownRetention"
+            }
+          ],
+          "title": "Retention"
+        },
+        "status": {
+          "default": "unverified",
+          "enum": [
+            "unverified",
+            "verified",
+            "deprecated"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "structured_capabilities": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StructuredCapability"
+          },
+          "title": "Structured Capabilities",
+          "type": "array"
+        },
+        "terms_evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Terms Evidence Refs",
+          "type": "array"
+        },
+        "training_use": {
+          "default": "unknown",
+          "enum": [
+            "none_verified",
+            "may_use",
+            "unknown"
+          ],
+          "title": "Training Use",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "model",
+        "account_scope"
+      ],
+      "title": "ModelCapability",
+      "type": "object"
+    },
+    "NoRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "none_verified",
+          "default": "none_verified",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "NoRetention",
+      "type": "object"
+    },
+    "QuotaRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "dimension": {
+          "enum": [
+            "rpm",
+            "tpm",
+            "rpd",
+            "tpd",
+            "input_tpm",
+            "output_tpm",
+            "concurrency"
+          ],
+          "title": "Dimension",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Evidence Ref",
+          "type": "string"
+        },
+        "limit": {
+          "exclusiveMinimum": 0,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Observed At"
+        },
+        "source": {
+          "enum": [
+            "manual_console",
+            "probe",
+            "header_hint"
+          ],
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "limit",
+        "source",
+        "checked_at",
+        "evidence_ref"
+      ],
+      "title": "QuotaRecord",
+      "type": "object"
+    },
+    "StructuredCapability": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "probe_evidence_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Probe Evidence Ref",
+          "type": "string"
+        },
+        "structured_strategy": {
+          "enum": [
+            "native_schema",
+            "tool_call_schema",
+            "json_mode"
+          ],
+          "title": "Structured Strategy",
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/$defs/GatewayTask"
+        }
+      },
+      "required": [
+        "task",
+        "structured_strategy",
+        "checked_at",
+        "probe_evidence_ref"
+      ],
+      "title": "StructuredCapability",
+      "type": "object"
+    },
+    "UnknownRetention": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "unknown",
+          "default": "unknown",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "UnknownRetention",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ModelCapability"
+      },
+      "title": "Entries",
+      "type": "array"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EvidenceSource"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "model-registry/1",
+      "default": "model-registry/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "title": "ModelRegistry",
+  "type": "object",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "model-registry/1"
+}

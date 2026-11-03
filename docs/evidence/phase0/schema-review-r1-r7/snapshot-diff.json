@@ -1,0 +1,4891 @@
+{
+  "status": "draft",
+  "frozen": false,
+  "baseline": "before/",
+  "files": [
+    {
+      "file": "api-1.serialization.json",
+      "before_sha256": "acee4e9c153076aef008d964189e9b38966b9f4ed846fc5c65d366d47ba3ea5d",
+      "after_sha256": "22dfd1fd6a1ea4657220cc83729f89ccf2a52177ec8d8e93f244e80f80d362f0",
+      "changes": [
+        {
+          "path": "/$defs/DecimalValue/properties/display_kind",
+          "kind": "added",
+          "after": {
+            "default": "decimal",
+            "enum": [
+              "decimal",
+              "percent"
+            ],
+            "title": "Display Kind",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/const",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/default",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/enum",
+          "kind": "removed",
+          "before": [
+            "ratio",
+            "percentage"
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/representation",
+          "kind": "added",
+          "after": {
+            "const": "fraction",
+            "default": "fraction",
+            "title": "Representation",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/rounding_mode",
+          "kind": "added",
+          "after": {
+            "const": "ROUND_HALF_UP",
+            "default": "ROUND_HALF_UP",
+            "title": "Rounding Mode",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/scale",
+          "kind": "added",
+          "after": {
+            "default": 0,
+            "maximum": 38,
+            "minimum": 0,
+            "title": "Scale",
+            "type": "integer"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/required",
+          "kind": "changed",
+          "before": [
+            "kind",
+            "value"
+          ],
+          "after": [
+            "value"
+          ]
+        },
+        {
+          "path": "/$defs/NumericClaim/properties/financial_value/discriminator/mapping/percentage",
+          "kind": "removed",
+          "before": "#/$defs/DecimalValue"
+        },
+        {
+          "path": "/$defs/TextExportContent",
+          "kind": "added",
+          "after": {
+            "additionalProperties": false,
+            "properties": {
+              "artifact_id": {
+                "maxLength": 160,
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                "title": "Artifact Id",
+                "type": "string"
+              },
+              "content": {
+                "maxLength": 10000000,
+                "title": "Content",
+                "type": "string"
+              },
+              "format": {
+                "enum": [
+                  "md",
+                  "json"
+                ],
+                "title": "Format",
+                "type": "string"
+              },
+              "verifier_receipt_ref": {
+                "maxLength": 160,
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                "title": "Verifier Receipt Ref",
+                "type": "string"
+              }
+            },
+            "required": [
+              "artifact_id",
+              "format",
+              "content",
+              "verifier_receipt_ref"
+            ],
+            "title": "TextExportContent",
+            "type": "object"
+          }
+        },
+        {
+          "path": "/properties/text_export",
+          "kind": "added",
+          "after": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/TextExportContent"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.wire",
+              "models": [
+                "MonetaryValue",
+                "CountValue"
+              ],
+              "rule": "Reject bool/float and noncanonical strings; unsafe numeric integers require strings; precision38.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_integer"
+            },
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "period.interval",
+              "models": [
+                "FlowPeriod"
+              ],
+              "rule": "start<=end; fiscal_quarter required for quarter.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.FlowPeriod.valid_interval"
+            },
+            {
+              "id": "ratio.infer_scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Derive absent scale from the exact fraction without rounding or multiplying by100.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.infer_scale"
+            },
+            {
+              "id": "ratio.scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Declared scale equals fractional decimal places; percentage is display only.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.scale_matches_fraction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "api-1.validation.json",
+      "before_sha256": "2ef7f3186fc80125dd732c256ee7c0aeb872629d2aa2837965888537cb90d758",
+      "after_sha256": "e295fa6ed133777cb211f60bd5236022536567cacd2b18226c42ea61ddb1030f",
+      "changes": [
+        {
+          "path": "/$defs/CountValue/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "maximum": 99999999999999999999999999999999999999,
+              "minimum": -99999999999999999999999999999999999999,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/display_kind",
+          "kind": "added",
+          "after": {
+            "default": "decimal",
+            "enum": [
+              "decimal",
+              "percent"
+            ],
+            "title": "Display Kind",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/const",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/default",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/enum",
+          "kind": "removed",
+          "before": [
+            "ratio",
+            "percentage"
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/representation",
+          "kind": "added",
+          "after": {
+            "const": "fraction",
+            "default": "fraction",
+            "title": "Representation",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/rounding_mode",
+          "kind": "added",
+          "after": {
+            "const": "ROUND_HALF_UP",
+            "default": "ROUND_HALF_UP",
+            "title": "Rounding Mode",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/scale",
+          "kind": "added",
+          "after": {
+            "default": 0,
+            "maximum": 38,
+            "minimum": 0,
+            "title": "Scale",
+            "type": "integer"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/required",
+          "kind": "changed",
+          "before": [
+            "kind",
+            "value"
+          ],
+          "after": [
+            "value"
+          ]
+        },
+        {
+          "path": "/$defs/MonetaryValue/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "maximum": 99999999999999999999999999999999999999,
+              "minimum": -99999999999999999999999999999999999999,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/NumericClaim/properties/financial_value/discriminator/mapping/percentage",
+          "kind": "removed",
+          "before": "#/$defs/DecimalValue"
+        },
+        {
+          "path": "/$defs/TextExportContent",
+          "kind": "added",
+          "after": {
+            "additionalProperties": false,
+            "properties": {
+              "artifact_id": {
+                "maxLength": 160,
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                "title": "Artifact Id",
+                "type": "string"
+              },
+              "content": {
+                "maxLength": 10000000,
+                "title": "Content",
+                "type": "string"
+              },
+              "format": {
+                "enum": [
+                  "md",
+                  "json"
+                ],
+                "title": "Format",
+                "type": "string"
+              },
+              "verifier_receipt_ref": {
+                "maxLength": 160,
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                "title": "Verifier Receipt Ref",
+                "type": "string"
+              }
+            },
+            "required": [
+              "artifact_id",
+              "format",
+              "content",
+              "verifier_receipt_ref"
+            ],
+            "title": "TextExportContent",
+            "type": "object"
+          }
+        },
+        {
+          "path": "/properties/text_export",
+          "kind": "added",
+          "after": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/TextExportContent"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.wire",
+              "models": [
+                "MonetaryValue",
+                "CountValue"
+              ],
+              "rule": "Reject bool/float and noncanonical strings; unsafe numeric integers require strings; precision38.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_integer"
+            },
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "period.interval",
+              "models": [
+                "FlowPeriod"
+              ],
+              "rule": "start<=end; fiscal_quarter required for quarter.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.FlowPeriod.valid_interval"
+            },
+            {
+              "id": "ratio.infer_scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Derive absent scale from the exact fraction without rounding or multiplying by100.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.infer_scale"
+            },
+            {
+              "id": "ratio.scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Declared scale equals fractional decimal places; percentage is display only.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.scale_matches_fraction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "applicability-1.serialization.json",
+      "before_sha256": "1ebed57aaffa88d0d745bdd7028960f812b1972455f9685d44a520f31f44eb75",
+      "after_sha256": "26351e2e0369d287b29509e68fe204b2d7c05bf09de7b6981a68834e01072f1e",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "applicability-1.validation.json",
+      "before_sha256": "1ebed57aaffa88d0d745bdd7028960f812b1972455f9685d44a520f31f44eb75",
+      "after_sha256": "26351e2e0369d287b29509e68fe204b2d7c05bf09de7b6981a68834e01072f1e",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "canonical-1.serialization.json",
+      "before_sha256": "92688837a90b134a77959b1fd615685c0d542df270839f629bc05ebffbcb1379",
+      "after_sha256": "25523efe3fbcc6754c1e85af0a1bda1bb7ded420febb2f777b783a84a1d2a60e",
+      "changes": [
+        {
+          "path": "/$defs/DecimalValue/properties/display_kind",
+          "kind": "added",
+          "after": {
+            "default": "decimal",
+            "enum": [
+              "decimal",
+              "percent"
+            ],
+            "title": "Display Kind",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/const",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/default",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/enum",
+          "kind": "removed",
+          "before": [
+            "ratio",
+            "percentage"
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/representation",
+          "kind": "added",
+          "after": {
+            "const": "fraction",
+            "default": "fraction",
+            "title": "Representation",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/rounding_mode",
+          "kind": "added",
+          "after": {
+            "const": "ROUND_HALF_UP",
+            "default": "ROUND_HALF_UP",
+            "title": "Rounding Mode",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/scale",
+          "kind": "added",
+          "after": {
+            "default": 0,
+            "maximum": 38,
+            "minimum": 0,
+            "title": "Scale",
+            "type": "integer"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/required",
+          "kind": "changed",
+          "before": [
+            "kind",
+            "value"
+          ],
+          "after": [
+            "value"
+          ]
+        },
+        {
+          "path": "/$defs/DerivedFact/properties/financial_value/discriminator/mapping/percentage",
+          "kind": "removed",
+          "before": "#/$defs/DecimalValue"
+        },
+        {
+          "path": "/$defs/Document/properties/page_count/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/EvidenceChunk/properties/document_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/EvidenceChunk/properties/text/maxLength",
+          "kind": "added",
+          "after": 64000
+        },
+        {
+          "path": "/$defs/LineItem/properties/financial_value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/LineItem/properties/original_unit_scale/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/LineItem/properties/statement_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/NumericClaim/properties/financial_value/discriminator/mapping/percentage",
+          "kind": "removed",
+          "before": "#/$defs/DecimalValue"
+        },
+        {
+          "path": "/$defs/Page/properties/native_text",
+          "kind": "added",
+          "after": {
+            "anyOf": [
+              {
+                "maxLength": 1000000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Native Text"
+          }
+        },
+        {
+          "path": "/$defs/Page/properties/physical_index/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Page/properties/rotation/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Page/properties/rotation/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Provenance/properties/chosen_reading/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Provenance/properties/physical_index/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Reading/properties/raw_text/maxLength",
+          "kind": "added",
+          "after": 1000000
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/after_value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/before_value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/expected_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/resulting_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/SourceCell/properties/raw_text/maxLength",
+          "kind": "added",
+          "after": 1000000
+        },
+        {
+          "path": "/$defs/SourceCell/properties/row_index/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/SourceQuote",
+          "kind": "added",
+          "after": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ref": {
+                "maxLength": 160,
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                "title": "Evidence Ref",
+                "type": "string"
+              },
+              "provenance_refs": {
+                "items": {
+                  "maxLength": 160,
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                  "type": "string"
+                },
+                "minItems": 1,
+                "title": "Provenance Refs",
+                "type": "array"
+              },
+              "text": {
+                "maxLength": 64000,
+                "title": "Text",
+                "type": "string"
+              }
+            },
+            "required": [
+              "evidence_ref",
+              "text",
+              "provenance_refs"
+            ],
+            "title": "SourceQuote",
+            "type": "object"
+          }
+        },
+        {
+          "path": "/$defs/Statement/properties/revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Statement/properties/unit_scale/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Statement/properties/unit_scale/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/StatementRevisionRef/properties/revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Table/properties/unit_scale/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/properties/source_quotes",
+          "kind": "added",
+          "after": {
+            "default": [],
+            "items": {
+              "$ref": "#/$defs/SourceQuote"
+            },
+            "title": "Source Quotes",
+            "type": "array"
+          }
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.wire",
+              "models": [
+                "MonetaryValue",
+                "CountValue"
+              ],
+              "rule": "Reject bool/float and noncanonical strings; unsafe numeric integers require strings; precision38.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_integer"
+            },
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "period.interval",
+              "models": [
+                "FlowPeriod"
+              ],
+              "rule": "start<=end; fiscal_quarter required for quarter.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.FlowPeriod.valid_interval"
+            },
+            {
+              "id": "document.public_evidence",
+              "models": [
+                "Document"
+              ],
+              "rule": "Public classification requires evidence refs; does not itself authenticate those refs.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.Document.public_requires_evidence"
+            },
+            {
+              "id": "bbox.ordered",
+              "models": [
+                "BoundingBox"
+              ],
+              "rule": "x2>x1 and y2>y1.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.BoundingBox.ordered"
+            },
+            {
+              "id": "provenance.chosen",
+              "models": [
+                "Provenance"
+              ],
+              "rule": "chosen_reading indexes an existing reading.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.Provenance.chosen_exists"
+            },
+            {
+              "id": "ratio.infer_scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Derive absent scale from the exact fraction without rounding or multiplying by100.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.infer_scale"
+            },
+            {
+              "id": "ratio.scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Declared scale equals fractional decimal places; percentage is display only.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.scale_matches_fraction"
+            },
+            {
+              "id": "line.presence",
+              "models": [
+                "LineItem"
+              ],
+              "rule": "Missing iff null; zero states require zero; derived_zero requires lineage.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.LineItem.presence_matches_value"
+            },
+            {
+              "id": "statement.period_audit",
+              "models": [
+                "Statement"
+              ],
+              "rule": "B01 stock; B02/B03 flow; audited/reviewed requires audit evidence.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.Statement.correct_period_kind"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "canonical-1.validation.json",
+      "before_sha256": "e02a1f2ad4f94206c0b74415aebf7c0c19c82a5c4abe73c86844423cf401433f",
+      "after_sha256": "0f5100b7963ea8fa6a8daac642435854563b40c99de8c50eb91373deaaaf7fbf",
+      "changes": [
+        {
+          "path": "/$defs/CountValue/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "maximum": 99999999999999999999999999999999999999,
+              "minimum": -99999999999999999999999999999999999999,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/display_kind",
+          "kind": "added",
+          "after": {
+            "default": "decimal",
+            "enum": [
+              "decimal",
+              "percent"
+            ],
+            "title": "Display Kind",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/const",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/default",
+          "kind": "added",
+          "after": "ratio"
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/kind/enum",
+          "kind": "removed",
+          "before": [
+            "ratio",
+            "percentage"
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/representation",
+          "kind": "added",
+          "after": {
+            "const": "fraction",
+            "default": "fraction",
+            "title": "Representation",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/rounding_mode",
+          "kind": "added",
+          "after": {
+            "const": "ROUND_HALF_UP",
+            "default": "ROUND_HALF_UP",
+            "title": "Rounding Mode",
+            "type": "string"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/scale",
+          "kind": "added",
+          "after": {
+            "default": 0,
+            "maximum": 38,
+            "minimum": 0,
+            "title": "Scale",
+            "type": "integer"
+          }
+        },
+        {
+          "path": "/$defs/DecimalValue/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/DecimalValue/required",
+          "kind": "changed",
+          "before": [
+            "kind",
+            "value"
+          ],
+          "after": [
+            "value"
+          ]
+        },
+        {
+          "path": "/$defs/DerivedFact/properties/financial_value/discriminator/mapping/percentage",
+          "kind": "removed",
+          "before": "#/$defs/DecimalValue"
+        },
+        {
+          "path": "/$defs/Document/properties/page_count/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/EvidenceChunk/properties/document_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/EvidenceChunk/properties/text/maxLength",
+          "kind": "added",
+          "after": 64000
+        },
+        {
+          "path": "/$defs/LineItem/properties/financial_value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/LineItem/properties/original_unit_scale/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/LineItem/properties/statement_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/MonetaryValue/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "maximum": 99999999999999999999999999999999999999,
+              "minimum": -99999999999999999999999999999999999999,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/NumericClaim/properties/financial_value/discriminator/mapping/percentage",
+          "kind": "removed",
+          "before": "#/$defs/DecimalValue"
+        },
+        {
+          "path": "/$defs/Page/properties/native_text",
+          "kind": "added",
+          "after": {
+            "anyOf": [
+              {
+                "maxLength": 1000000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Native Text"
+          }
+        },
+        {
+          "path": "/$defs/Page/properties/physical_index/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Page/properties/rotation/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Page/properties/rotation/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Provenance/properties/chosen_reading/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Provenance/properties/physical_index/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Reading/properties/raw_text/maxLength",
+          "kind": "added",
+          "after": 1000000
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/after_value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/before_value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "percentage": "#/$defs/DecimalValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "count": "#/$defs/CountValue",
+                  "money": "#/$defs/MonetaryValue",
+                  "ratio": "#/$defs/DecimalValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/MonetaryValue"
+                },
+                {
+                  "$ref": "#/$defs/CountValue"
+                },
+                {
+                  "$ref": "#/$defs/DecimalValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/expected_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ReviewAction/properties/resulting_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/SourceCell/properties/raw_text/maxLength",
+          "kind": "added",
+          "after": 1000000
+        },
+        {
+          "path": "/$defs/SourceCell/properties/row_index/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/SourceQuote",
+          "kind": "added",
+          "after": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_ref": {
+                "maxLength": 160,
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                "title": "Evidence Ref",
+                "type": "string"
+              },
+              "provenance_refs": {
+                "items": {
+                  "maxLength": 160,
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+                  "type": "string"
+                },
+                "minItems": 1,
+                "title": "Provenance Refs",
+                "type": "array"
+              },
+              "text": {
+                "maxLength": 64000,
+                "title": "Text",
+                "type": "string"
+              }
+            },
+            "required": [
+              "evidence_ref",
+              "text",
+              "provenance_refs"
+            ],
+            "title": "SourceQuote",
+            "type": "object"
+          }
+        },
+        {
+          "path": "/$defs/Statement/properties/revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Statement/properties/unit_scale/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Statement/properties/unit_scale/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/StatementRevisionRef/properties/revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Table/properties/unit_scale/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "enum": [
+                1,
+                1000,
+                1000000,
+                1000000000
+              ],
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ValidationIssue/properties/discrepancy/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ValidationIssue/properties/tolerance/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/properties/source_quotes",
+          "kind": "added",
+          "after": {
+            "default": [],
+            "items": {
+              "$ref": "#/$defs/SourceQuote"
+            },
+            "title": "Source Quotes",
+            "type": "array"
+          }
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.wire",
+              "models": [
+                "MonetaryValue",
+                "CountValue"
+              ],
+              "rule": "Reject bool/float and noncanonical strings; unsafe numeric integers require strings; precision38.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_integer"
+            },
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "period.interval",
+              "models": [
+                "FlowPeriod"
+              ],
+              "rule": "start<=end; fiscal_quarter required for quarter.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.FlowPeriod.valid_interval"
+            },
+            {
+              "id": "document.public_evidence",
+              "models": [
+                "Document"
+              ],
+              "rule": "Public classification requires evidence refs; does not itself authenticate those refs.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.Document.public_requires_evidence"
+            },
+            {
+              "id": "bbox.ordered",
+              "models": [
+                "BoundingBox"
+              ],
+              "rule": "x2>x1 and y2>y1.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.BoundingBox.ordered"
+            },
+            {
+              "id": "provenance.chosen",
+              "models": [
+                "Provenance"
+              ],
+              "rule": "chosen_reading indexes an existing reading.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.Provenance.chosen_exists"
+            },
+            {
+              "id": "ratio.infer_scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Derive absent scale from the exact fraction without rounding or multiplying by100.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.infer_scale"
+            },
+            {
+              "id": "ratio.scale",
+              "models": [
+                "DecimalValue"
+              ],
+              "rule": "Declared scale equals fractional decimal places; percentage is display only.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.DecimalValue.scale_matches_fraction"
+            },
+            {
+              "id": "line.presence",
+              "models": [
+                "LineItem"
+              ],
+              "rule": "Missing iff null; zero states require zero; derived_zero requires lineage.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.LineItem.presence_matches_value"
+            },
+            {
+              "id": "statement.period_audit",
+              "models": [
+                "Statement"
+              ],
+              "rule": "B01 stock; B02/B03 flow; audited/reviewed requires audit evidence.",
+              "scope": "pydantic",
+              "symbol": "finagent.store.models.Statement.correct_period_kind"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "event-1.serialization.json",
+      "before_sha256": "501b53ae966da0917ac990723d4ba2062031d55ee3ce58f02aa120dddf27b886",
+      "after_sha256": "2db4d945e1d1c8a7e14bcc25c7600c39c2f596d10a43d79be72291de1029949a",
+      "changes": [
+        {
+          "path": "/properties/seq/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "event-1.validation.json",
+      "before_sha256": "501b53ae966da0917ac990723d4ba2062031d55ee3ce58f02aa120dddf27b886",
+      "after_sha256": "2db4d945e1d1c8a7e14bcc25c7600c39c2f596d10a43d79be72291de1029949a",
+      "changes": [
+        {
+          "path": "/properties/seq/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "gateway-1.serialization.json",
+      "before_sha256": "e310c9f87ef3c50f945df179311b289de60ae2f3386fa4ba3fdf177c127815de",
+      "after_sha256": "03b9bff3f7c9e92badeb75387456733d01f40bf165df085e0475f43eb26987dd",
+      "changes": [
+        {
+          "path": "/$defs/EgressPermit/properties/max_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/EgressPermit/properties/max_tokens/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/EntityRefSegment/properties/token/pattern",
+          "kind": "changed",
+          "before": "^ent_[0-9a-f]{32}$",
+          "after": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/FinalAnswerPayload/properties/entity_tokens/items/pattern",
+          "kind": "changed",
+          "before": "^ent_[0-9a-f]{32}$",
+          "after": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/IntentPayload/properties/number_placeholders/items/pattern",
+          "kind": "changed",
+          "before": "^num_[0-9a-f]{32}$",
+          "after": "^num_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/LimitedRetention/properties/days/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ModelCapability/properties/context_tokens/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/QuotaReservation/properties/estimated_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ReadAction/properties/entity_token/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "pattern": "^ent_[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ReferenceManifest/properties/entity_tokens/items/pattern",
+          "kind": "changed",
+          "before": "^ent_[0-9a-f]{32}$",
+          "after": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/SessionSelection/properties/entity_token/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "pattern": "^ent_[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/SessionSelection/properties/selection_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/SyntheticProbeRequest/properties/case/enum",
+          "kind": "changed",
+          "before": [
+            "intent_schema",
+            "compose_schema",
+            "json_validation"
+          ],
+          "after": [
+            "intent_schema",
+            "compose_schema",
+            "json_validation",
+            "token_copy"
+          ]
+        },
+        {
+          "path": "/$defs/Usage/properties/cached_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Usage/properties/input_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Usage/properties/output_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/VerifyUserClaimAction/properties/entity_token/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "pattern": "^ent_[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/VerifyUserClaimAction/properties/placeholder_ref/pattern",
+          "kind": "changed",
+          "before": "^num_[0-9a-f]{32}$",
+          "after": "^num_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "intent.rewrite",
+              "models": [
+                "ReadAction"
+              ],
+              "rule": "Rewrite contains letters/whitespace only; name checking remains a later local guard.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ReadAction.rewrite_has_no_numbers"
+            },
+            {
+              "id": "intent.selection",
+              "models": [
+                "ReadAction"
+              ],
+              "rule": "Financial actions need entity/scope/period; statement type and exactly two comparison periods where applicable.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ReadAction.explicit_selectors_for_financial_actions"
+            },
+            {
+              "id": "intent.clarification",
+              "models": [
+                "IntentPlan"
+              ],
+              "rule": "Clarification and dispatch are exclusive; an action or clarification is required.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.IntentPlan.unresolved_does_not_dispatch"
+            },
+            {
+              "id": "compose.claim_refs",
+              "models": [
+                "FinalAnswerPayload"
+              ],
+              "rule": "Claim IDs unique; qualitative relation refs must exist.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.FinalAnswerPayload.unique_claims_and_known_relations"
+            },
+            {
+              "id": "draft.numeric_prose",
+              "models": [
+                "ProseSegment"
+              ],
+              "rule": "Reject Unicode numeric characters. Full name/number-word/semantic checks remain Phase4.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ProseSegment.no_numeric_characters"
+            },
+            {
+              "id": "draft.manifest_refs",
+              "models": [
+                "ReferenceManifest"
+              ],
+              "rule": "Required claims/warnings/render slots are subsets of allowed refs; full draft binding is Phase4.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ReferenceManifest.required_refs_are_allowed"
+            },
+            {
+              "id": "gateway.manifest",
+              "models": [
+                "GatewayRequest"
+              ],
+              "rule": "Composition requires a value-free reference manifest.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.GatewayRequest.composition_requires_manifest"
+            },
+            {
+              "id": "provider.task",
+              "models": [
+                "ProviderRequest"
+              ],
+              "rule": "Request task, typed user payload and output-schema ref agree.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ProviderRequest.task_matches_payload_and_schema"
+            },
+            {
+              "id": "provider.result",
+              "models": [
+                "ProviderResult"
+              ],
+              "rule": "Intent task returns IntentPlan; compose task returns AnswerDraft.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ProviderResult.result_matches_task"
+            },
+            {
+              "id": "permit.tier",
+              "models": [
+                "EgressPermit"
+              ],
+              "rule": "Strict-private denied; private needs opt-in. Runtime model terms/deadlines/one-use checks are later controls.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.EgressPermit.tier_allows_external"
+            },
+            {
+              "id": "model.evidence",
+              "models": [
+                "ModelCapability"
+              ],
+              "rule": "Verified capability needs dated evidence/probes; verified training/retention needs terms refs.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.model_registry.ModelCapability.verified_requires_evidence"
+            },
+            {
+              "id": "token.collision",
+              "models": [
+                "GatewayReviewCatalog"
+              ],
+              "rule": "Run-local random8 aliases; normalized query/used-suffix collision checks and bounded retries; IDs128 remain local.",
+              "scope": "preflight",
+              "symbol": "finagent.llm_gateway.tokens.RunTokenAllocator.allocate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "gateway-1.validation.json",
+      "before_sha256": "764d1e4a476533a1341c375211f8b005e1324f01db75aafbc3a21b2ca9267969",
+      "after_sha256": "540a7ac8782f61a0f3ca0953eca3db389cf0faac09f2f3919931d50733a62d6a",
+      "changes": [
+        {
+          "path": "/$defs/EgressPermit/properties/max_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/EgressPermit/properties/max_tokens/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/EntityRefSegment/properties/token/pattern",
+          "kind": "changed",
+          "before": "^ent_[0-9a-f]{32}$",
+          "after": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/FinalAnswerPayload/properties/entity_tokens/items/pattern",
+          "kind": "changed",
+          "before": "^ent_[0-9a-f]{32}$",
+          "after": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/IntentPayload/properties/number_placeholders/items/pattern",
+          "kind": "changed",
+          "before": "^num_[0-9a-f]{32}$",
+          "after": "^num_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/LimitedRetention/properties/days/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ModelCapability/properties/context_tokens/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ProviderResult/properties/estimated_cost/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/QuotaReservation/properties/estimated_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ReadAction/properties/entity_token/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "pattern": "^ent_[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ReferenceManifest/properties/entity_tokens/items/pattern",
+          "kind": "changed",
+          "before": "^ent_[0-9a-f]{32}$",
+          "after": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/$defs/SessionSelection/properties/entity_token/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "pattern": "^ent_[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/SessionSelection/properties/selection_revision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/SyntheticProbeRequest/properties/case/enum",
+          "kind": "changed",
+          "before": [
+            "intent_schema",
+            "compose_schema",
+            "json_validation"
+          ],
+          "after": [
+            "intent_schema",
+            "compose_schema",
+            "json_validation",
+            "token_copy"
+          ]
+        },
+        {
+          "path": "/$defs/Usage/properties/cached_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Usage/properties/input_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Usage/properties/output_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/VerifyUserClaimAction/properties/entity_token/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "pattern": "^ent_[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "pattern": "^ent_[0-9abcdefghjkmnpqrstvwxyz]{8}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/VerifyUserClaimAction/properties/placeholder_ref/pattern",
+          "kind": "changed",
+          "before": "^num_[0-9a-f]{32}$",
+          "after": "^num_[0-9abcdefghjkmnpqrstvwxyz]{8}$"
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "intent.rewrite",
+              "models": [
+                "ReadAction"
+              ],
+              "rule": "Rewrite contains letters/whitespace only; name checking remains a later local guard.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ReadAction.rewrite_has_no_numbers"
+            },
+            {
+              "id": "intent.selection",
+              "models": [
+                "ReadAction"
+              ],
+              "rule": "Financial actions need entity/scope/period; statement type and exactly two comparison periods where applicable.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ReadAction.explicit_selectors_for_financial_actions"
+            },
+            {
+              "id": "intent.clarification",
+              "models": [
+                "IntentPlan"
+              ],
+              "rule": "Clarification and dispatch are exclusive; an action or clarification is required.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.IntentPlan.unresolved_does_not_dispatch"
+            },
+            {
+              "id": "compose.claim_refs",
+              "models": [
+                "FinalAnswerPayload"
+              ],
+              "rule": "Claim IDs unique; qualitative relation refs must exist.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.FinalAnswerPayload.unique_claims_and_known_relations"
+            },
+            {
+              "id": "draft.numeric_prose",
+              "models": [
+                "ProseSegment"
+              ],
+              "rule": "Reject Unicode numeric characters. Full name/number-word/semantic checks remain Phase4.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ProseSegment.no_numeric_characters"
+            },
+            {
+              "id": "draft.manifest_refs",
+              "models": [
+                "ReferenceManifest"
+              ],
+              "rule": "Required claims/warnings/render slots are subsets of allowed refs; full draft binding is Phase4.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ReferenceManifest.required_refs_are_allowed"
+            },
+            {
+              "id": "gateway.manifest",
+              "models": [
+                "GatewayRequest"
+              ],
+              "rule": "Composition requires a value-free reference manifest.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.GatewayRequest.composition_requires_manifest"
+            },
+            {
+              "id": "provider.task",
+              "models": [
+                "ProviderRequest"
+              ],
+              "rule": "Request task, typed user payload and output-schema ref agree.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ProviderRequest.task_matches_payload_and_schema"
+            },
+            {
+              "id": "provider.result",
+              "models": [
+                "ProviderResult"
+              ],
+              "rule": "Intent task returns IntentPlan; compose task returns AnswerDraft.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.ProviderResult.result_matches_task"
+            },
+            {
+              "id": "permit.tier",
+              "models": [
+                "EgressPermit"
+              ],
+              "rule": "Strict-private denied; private needs opt-in. Runtime model terms/deadlines/one-use checks are later controls.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.contracts.EgressPermit.tier_allows_external"
+            },
+            {
+              "id": "model.evidence",
+              "models": [
+                "ModelCapability"
+              ],
+              "rule": "Verified capability needs dated evidence/probes; verified training/retention needs terms refs.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.model_registry.ModelCapability.verified_requires_evidence"
+            },
+            {
+              "id": "token.collision",
+              "models": [
+                "GatewayReviewCatalog"
+              ],
+              "rule": "Run-local random8 aliases; normalized query/used-suffix collision checks and bounded retries; IDs128 remain local.",
+              "scope": "preflight",
+              "symbol": "finagent.llm_gateway.tokens.RunTokenAllocator.allocate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "manifest.json",
+      "before_sha256": "fe17289a9ab9354b568e3d9d75e96416576d2e08d9907448e7a820e2be907586",
+      "after_sha256": "257e3b6f19a60f3be7fe3fd1da43b2a1b466c13d5fc48fb8804e0339357f2e84",
+      "changes": [
+        {
+          "path": "/case_catalog",
+          "kind": "added",
+          "after": {
+            "counting_unit": "one dedicated review-case row, validated once in JSON mode",
+            "groups": {
+              "api/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "applicability/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "canonical/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 3,
+                "positive_passed": 3
+              },
+              "event/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "gateway/1": {
+                "failed": 0,
+                "negative_cases": 4,
+                "negative_passed": 4,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "model-registry/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "policy/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "prompt/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "ratio-def/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "role/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "rule/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "spack/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "template/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              },
+              "tool/1": {
+                "failed": 0,
+                "negative_cases": 2,
+                "negative_passed": 2,
+                "positive_cases": 2,
+                "positive_passed": 2
+              }
+            },
+            "path": "tests/fixtures/schema_review_cases.json",
+            "sha256": "93aa69f0e7a2e07e01dd045123577182992c0932eded4d40f2eab80516ade27d"
+          }
+        },
+        {
+          "path": "/compat_policy",
+          "kind": "added",
+          "after": {
+            "breaking": "major_bump_with_ADR_migration_full_snapshot_suite",
+            "freeze_requires": "explicit user confirmation: freeze",
+            "same_major": "optional_fields_only"
+          }
+        },
+        {
+          "path": "/schemas",
+          "kind": "changed",
+          "before": [
+            {
+              "file": "api-1.validation.json",
+              "mode": "validation",
+              "sha256": "2ef7f3186fc80125dd732c256ee7c0aeb872629d2aa2837965888537cb90d758",
+              "status": "draft",
+              "version": "api/1"
+            },
+            {
+              "file": "api-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "acee4e9c153076aef008d964189e9b38966b9f4ed846fc5c65d366d47ba3ea5d",
+              "status": "draft",
+              "version": "api/1"
+            },
+            {
+              "file": "applicability-1.validation.json",
+              "mode": "validation",
+              "sha256": "1ebed57aaffa88d0d745bdd7028960f812b1972455f9685d44a520f31f44eb75",
+              "status": "draft",
+              "version": "applicability/1"
+            },
+            {
+              "file": "applicability-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "1ebed57aaffa88d0d745bdd7028960f812b1972455f9685d44a520f31f44eb75",
+              "status": "draft",
+              "version": "applicability/1"
+            },
+            {
+              "file": "canonical-1.validation.json",
+              "mode": "validation",
+              "sha256": "e02a1f2ad4f94206c0b74415aebf7c0c19c82a5c4abe73c86844423cf401433f",
+              "status": "draft",
+              "version": "canonical/1"
+            },
+            {
+              "file": "canonical-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "92688837a90b134a77959b1fd615685c0d542df270839f629bc05ebffbcb1379",
+              "status": "draft",
+              "version": "canonical/1"
+            },
+            {
+              "file": "event-1.validation.json",
+              "mode": "validation",
+              "sha256": "501b53ae966da0917ac990723d4ba2062031d55ee3ce58f02aa120dddf27b886",
+              "status": "draft",
+              "version": "event/1"
+            },
+            {
+              "file": "event-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "501b53ae966da0917ac990723d4ba2062031d55ee3ce58f02aa120dddf27b886",
+              "status": "draft",
+              "version": "event/1"
+            },
+            {
+              "file": "gateway-1.validation.json",
+              "mode": "validation",
+              "sha256": "764d1e4a476533a1341c375211f8b005e1324f01db75aafbc3a21b2ca9267969",
+              "status": "draft",
+              "version": "gateway/1"
+            },
+            {
+              "file": "gateway-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "e310c9f87ef3c50f945df179311b289de60ae2f3386fa4ba3fdf177c127815de",
+              "status": "draft",
+              "version": "gateway/1"
+            },
+            {
+              "file": "model-registry-1.validation.json",
+              "mode": "validation",
+              "sha256": "733c1ee942a1ce0f243f2c90459540363ce0d753a91e18d67b954274143b3688",
+              "status": "draft",
+              "version": "model-registry/1"
+            },
+            {
+              "file": "model-registry-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "733c1ee942a1ce0f243f2c90459540363ce0d753a91e18d67b954274143b3688",
+              "status": "draft",
+              "version": "model-registry/1"
+            },
+            {
+              "file": "policy-1.validation.json",
+              "mode": "validation",
+              "sha256": "7422823dc580d2e65e136ca89725cdbdf83751fb4f1adcf827e6a8d86b250526",
+              "status": "draft",
+              "version": "policy/1"
+            },
+            {
+              "file": "policy-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "7422823dc580d2e65e136ca89725cdbdf83751fb4f1adcf827e6a8d86b250526",
+              "status": "draft",
+              "version": "policy/1"
+            },
+            {
+              "file": "prompt-1.validation.json",
+              "mode": "validation",
+              "sha256": "6304e13b05b4bcee47b81aea09dab81a3978d59e6b6cb41dff2d4ace614169b2",
+              "status": "draft",
+              "version": "prompt/1"
+            },
+            {
+              "file": "prompt-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "6304e13b05b4bcee47b81aea09dab81a3978d59e6b6cb41dff2d4ace614169b2",
+              "status": "draft",
+              "version": "prompt/1"
+            },
+            {
+              "file": "ratio-def-1.validation.json",
+              "mode": "validation",
+              "sha256": "da3368cf71f0354958cf75cbaa11517cca3bee68aab49225fd71fb29b6c9058e",
+              "status": "draft",
+              "version": "ratio-def/1"
+            },
+            {
+              "file": "ratio-def-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "3a34eb8a66d14839eac5ac395605cfcff92bd9f590f51b3ba840cb8b0b008476",
+              "status": "draft",
+              "version": "ratio-def/1"
+            },
+            {
+              "file": "role-1.validation.json",
+              "mode": "validation",
+              "sha256": "327e5ba14fa35c787ed61c36491177ce88b1e8cbe1a8856c52da4ff9ee322e68",
+              "status": "draft",
+              "version": "role/1"
+            },
+            {
+              "file": "role-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "327e5ba14fa35c787ed61c36491177ce88b1e8cbe1a8856c52da4ff9ee322e68",
+              "status": "draft",
+              "version": "role/1"
+            },
+            {
+              "file": "rule-1.validation.json",
+              "mode": "validation",
+              "sha256": "074161190da7d2470552570b18b42fbe3baacb8fe9dd2db9223c7ffdb368972a",
+              "status": "draft",
+              "version": "rule/1"
+            },
+            {
+              "file": "rule-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "85176193327eae2476a8d3977d4752afc97d573e7960086bbf3f680050e10861",
+              "status": "draft",
+              "version": "rule/1"
+            },
+            {
+              "file": "spack-1.validation.json",
+              "mode": "validation",
+              "sha256": "7eeb46e9d3e79b9a75b23f542282bc97427dd8b4652687126df96fc5f43843ae",
+              "status": "draft",
+              "version": "spack/1"
+            },
+            {
+              "file": "spack-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "804c625c667899edc57d55166285050576d9997389d3c1502fc57abded57c477",
+              "status": "draft",
+              "version": "spack/1"
+            },
+            {
+              "file": "template-1.validation.json",
+              "mode": "validation",
+              "sha256": "faacae3a341dbc9729a53f69b277446623e7f5e00b5dde7776439aedb2e7de7b",
+              "status": "draft",
+              "version": "template/1"
+            },
+            {
+              "file": "template-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "faacae3a341dbc9729a53f69b277446623e7f5e00b5dde7776439aedb2e7de7b",
+              "status": "draft",
+              "version": "template/1"
+            },
+            {
+              "file": "tool-1.validation.json",
+              "mode": "validation",
+              "sha256": "226642f64039cf0ac93d460e4b20255d359266e2455af367741c04c3211a39bc",
+              "status": "draft",
+              "version": "tool/1"
+            },
+            {
+              "file": "tool-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "226642f64039cf0ac93d460e4b20255d359266e2455af367741c04c3211a39bc",
+              "status": "draft",
+              "version": "tool/1"
+            }
+          ],
+          "after": [
+            {
+              "file": "api-1.validation.json",
+              "mode": "validation",
+              "sha256": "e295fa6ed133777cb211f60bd5236022536567cacd2b18226c42ea61ddb1030f",
+              "status": "draft",
+              "version": "api/1"
+            },
+            {
+              "file": "api-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "22dfd1fd6a1ea4657220cc83729f89ccf2a52177ec8d8e93f244e80f80d362f0",
+              "status": "draft",
+              "version": "api/1"
+            },
+            {
+              "file": "applicability-1.validation.json",
+              "mode": "validation",
+              "sha256": "26351e2e0369d287b29509e68fe204b2d7c05bf09de7b6981a68834e01072f1e",
+              "status": "draft",
+              "version": "applicability/1"
+            },
+            {
+              "file": "applicability-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "26351e2e0369d287b29509e68fe204b2d7c05bf09de7b6981a68834e01072f1e",
+              "status": "draft",
+              "version": "applicability/1"
+            },
+            {
+              "file": "canonical-1.validation.json",
+              "mode": "validation",
+              "sha256": "0f5100b7963ea8fa6a8daac642435854563b40c99de8c50eb91373deaaaf7fbf",
+              "status": "draft",
+              "version": "canonical/1"
+            },
+            {
+              "file": "canonical-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "25523efe3fbcc6754c1e85af0a1bda1bb7ded420febb2f777b783a84a1d2a60e",
+              "status": "draft",
+              "version": "canonical/1"
+            },
+            {
+              "file": "event-1.validation.json",
+              "mode": "validation",
+              "sha256": "2db4d945e1d1c8a7e14bcc25c7600c39c2f596d10a43d79be72291de1029949a",
+              "status": "draft",
+              "version": "event/1"
+            },
+            {
+              "file": "event-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "2db4d945e1d1c8a7e14bcc25c7600c39c2f596d10a43d79be72291de1029949a",
+              "status": "draft",
+              "version": "event/1"
+            },
+            {
+              "file": "gateway-1.validation.json",
+              "mode": "validation",
+              "sha256": "540a7ac8782f61a0f3ca0953eca3db389cf0faac09f2f3919931d50733a62d6a",
+              "status": "draft",
+              "version": "gateway/1"
+            },
+            {
+              "file": "gateway-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "03b9bff3f7c9e92badeb75387456733d01f40bf165df085e0475f43eb26987dd",
+              "status": "draft",
+              "version": "gateway/1"
+            },
+            {
+              "file": "model-registry-1.validation.json",
+              "mode": "validation",
+              "sha256": "dc14760013155e0700c6279e31424f59f52ffe710ac114dd81b5d89c20de7945",
+              "status": "draft",
+              "version": "model-registry/1"
+            },
+            {
+              "file": "model-registry-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "dc14760013155e0700c6279e31424f59f52ffe710ac114dd81b5d89c20de7945",
+              "status": "draft",
+              "version": "model-registry/1"
+            },
+            {
+              "file": "policy-1.validation.json",
+              "mode": "validation",
+              "sha256": "bff9a3f522d3d5d68450db9d99fb32ea56bf5d257b46cda4f41d0e31f5c41c3a",
+              "status": "draft",
+              "version": "policy/1"
+            },
+            {
+              "file": "policy-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "bff9a3f522d3d5d68450db9d99fb32ea56bf5d257b46cda4f41d0e31f5c41c3a",
+              "status": "draft",
+              "version": "policy/1"
+            },
+            {
+              "file": "prompt-1.validation.json",
+              "mode": "validation",
+              "sha256": "42da03e3b184d1bf25003000ab56b0ec1ad586038cf4b44fcf7ab5a5ae4c87bd",
+              "status": "draft",
+              "version": "prompt/1"
+            },
+            {
+              "file": "prompt-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "42da03e3b184d1bf25003000ab56b0ec1ad586038cf4b44fcf7ab5a5ae4c87bd",
+              "status": "draft",
+              "version": "prompt/1"
+            },
+            {
+              "file": "ratio-def-1.validation.json",
+              "mode": "validation",
+              "sha256": "71a92ac18ae63c960e7f0999a20606cd0816e24188c76459e3bb5dd65337f0ee",
+              "status": "draft",
+              "version": "ratio-def/1"
+            },
+            {
+              "file": "ratio-def-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "3bfb422e1db3c1a78d53de343e9dd10ce55e98c99092e8b2628d739339762d64",
+              "status": "draft",
+              "version": "ratio-def/1"
+            },
+            {
+              "file": "role-1.validation.json",
+              "mode": "validation",
+              "sha256": "f2848b0ca087f61ffa257f93b781710e95df60df8ca20e276c8c09bfbb03928f",
+              "status": "draft",
+              "version": "role/1"
+            },
+            {
+              "file": "role-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "f2848b0ca087f61ffa257f93b781710e95df60df8ca20e276c8c09bfbb03928f",
+              "status": "draft",
+              "version": "role/1"
+            },
+            {
+              "file": "rule-1.validation.json",
+              "mode": "validation",
+              "sha256": "5ebdf389505ab76be65c82ac7578e3d98d368e3df28c758400a74ac6721111d3",
+              "status": "draft",
+              "version": "rule/1"
+            },
+            {
+              "file": "rule-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "5525acad3a25e270870e72d3b51b03e7ab74ea7a51d58852f6a208b4688d5c1b",
+              "status": "draft",
+              "version": "rule/1"
+            },
+            {
+              "file": "spack-1.validation.json",
+              "mode": "validation",
+              "sha256": "8b1f511c0cb9d7fb83d102be83f7428ff8953080513d997e44737a6e3a35c414",
+              "status": "draft",
+              "version": "spack/1"
+            },
+            {
+              "file": "spack-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "e00e0ed3caf810cf0fc136ac3ebb37de94e767eb1c00476ac9eebfc5f6362278",
+              "status": "draft",
+              "version": "spack/1"
+            },
+            {
+              "file": "template-1.validation.json",
+              "mode": "validation",
+              "sha256": "335be8a299deecb6758e369d5874211d6e3e2f475b756777c73b1c33c107c0a3",
+              "status": "draft",
+              "version": "template/1"
+            },
+            {
+              "file": "template-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "335be8a299deecb6758e369d5874211d6e3e2f475b756777c73b1c33c107c0a3",
+              "status": "draft",
+              "version": "template/1"
+            },
+            {
+              "file": "tool-1.validation.json",
+              "mode": "validation",
+              "sha256": "fb5c98db74f70a4594087ccef469497a1ab1736b7fa6e5c9bbcbcd3c2616be53",
+              "status": "draft",
+              "version": "tool/1"
+            },
+            {
+              "file": "tool-1.serialization.json",
+              "mode": "serialization",
+              "sha256": "fb5c98db74f70a4594087ccef469497a1ab1736b7fa6e5c9bbcbcd3c2616be53",
+              "status": "draft",
+              "version": "tool/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "model-registry-1.serialization.json",
+      "before_sha256": "733c1ee942a1ce0f243f2c90459540363ce0d753a91e18d67b954274143b3688",
+      "after_sha256": "dc14760013155e0700c6279e31424f59f52ffe710ac114dd81b5d89c20de7945",
+      "changes": [
+        {
+          "path": "/$defs/LimitedRetention/properties/days/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ModelCapability/properties/context_tokens/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "model.evidence",
+              "models": [
+                "ModelCapability"
+              ],
+              "rule": "Verified capability needs dated evidence/probes; verified training/retention needs terms refs.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.model_registry.ModelCapability.verified_requires_evidence"
+            },
+            {
+              "id": "model.registry_refs",
+              "models": [
+                "ModelRegistry"
+              ],
+              "rule": "Evidence IDs/model account keys unique; every quota/probe/terms evidence ref resolves.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.model_registry.ModelRegistry.references_exist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "model-registry-1.validation.json",
+      "before_sha256": "733c1ee942a1ce0f243f2c90459540363ce0d753a91e18d67b954274143b3688",
+      "after_sha256": "dc14760013155e0700c6279e31424f59f52ffe710ac114dd81b5d89c20de7945",
+      "changes": [
+        {
+          "path": "/$defs/LimitedRetention/properties/days/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/ModelCapability/properties/context_tokens/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/QuotaRecord/properties/limit/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "model.evidence",
+              "models": [
+                "ModelCapability"
+              ],
+              "rule": "Verified capability needs dated evidence/probes; verified training/retention needs terms refs.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.model_registry.ModelCapability.verified_requires_evidence"
+            },
+            {
+              "id": "model.registry_refs",
+              "models": [
+                "ModelRegistry"
+              ],
+              "rule": "Evidence IDs/model account keys unique; every quota/probe/terms evidence ref resolves.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.model_registry.ModelRegistry.references_exist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "policy-1.serialization.json",
+      "before_sha256": "7422823dc580d2e65e136ca89725cdbdf83751fb4f1adcf827e6a8d86b250526",
+      "after_sha256": "bff9a3f522d3d5d68450db9d99fb32ea56bf5d257b46cda4f41d0e31f5c41c3a",
+      "changes": [
+        {
+          "path": "/$defs/Limits/properties/archive_expanded_bytes/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/archive_expanded_bytes/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/archive_expansion_ratio/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/archive_expansion_ratio/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/file_bytes/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/file_bytes/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/pages/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/pages/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_body_bytes/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_body_bytes/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_redirects/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_redirects/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_timeout_seconds/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_timeout_seconds/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/PrivatePolicy/properties/artifact_retention_days/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/PrivatePolicy/properties/artifact_retention_days/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/PrivatePolicy/properties/max_retention_days/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "policy-1.validation.json",
+      "before_sha256": "7422823dc580d2e65e136ca89725cdbdf83751fb4f1adcf827e6a8d86b250526",
+      "after_sha256": "bff9a3f522d3d5d68450db9d99fb32ea56bf5d257b46cda4f41d0e31f5c41c3a",
+      "changes": [
+        {
+          "path": "/$defs/Limits/properties/archive_expanded_bytes/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/archive_expanded_bytes/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/archive_expansion_ratio/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/archive_expansion_ratio/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/file_bytes/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/file_bytes/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/pages/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/pages/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_body_bytes/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_body_bytes/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_redirects/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_redirects/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_timeout_seconds/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/Limits/properties/url_timeout_seconds/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/PrivatePolicy/properties/artifact_retention_days/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/PrivatePolicy/properties/artifact_retention_days/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/PrivatePolicy/properties/max_retention_days/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "prompt-1.serialization.json",
+      "before_sha256": "6304e13b05b4bcee47b81aea09dab81a3978d59e6b6cb41dff2d4ace614169b2",
+      "after_sha256": "42da03e3b184d1bf25003000ab56b0ec1ad586038cf4b44fcf7ab5a5ae4c87bd",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "prompt.binding_hash",
+              "models": [
+                "PromptDefinition"
+              ],
+              "rule": "Task matches input/output schemas and template SHA256 matches exact UTF-8 bytes.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.prompts.PromptDefinition.task_contract_matches"
+            },
+            {
+              "id": "prompt.unique",
+              "models": [
+                "PromptRegistry"
+              ],
+              "rule": "Prompt ID/version/language keys unique.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.prompts.PromptRegistry.unique_versions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "prompt-1.validation.json",
+      "before_sha256": "6304e13b05b4bcee47b81aea09dab81a3978d59e6b6cb41dff2d4ace614169b2",
+      "after_sha256": "42da03e3b184d1bf25003000ab56b0ec1ad586038cf4b44fcf7ab5a5ae4c87bd",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "prompt.binding_hash",
+              "models": [
+                "PromptDefinition"
+              ],
+              "rule": "Task matches input/output schemas and template SHA256 matches exact UTF-8 bytes.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.prompts.PromptDefinition.task_contract_matches"
+            },
+            {
+              "id": "prompt.unique",
+              "models": [
+                "PromptRegistry"
+              ],
+              "rule": "Prompt ID/version/language keys unique.",
+              "scope": "pydantic",
+              "symbol": "finagent.llm_gateway.prompts.PromptRegistry.unique_versions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ratio-def-1.serialization.json",
+      "before_sha256": "3a34eb8a66d14839eac5ac395605cfcff92bd9f590f51b3ba840cb8b0b008476",
+      "after_sha256": "3bfb422e1db3c1a78d53de343e9dd10ce55e98c99092e8b2628d739339762d64",
+      "changes": [
+        {
+          "path": "/properties/decimal_precision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/properties/decimal_precision/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/properties/measure_kind/enum",
+          "kind": "changed",
+          "before": [
+            "ratio",
+            "percentage",
+            "count",
+            "money"
+          ],
+          "after": [
+            "ratio",
+            "count",
+            "money"
+          ]
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "ast.budget",
+              "models": [
+                "RatioDefinition",
+                "RuleDefinition"
+              ],
+              "rule": "Iterative pre-validation: depth32, total1024 occurrences, fanout100; reject cycles.",
+              "scope": "preflight",
+              "symbol": "finagent.policy.expression_limits.guard_expression"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "ratio-def-1.validation.json",
+      "before_sha256": "da3368cf71f0354958cf75cbaa11517cca3bee68aab49225fd71fb29b6c9058e",
+      "after_sha256": "71a92ac18ae63c960e7f0999a20606cd0816e24188c76459e3bb5dd65337f0ee",
+      "changes": [
+        {
+          "path": "/$defs/ConstantExpr/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/properties/decimal_precision/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/properties/decimal_precision/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/properties/measure_kind/enum",
+          "kind": "changed",
+          "before": [
+            "ratio",
+            "percentage",
+            "count",
+            "money"
+          ],
+          "after": [
+            "ratio",
+            "count",
+            "money"
+          ]
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "ast.budget",
+              "models": [
+                "RatioDefinition",
+                "RuleDefinition"
+              ],
+              "rule": "Iterative pre-validation: depth32, total1024 occurrences, fanout100; reject cycles.",
+              "scope": "preflight",
+              "symbol": "finagent.policy.expression_limits.guard_expression"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "role-1.serialization.json",
+      "before_sha256": "327e5ba14fa35c787ed61c36491177ce88b1e8cbe1a8856c52da4ff9ee322e68",
+      "after_sha256": "f2848b0ca087f61ffa257f93b781710e95df60df8ca20e276c8c09bfbb03928f",
+      "changes": [
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tokens/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tool_calls/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tool_calls/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/RoleMessage/properties/consumed_steps/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/RoleMessage/properties/consumed_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "role-1.validation.json",
+      "before_sha256": "327e5ba14fa35c787ed61c36491177ce88b1e8cbe1a8856c52da4ff9ee322e68",
+      "after_sha256": "f2848b0ca087f61ffa257f93b781710e95df60df8ca20e276c8c09bfbb03928f",
+      "changes": [
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tokens/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tool_calls/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/RoleDefinition/properties/max_tool_calls/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/RoleMessage/properties/consumed_steps/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/RoleMessage/properties/consumed_tokens/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "rule-1.serialization.json",
+      "before_sha256": "85176193327eae2476a8d3977d4752afc97d573e7960086bbf3f680050e10861",
+      "after_sha256": "5525acad3a25e270870e72d3b51b03e7ab74ea7a51d58852f6a208b4688d5c1b",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "ast.budget",
+              "models": [
+                "RatioDefinition",
+                "RuleDefinition"
+              ],
+              "rule": "Iterative pre-validation: depth32, total1024 occurrences, fanout100; reject cycles.",
+              "scope": "preflight",
+              "symbol": "finagent.policy.expression_limits.guard_expression"
+            },
+            {
+              "id": "rule.combined_budget",
+              "models": [
+                "RuleDefinition"
+              ],
+              "rule": "Node budget shared by both rule expression sides.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.RuleDefinition.combined_expression_budget"
+            },
+            {
+              "id": "rule.tolerance",
+              "models": [
+                "RuleDefinition"
+              ],
+              "rule": "Tolerance cannot be negative.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.RuleDefinition.nonnegative_tolerance"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "rule-1.validation.json",
+      "before_sha256": "074161190da7d2470552570b18b42fbe3baacb8fe9dd2db9223c7ffdb368972a",
+      "after_sha256": "5ebdf389505ab76be65c82ac7578e3d98d368e3df28c758400a74ac6721111d3",
+      "changes": [
+        {
+          "path": "/$defs/ConstantExpr/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/properties/tolerance/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "ast.budget",
+              "models": [
+                "RatioDefinition",
+                "RuleDefinition"
+              ],
+              "rule": "Iterative pre-validation: depth32, total1024 occurrences, fanout100; reject cycles.",
+              "scope": "preflight",
+              "symbol": "finagent.policy.expression_limits.guard_expression"
+            },
+            {
+              "id": "rule.combined_budget",
+              "models": [
+                "RuleDefinition"
+              ],
+              "rule": "Node budget shared by both rule expression sides.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.RuleDefinition.combined_expression_budget"
+            },
+            {
+              "id": "rule.tolerance",
+              "models": [
+                "RuleDefinition"
+              ],
+              "rule": "Tolerance cannot be negative.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.RuleDefinition.nonnegative_tolerance"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "spack-1.serialization.json",
+      "before_sha256": "804c625c667899edc57d55166285050576d9997389d3c1502fc57abded57c477",
+      "after_sha256": "e00e0ed3caf810cf0fc136ac3ebb37de94e767eb1c00476ac9eebfc5f6362278",
+      "changes": [
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_grade_from/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_grade_from/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_points/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_points/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_grade_from/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_grade_from/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_points/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_points/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/piotroski_weight/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/piotroski_weight/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/trend_weight/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/trend_weight/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/weak_points/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/weak_points/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "threshold.bounds",
+              "models": [
+                "ThresholdBand"
+              ],
+              "rule": "Bounds ordered; equal endpoints require both inclusive. Overlap/gap classification remains Phase3.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.ThresholdBand.ordered_bounds"
+            },
+            {
+              "id": "membership.scoring",
+              "models": [
+                "RatioMembership"
+              ],
+              "rule": "Scoring pillar is displayed; scoring role and pillar presence agree.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.RatioMembership.scoring_is_displayed"
+            },
+            {
+              "id": "assessment.owner_policy",
+              "models": [
+                "AssessmentPolicy"
+              ],
+              "rule": "Five distinct equal pillars, fixed ICR cap boundary; APPROVED requires corpus-run approval ref.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.AssessmentPolicy.profile_matches_owner_decision"
+            },
+            {
+              "id": "pack.memberships",
+              "models": [
+                "SectorPack"
+              ],
+              "rule": "No duplicate ratio membership; OCF14 scores only at cashflow.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.SectorPack.single_scoring_membership"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "spack-1.validation.json",
+      "before_sha256": "7eeb46e9d3e79b9a75b23f542282bc97427dd8b4652687126df96fc5f43843ae",
+      "after_sha256": "8b1f511c0cb9d7fb83d102be83f7428ff8953080513d997e44737a6e3a35c414",
+      "changes": [
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_grade_from/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_grade_from/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_points/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/good_points/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/low_icr_boundary/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_grade_from/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_grade_from/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_points/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/medium_points/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/piotroski_weight/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/piotroski_weight/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/trend_weight/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/trend_weight/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/weak_points/maximum",
+          "kind": "added",
+          "after": 9007199254740991
+        },
+        {
+          "path": "/$defs/AssessmentPolicy/properties/weak_points/minimum",
+          "kind": "added",
+          "after": -9007199254740991
+        },
+        {
+          "path": "/$defs/PillarWeight/properties/weight/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/$defs/ThresholdBoundary/properties/value/anyOf",
+          "kind": "changed",
+          "before": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "after": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "decimal.exact",
+              "models": [
+                "DecimalValue",
+                "ValidationIssue",
+                "ConstantExpr",
+                "RuleDefinition",
+                "ThresholdBoundary",
+                "PillarWeight",
+                "AssessmentPolicy",
+                "ProviderResult"
+              ],
+              "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+              "scope": "pydantic",
+              "symbol": "finagent.contracts.base.exact_decimal"
+            },
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "threshold.bounds",
+              "models": [
+                "ThresholdBand"
+              ],
+              "rule": "Bounds ordered; equal endpoints require both inclusive. Overlap/gap classification remains Phase3.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.ThresholdBand.ordered_bounds"
+            },
+            {
+              "id": "membership.scoring",
+              "models": [
+                "RatioMembership"
+              ],
+              "rule": "Scoring pillar is displayed; scoring role and pillar presence agree.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.RatioMembership.scoring_is_displayed"
+            },
+            {
+              "id": "assessment.owner_policy",
+              "models": [
+                "AssessmentPolicy"
+              ],
+              "rule": "Five distinct equal pillars, fixed ICR cap boundary; APPROVED requires corpus-run approval ref.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.AssessmentPolicy.profile_matches_owner_decision"
+            },
+            {
+              "id": "pack.memberships",
+              "models": [
+                "SectorPack"
+              ],
+              "rule": "No duplicate ratio membership; OCF14 scores only at cashflow.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.SectorPack.single_scoring_membership"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "template-1.serialization.json",
+      "before_sha256": "faacae3a341dbc9729a53f69b277446623e7f5e00b5dde7776439aedb2e7de7b",
+      "after_sha256": "335be8a299deecb6758e369d5874211d6e3e2f475b756777c73b1c33c107c0a3",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "template.codes",
+              "models": [
+                "TemplateDefinition"
+              ],
+              "rule": "Statement-type/code keys unique.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.TemplateDefinition.unique_codes"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "template-1.validation.json",
+      "before_sha256": "faacae3a341dbc9729a53f69b277446623e7f5e00b5dde7776439aedb2e7de7b",
+      "after_sha256": "335be8a299deecb6758e369d5874211d6e3e2f475b756777c73b1c33c107c0a3",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "template.codes",
+              "models": [
+                "TemplateDefinition"
+              ],
+              "rule": "Statement-type/code keys unique.",
+              "scope": "pydantic",
+              "symbol": "finagent.policy.contracts.TemplateDefinition.unique_codes"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "tool-1.serialization.json",
+      "before_sha256": "226642f64039cf0ac93d460e4b20255d359266e2455af367741c04c3211a39bc",
+      "after_sha256": "fb5c98db74f70a4594087ccef469497a1ab1736b7fa6e5c9bbcbcd3c2616be53",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "tool-1.validation.json",
+      "before_sha256": "226642f64039cf0ac93d460e4b20255d359266e2455af367741c04c3211a39bc",
+      "after_sha256": "fb5c98db74f70a4594087ccef469497a1ab1736b7fa6e5c9bbcbcd3c2616be53",
+      "changes": [
+        {
+          "path": "/x-finagent-custom-validators",
+          "kind": "added",
+          "after": [
+            {
+              "id": "integer.metadata",
+              "models": [],
+              "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.safe_metadata_integer"
+            },
+            {
+              "id": "integer.schema_bounds",
+              "models": [],
+              "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+              "scope": "common",
+              "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+            },
+            {
+              "id": "registry.bundle",
+              "models": [
+                "TemplateDefinition",
+                "RatioDefinition",
+                "RuleDefinition",
+                "SectorPack",
+                "RoleDefinition",
+                "ToolDefinition",
+                "ApplicabilityDefinition"
+              ],
+              "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+              "scope": "loader",
+              "symbol": "finagent.policy.registry.validate_bundle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

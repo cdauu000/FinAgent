@@ -1,0 +1,1919 @@
+{
+  "schema_version": "gold/1",
+  "document_sha256": "11c9709914cdc5f1561f47045283598c359f7466f94e5ffbc21893e28b0315fa",
+  "status": "draft",
+  "approver_ref": null,
+  "cells": [
+    {
+      "id": "B01-100-current",
+      "code": "100",
+      "concept_id": "b01_100",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "10.626.141.721.085",
+      "value": "10626141721085",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-100-comparative",
+      "code": "100",
+      "concept_id": "b01_100",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "13.998.282.834.060",
+      "value": "13998282834060",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-110-current",
+      "code": "110",
+      "concept_id": "b01_110",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "2.231.448.721.940",
+      "value": "2231448721940",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-110-comparative",
+      "code": "110",
+      "concept_id": "b01_110",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "1.905.249.672.046",
+      "value": "1905249672046",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-120-current",
+      "code": "120",
+      "concept_id": "b01_120",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "6.359.261.420.147",
+      "value": "6359261420147",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-120-comparative",
+      "code": "120",
+      "concept_id": "b01_120",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "8.248.873.292.933",
+      "value": "8248873292933",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-130-current",
+      "code": "130",
+      "concept_id": "b01_130",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "2.014.168.554.678",
+      "value": "2014168554678",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-130-comparative",
+      "code": "130",
+      "concept_id": "b01_130",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "3.824.806.447.612",
+      "value": "3824806447612",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-131-current",
+      "code": "131",
+      "concept_id": "b01_131",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "163.779.579.619",
+      "value": "163779579619",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-131-comparative",
+      "code": "131",
+      "concept_id": "b01_131",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "168.616.014.111",
+      "value": "168616014111",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-136-current",
+      "code": "136",
+      "concept_id": "b01_136",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "−2.252.333.501",
+      "value": "-2252333501",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-136-comparative",
+      "code": "136",
+      "concept_id": "b01_136",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "−2.252.333.501",
+      "value": "-2252333501",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-140-current",
+      "code": "140",
+      "concept_id": "b01_140",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "802.978.754",
+      "value": "802978754",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-140-comparative",
+      "code": "140",
+      "concept_id": "b01_140",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "546.094.254",
+      "value": "546094254",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-200-current",
+      "code": "200",
+      "concept_id": "b01_200",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "22.441.574.606.461",
+      "value": "22441574606461",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-200-comparative",
+      "code": "200",
+      "concept_id": "b01_200",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "19.224.168.948.780",
+      "value": "19224168948780",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-280-current",
+      "code": "280",
+      "concept_id": "b01_280",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "33.067.716.327.546",
+      "value": "33067716327546",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-280-comparative",
+      "code": "280",
+      "concept_id": "b01_280",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 3,
+      "raw_text": "33.222.451.782.840",
+      "value": "33222451782840",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-300-current",
+      "code": "300",
+      "concept_id": "b01_300",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "7.757.537.821.182",
+      "value": "7757537821182",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-300-comparative",
+      "code": "300",
+      "concept_id": "b01_300",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "9.740.301.296.598",
+      "value": "9740301296598",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-310-current",
+      "code": "310",
+      "concept_id": "b01_310",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "7.544.653.878.756",
+      "value": "7544653878756",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-310-comparative",
+      "code": "310",
+      "concept_id": "b01_310",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "9.525.759.986.886",
+      "value": "9525759986886",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-321-current",
+      "code": "321",
+      "concept_id": "b01_321",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "6.327.887.440.200",
+      "value": "6327887440200",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-321-comparative",
+      "code": "321",
+      "concept_id": "b01_321",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "7.980.887.440.200",
+      "value": "7980887440200",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-330-current",
+      "code": "330",
+      "concept_id": "b01_330",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "212.883.942.426",
+      "value": "212883942426",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-330-comparative",
+      "code": "330",
+      "concept_id": "b01_330",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "214.541.309.712",
+      "value": "214541309712",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-337-current",
+      "code": "337",
+      "concept_id": "b01_337",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "211.559.802.426",
+      "value": "211559802426",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-337-comparative",
+      "code": "337",
+      "concept_id": "b01_337",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "213.217.169.712",
+      "value": "213217169712",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-338-current",
+      "code": "338",
+      "concept_id": "b01_338",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "1.324.140.000",
+      "value": "1324140000",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-338-comparative",
+      "code": "338",
+      "concept_id": "b01_338",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "1.324.140.000",
+      "value": "1324140000",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-400-current",
+      "code": "400",
+      "concept_id": "b01_400",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "25.310.178.506.364",
+      "value": "25310178506364",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-400-comparative",
+      "code": "400",
+      "concept_id": "b01_400",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "23.482.150.486.242",
+      "value": "23482150486242",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-411-current",
+      "code": "411",
+      "concept_id": "b01_411",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "17.035.071.210.000",
+      "value": "17035071210000",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-411-comparative",
+      "code": "411",
+      "concept_id": "b01_411",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "17.035.071.210.000",
+      "value": "17035071210000",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-420b-current",
+      "code": "420b",
+      "concept_id": "b01_420b",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "1.828.028.020.122",
+      "value": "1828028020122",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-420b-comparative",
+      "code": "420b",
+      "concept_id": "b01_420b",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "3.952.214.499.476",
+      "value": "3952214499476",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-440-current",
+      "code": "440",
+      "concept_id": "b01_440",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2026-03-31",
+        "fiscal_year": 2026
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "33.067.716.327.546",
+      "value": "33067716327546",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B01-440-comparative",
+      "code": "440",
+      "concept_id": "b01_440",
+      "statement_type": "B01",
+      "period": {
+        "kind": "stock",
+        "as_of": "2025-12-31",
+        "fiscal_year": 2025
+      },
+      "scope": "separate",
+      "physical_index": 4,
+      "raw_text": "33.222.451.782.840",
+      "value": "33222451782840",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-10-current",
+      "code": "10",
+      "concept_id": "b02_10",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "167.923.170.830",
+      "value": "167923170830",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-10-comparative",
+      "code": "10",
+      "concept_id": "b02_10",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "187.288.720.339",
+      "value": "187288720339",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-11-current",
+      "code": "11",
+      "concept_id": "b02_11",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "33.156.699.142",
+      "value": "33156699142",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-11-comparative",
+      "code": "11",
+      "concept_id": "b02_11",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "32.810.929.357",
+      "value": "32810929357",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-20-current",
+      "code": "20",
+      "concept_id": "b02_20",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "134.766.471.688",
+      "value": "134766471688",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-20-comparative",
+      "code": "20",
+      "concept_id": "b02_20",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "154.477.790.982",
+      "value": "154477790982",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-22-current",
+      "code": "22",
+      "concept_id": "b02_22",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "1.947.580.037.222",
+      "value": "1947580037222",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-22-comparative",
+      "code": "22",
+      "concept_id": "b02_22",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "906.623.272.995",
+      "value": "906623272995",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-23-current",
+      "code": "23",
+      "concept_id": "b02_23",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "97.623.991.644",
+      "value": "97623991644",
+      "unit": "VND",
+      "bbox": {
+        "x1": 3150,
+        "y1": 1925,
+        "x2": 3640,
+        "y2": 2010,
+        "dpi": 400,
+        "raster_ref": "docs/evidence/fpt_q1_2026/page-06-400dpi.png"
+      },
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31",
+        "docs/evidence/fpt_q1_2026/b02-code23-digits.png"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-23-comparative",
+      "code": "23",
+      "concept_id": "b02_23",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "73.476.847.438",
+      "value": "73476847438",
+      "unit": "VND",
+      "bbox": {
+        "x1": 3790,
+        "y1": 1925,
+        "x2": 4350,
+        "y2": 2010,
+        "dpi": 400,
+        "raster_ref": "docs/evidence/fpt_q1_2026/page-06-400dpi.png"
+      },
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31",
+        "docs/evidence/fpt_q1_2026/b02-code23-digits.png"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-24-current",
+      "code": "24",
+      "concept_id": "b02_24",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "99.309.404.980",
+      "value": "99309404980",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-24-comparative",
+      "code": "24",
+      "concept_id": "b02_24",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "75.010.174.067",
+      "value": "75010174067",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-25-current",
+      "code": "25",
+      "concept_id": "b02_25",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "5.768.333",
+      "value": "5768333",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-25-comparative",
+      "code": "25",
+      "concept_id": "b02_25",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "-",
+      "value": "0",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-26-current",
+      "code": "26",
+      "concept_id": "b02_26",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "147.247.456.935",
+      "value": "147247456935",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-26-comparative",
+      "code": "26",
+      "concept_id": "b02_26",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "187.178.943.420",
+      "value": "187178943420",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-30-current",
+      "code": "30",
+      "concept_id": "b02_30",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "1.837.469.291.998",
+      "value": "1837469291998",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-30-comparative",
+      "code": "30",
+      "concept_id": "b02_30",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "800.445.273.119",
+      "value": "800445273119",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-50-current",
+      "code": "50",
+      "concept_id": "b02_50",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "1.837.500.567.142",
+      "value": "1837500567142",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-50-comparative",
+      "code": "50",
+      "concept_id": "b02_50",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "800.471.737.518",
+      "value": "800471737518",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-60-current",
+      "code": "60",
+      "concept_id": "b02_60",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "1.828.028.020.122",
+      "value": "1828028020122",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-60-comparative",
+      "code": "60",
+      "concept_id": "b02_60",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "799.292.806.281",
+      "value": "799292806281",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-02-current",
+      "code": "02",
+      "concept_id": "b02_02",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "-",
+      "value": "0",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B02-02-comparative",
+      "code": "02",
+      "concept_id": "b02_02",
+      "statement_type": "B02",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 5,
+      "raw_text": "-",
+      "value": "0",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-02-current",
+      "code": "02",
+      "concept_id": "b03_02",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "35.596.952.345",
+      "value": "35596952345",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-02-comparative",
+      "code": "02",
+      "concept_id": "b03_02",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "30.852.511.310",
+      "value": "30852511310",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-04-current",
+      "code": "04",
+      "concept_id": "b03_04",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "−1.685.263.219",
+      "value": "-1685263219",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-04-comparative",
+      "code": "04",
+      "concept_id": "b03_04",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "−1.498.048.003",
+      "value": "-1498048003",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-20-current",
+      "code": "20",
+      "concept_id": "b03_20",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "−401.953.448.193",
+      "value": "-401953448193",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-20-comparative",
+      "code": "20",
+      "concept_id": "b03_20",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "−247.611.690.665",
+      "value": "-247611690665",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-30-current",
+      "code": "30",
+      "concept_id": "b03_30",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "2.381.155.178.054",
+      "value": "2381155178054",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-30-comparative",
+      "code": "30",
+      "concept_id": "b03_30",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 7,
+      "raw_text": "1.974.881.560.752",
+      "value": "1974881560752",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-40-current",
+      "code": "40",
+      "concept_id": "b03_40",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "−1.653.002.529.850",
+      "value": "-1653002529850",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-40-comparative",
+      "code": "40",
+      "concept_id": "b03_40",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "−2.670.509.557.000",
+      "value": "-2670509557000",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-50-current",
+      "code": "50",
+      "concept_id": "b03_50",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "326.199.200.011",
+      "value": "326199200011",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-50-comparative",
+      "code": "50",
+      "concept_id": "b03_50",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "−943.239.686.913",
+      "value": "-943239686913",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-60-current",
+      "code": "60",
+      "concept_id": "b03_60",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "1.905.249.672.046",
+      "value": "1905249672046",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-60-comparative",
+      "code": "60",
+      "concept_id": "b03_60",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "1.877.791.791.943",
+      "value": "1877791791943",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-61-current",
+      "code": "61",
+      "concept_id": "b03_61",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "−150.117",
+      "value": "-150117",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-61-comparative",
+      "code": "61",
+      "concept_id": "b03_61",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "−35.278.716",
+      "value": "-35278716",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-70-current",
+      "code": "70",
+      "concept_id": "b03_70",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2026,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "2.231.448.721.940",
+      "value": "2231448721940",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    },
+    {
+      "id": "B03-70-comparative",
+      "code": "70",
+      "concept_id": "b03_70",
+      "statement_type": "B03",
+      "period": {
+        "kind": "flow",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "period_type": "quarter",
+        "fiscal_year": 2025,
+        "fiscal_quarter": 1,
+        "months": 3,
+        "derivation_refs": []
+      },
+      "scope": "separate",
+      "physical_index": 8,
+      "raw_text": "934.516.826.314",
+      "value": "934516826314",
+      "unit": "VND",
+      "bbox": null,
+      "evidence_refs": [
+        "docs/TEST_PLAN.md#31"
+      ],
+      "flags": []
+    }
+  ],
+  "source_conflicts": [
+    "SOURCE_INCONSISTENCY_SHARES_2025",
+    "CLASSIFICATION_DIFFERENCE_UNRESOLVED",
+    "SOURCE_FORMULA_LABEL_INCOMPLETE"
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "$defs": {
+    "DatasetEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_status": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "unaudited",
+            "reviewed",
+            "audited"
+          ],
+          "title": "Audit Status",
+          "type": "string"
+        },
+        "effective_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Id"
+        },
+        "filename_date_hint": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filename Date Hint"
+        },
+        "gold_approval_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gold Approval Ref"
+        },
+        "gold_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gold Path"
+        },
+        "group_id": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Group Id"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "industry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Industry"
+        },
+        "local_path": {
+          "title": "Local Path",
+          "type": "string"
+        },
+        "missing": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing",
+          "type": "array"
+        },
+        "pages": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PageAnnotation"
+          },
+          "title": "Pages",
+          "type": "array"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "flow": "#/$defs/FlowPeriod",
+                  "stock": "#/$defs/StockPeriod"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/StockPeriod"
+                },
+                {
+                  "$ref": "#/$defs/FlowPeriod"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Scope"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "source_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Date"
+        },
+        "source_evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Evidence Ref"
+        },
+        "source_origin": {
+          "const": "owner_supplied",
+          "default": "owner_supplied",
+          "title": "Source Origin",
+          "type": "string"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Url"
+        },
+        "split": {
+          "default": "unassigned",
+          "enum": [
+            "unassigned",
+            "visible_regression",
+            "train",
+            "dev",
+            "test"
+          ],
+          "title": "Split",
+          "type": "string"
+        },
+        "terms_evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Terms Evidence Ref"
+        },
+        "terms_status": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "permitted_verified",
+            "denied"
+          ],
+          "title": "Terms Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "local_path",
+        "sha256"
+      ],
+      "title": "DatasetEntry",
+      "type": "object"
+    },
+    "FlowPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "derivation_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Derivation Refs",
+          "type": "array"
+        },
+        "end": {
+          "format": "date",
+          "title": "End",
+          "type": "string"
+        },
+        "fiscal_quarter": {
+          "anyOf": [
+            {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fiscal Quarter"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "flow",
+          "default": "flow",
+          "title": "Kind",
+          "type": "string"
+        },
+        "months": {
+          "anyOf": [
+            {
+              "maximum": 12,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Months"
+        },
+        "period_type": {
+          "enum": [
+            "quarter",
+            "ytd",
+            "annual",
+            "ttm",
+            "custom"
+          ],
+          "title": "Period Type",
+          "type": "string"
+        },
+        "start": {
+          "format": "date",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "period_type",
+        "fiscal_year"
+      ],
+      "title": "FlowPeriod",
+      "type": "object"
+    },
+    "PageAnnotation": {
+      "additionalProperties": false,
+      "properties": {
+        "content_label": {
+          "title": "Content Label",
+          "type": "string"
+        },
+        "difficulty": {
+          "default": "unknown",
+          "enum": [
+            "normal",
+            "hard",
+            "unknown"
+          ],
+          "title": "Difficulty",
+          "type": "string"
+        },
+        "physical_index": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Physical Index",
+          "type": "integer"
+        },
+        "printed_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Printed Label"
+        },
+        "route_label": {
+          "default": "unknown",
+          "enum": [
+            "native",
+            "scan",
+            "hybrid",
+            "unknown"
+          ],
+          "title": "Route Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "physical_index",
+        "content_label"
+      ],
+      "title": "PageAnnotation",
+      "type": "object"
+    },
+    "Scope": {
+      "enum": [
+        "separate",
+        "consolidated"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "StockPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date",
+          "title": "As Of",
+          "type": "string"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "stock",
+          "default": "stock",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "as_of",
+        "fiscal_year"
+      ],
+      "title": "StockPeriod",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/DatasetEntry"
+      },
+      "title": "Entries",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "corpus/1",
+      "default": "corpus/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "split_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Split Path"
+    },
+    "supplied_only": {
+      "const": true,
+      "default": true,
+      "title": "Supplied Only",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "entries"
+  ],
+  "title": "CorpusManifest",
+  "type": "object",
+  "x-finagent-scope": "Phase0 tooling DTO; outside the fourteen frozen groups",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "corpus/1"
+}

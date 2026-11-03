@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-11-02T11:22:40.884876+00:00",
+  "commands": {
+    "docker": null,
+    "make": null,
+    "psql": null,
+    "redis-server": null
+  },
+  "docker_compose": "NOT_RUN",
+  "postgres_redis_integration": "NOT_RUN",
+  "hosted_ci": "NOT_RUN",
+  "provider_live": "NOT_RUN",
+  "token_copy_live": "NOT_RUN",
+  "reason": "Missing environment or explicitly deferred by owner; no installation or provider calls."
+}

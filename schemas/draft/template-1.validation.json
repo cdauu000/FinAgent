@@ -1,0 +1,173 @@
+{
+  "$defs": {
+    "TemplateMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[0-9]+[a-z]?$",
+          "title": "Code",
+          "type": "string"
+        },
+        "concept_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "is_memo": {
+          "default": false,
+          "title": "Is Memo",
+          "type": "boolean"
+        },
+        "statement_type": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B09"
+          ],
+          "title": "Statement Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_type",
+        "code",
+        "concept_id"
+      ],
+      "title": "TemplateMapping",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "mandatory_test_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Mandatory Test Refs",
+      "type": "array"
+    },
+    "mappings": {
+      "items": {
+        "$ref": "#/$defs/TemplateMapping"
+      },
+      "title": "Mappings",
+      "type": "array"
+    },
+    "observed_source_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "title": "Observed Source Hashes",
+      "type": "array"
+    },
+    "required_total_codes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Total Codes",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "template/1",
+      "default": "template/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "statement_family": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Statement Family",
+      "type": "string"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "source_refs",
+    "mandatory_test_refs",
+    "statement_family",
+    "observed_source_hashes",
+    "mappings",
+    "required_total_codes"
+  ],
+  "title": "TemplateDefinition",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "template.codes",
+      "models": [
+        "TemplateDefinition"
+      ],
+      "rule": "Statement-type/code keys unique.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.TemplateDefinition.unique_codes"
+    },
+    {
+      "id": "registry.bundle",
+      "models": [
+        "TemplateDefinition",
+        "RatioDefinition",
+        "RuleDefinition",
+        "SectorPack",
+        "RoleDefinition",
+        "ToolDefinition",
+        "ApplicabilityDefinition"
+      ],
+      "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+      "scope": "loader",
+      "symbol": "finagent.policy.registry.validate_bundle"
+    }
+  ],
+  "x-finagent-status": "draft",
+  "x-finagent-version": "template/1"
+}

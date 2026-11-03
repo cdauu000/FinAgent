@@ -1,0 +1,112 @@
+{
+  "scope": "Phase0 draft schema review; not runtime KPI evaluation",
+  "git_trust_scope": "process-only safe.directory=C:/FinAgent; no global settings or ACL changes",
+  "checked_at": "2026-11-02T02:45:20.411865+00:00",
+  "results": [
+    {
+      "name": "ruff",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m ruff check .",
+      "started_at": "2026-11-02T02:45:14.534123+00:00",
+      "duration_seconds": 0.11,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "name": "format",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m ruff format --check .",
+      "started_at": "2026-11-02T02:45:14.631032+00:00",
+      "duration_seconds": 0.062,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "48 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "name": "mypy",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m mypy finagent eval",
+      "started_at": "2026-11-02T02:45:14.703845+00:00",
+      "duration_seconds": 0.406,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Success: no issues found in 25 source files\n",
+      "stderr": ""
+    },
+    {
+      "name": "pytest",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m pytest -q --junitxml=docs/evidence/phase0/pytest.xml",
+      "started_at": "2026-11-02T02:45:15.107768+00:00",
+      "duration_seconds": 1.688,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "...................................................................      [100%]\n67 passed in 1.16s\n",
+      "stderr": ""
+    },
+    {
+      "name": "schema_snapshots",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m finagent.schema_catalog --check",
+      "started_at": "2026-11-02T02:45:16.795483+00:00",
+      "duration_seconds": 0.437,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Draft schemas: 14 versions; frozen=false\n",
+      "stderr": ""
+    },
+    {
+      "name": "dependency_consistency",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m pip check",
+      "started_at": "2026-11-02T02:45:17.237026+00:00",
+      "duration_seconds": 0.516,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "name": "precommit_config",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m pre_commit validate-config",
+      "started_at": "2026-11-02T02:45:17.746104+00:00",
+      "duration_seconds": 0.328,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "precommit_manual",
+      "command": "C:\\FinAgent\\.venv\\Scripts\\python.exe -m pre_commit run --all-files --hook-stage manual --verbose",
+      "started_at": "2026-11-02T02:45:18.082839+00:00",
+      "duration_seconds": 2.344,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Ruff check...............................................................Passed\n- hook id: ruff-check-manual\n- duration: 0.09s\n\nAll checks passed!\n\nRuff format check........................................................Passed\n- hook id: ruff-format-manual\n- duration: 0.08s\n\n48 files already formatted\n\nMypy strict..............................................................Passed\n- hook id: mypy-manual\n- duration: 0.31s\n\nSuccess: no issues found in 25 source files\n\nPytest...................................................................Passed\n- hook id: pytest-manual\n- duration: 1.33s\n\n============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-9.2.0, pluggy-1.7.0\nrootdir: C:\\FinAgent\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: anyio-4.16.0, platformdirs-4.14.3\ncollected 67 items\n\ntests\\contract\\test_gateway_drafts.py .......................            [ 34%]\ntests\\contract\\test_import_boundaries.py ..                              [ 37%]\ntests\\contract\\test_privacy_and_event_drafts.py ...                      [ 41%]\ntests\\contract\\test_registry_drafts.py .........                         [ 55%]\ntests\\contract\\test_schema_snapshots.py ..                               [ 58%]\ntests\\golden\\test_fpt_source_correction.py .....                         [ 65%]\ntests\\unit\\test_canonical_contracts.py .....................             [ 97%]\ntests\\unit\\test_process_health.py ..                                     [100%]\n\n============================= 67 passed in 0.80s ==============================\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "docker_compose_config",
+      "status": "NOT_RUN",
+      "reason": "Docker is absent from PATH; actual docker compose config/build not run"
+    },
+    {
+      "name": "postgres_redis_integration",
+      "status": "NOT_RUN",
+      "reason": "Services and persistence/queue implementations unavailable in current P0.05 scope"
+    },
+    {
+      "name": "hosted_ci",
+      "status": "NOT_RUN",
+      "reason": "Workflow configured but not published or executed"
+    },
+    {
+      "name": "provider_live",
+      "status": "NOT_RUN",
+      "reason": "No keys; provider calls forbidden; P0.10 not reached"
+    },
+    {
+      "name": "provider_official_review",
+      "status": "NOT_RUN",
+      "reason": "P0.10 is after mandatory schema review gate; lack of keys does not block reading official documentation"
+    }
+  ]
+}

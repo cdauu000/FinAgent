@@ -1,0 +1,958 @@
+{
+  "$defs": {
+    "AnalysisRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "assumption_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Assumption Ids",
+          "type": "array"
+        },
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/NumericClaim"
+          },
+          "title": "Claims",
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "missing_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Missing Refs",
+          "type": "array"
+        },
+        "pipeline_version": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "snapshot_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Snapshot Ref",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "private"
+        },
+        "tenant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "trace_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Trace Ref",
+          "type": "string"
+        },
+        "verdict": {
+          "$ref": "#/$defs/Verdict"
+        },
+        "verifier_receipt_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verifier Receipt Ref"
+        },
+        "warning_codes": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "created_at",
+        "pipeline_version",
+        "snapshot_ref",
+        "policy_ref",
+        "claims",
+        "verdict",
+        "warning_codes",
+        "assumption_ids",
+        "missing_refs",
+        "trace_ref"
+      ],
+      "title": "AnalysisRecord",
+      "type": "object"
+    },
+    "CountValue": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "count",
+          "default": "count",
+          "title": "Kind",
+          "type": "string"
+        },
+        "unit": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "CountValue",
+      "type": "object"
+    },
+    "DecimalValue": {
+      "additionalProperties": false,
+      "properties": {
+        "display_kind": {
+          "default": "decimal",
+          "enum": [
+            "decimal",
+            "percent"
+          ],
+          "title": "Display Kind",
+          "type": "string"
+        },
+        "kind": {
+          "const": "ratio",
+          "default": "ratio",
+          "title": "Kind",
+          "type": "string"
+        },
+        "representation": {
+          "const": "fraction",
+          "default": "fraction",
+          "title": "Representation",
+          "type": "string"
+        },
+        "rounding_mode": {
+          "const": "ROUND_HALF_UP",
+          "default": "ROUND_HALF_UP",
+          "title": "Rounding Mode",
+          "type": "string"
+        },
+        "scale": {
+          "default": 0,
+          "maximum": 38,
+          "minimum": 0,
+          "title": "Scale",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "DecimalValue",
+      "type": "object"
+    },
+    "DomainError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Code",
+          "type": "string"
+        },
+        "correlation_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "message_key": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Message Key",
+          "type": "string"
+        },
+        "missing_requirements": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Missing Requirements",
+          "type": "array"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "message_key",
+        "correlation_id"
+      ],
+      "title": "DomainError",
+      "type": "object"
+    },
+    "FlowPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "derivation_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Derivation Refs",
+          "type": "array"
+        },
+        "end": {
+          "format": "date",
+          "title": "End",
+          "type": "string"
+        },
+        "fiscal_quarter": {
+          "anyOf": [
+            {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fiscal Quarter"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "flow",
+          "default": "flow",
+          "title": "Kind",
+          "type": "string"
+        },
+        "months": {
+          "anyOf": [
+            {
+              "maximum": 12,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Months"
+        },
+        "period_type": {
+          "enum": [
+            "quarter",
+            "ytd",
+            "annual",
+            "ttm",
+            "custom"
+          ],
+          "title": "Period Type",
+          "type": "string"
+        },
+        "start": {
+          "format": "date",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "period_type",
+        "fiscal_year"
+      ],
+      "title": "FlowPeriod",
+      "type": "object"
+    },
+    "Health": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "alive",
+          "default": "alive",
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version"
+      ],
+      "title": "Health",
+      "type": "object"
+    },
+    "Mode": {
+      "enum": [
+        "strict",
+        "useful"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "MonetaryValue": {
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "const": "VND",
+          "default": "VND",
+          "title": "Currency",
+          "type": "string"
+        },
+        "kind": {
+          "const": "money",
+          "default": "money",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "MonetaryValue",
+      "type": "object"
+    },
+    "NumericClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_display_strings": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Allowed Display Strings",
+          "type": "array"
+        },
+        "calculation_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Calculation Ref"
+        },
+        "claim_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "definition_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegistryRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "entity_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "financial_value": {
+          "discriminator": {
+            "mapping": {
+              "count": "#/$defs/CountValue",
+              "money": "#/$defs/MonetaryValue",
+              "ratio": "#/$defs/DecimalValue"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/MonetaryValue"
+            },
+            {
+              "$ref": "#/$defs/CountValue"
+            },
+            {
+              "$ref": "#/$defs/DecimalValue"
+            }
+          ],
+          "title": "Financial Value"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "variant_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Variant Id",
+          "type": "string"
+        },
+        "warning_codes": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Warning Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "claim_id",
+        "financial_value",
+        "entity_id",
+        "scope",
+        "period",
+        "variant_id",
+        "evidence_refs",
+        "allowed_display_strings"
+      ],
+      "title": "NumericClaim",
+      "type": "object"
+    },
+    "Readiness": {
+      "additionalProperties": false,
+      "properties": {
+        "reasons": {
+          "items": {
+            "enum": [
+              "SCHEMA_DRAFT",
+              "PERSISTENCE_NOT_IMPLEMENTED"
+            ],
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "status": {
+          "const": "not_ready",
+          "default": "not_ready",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reasons"
+      ],
+      "title": "Readiness",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    },
+    "ResultEnvelope_AnalysisRecord_": {
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/$defs/AnalysisRecord"
+        },
+        "effective_mode": {
+          "$ref": "#/$defs/Mode"
+        },
+        "effective_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "missing": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Missing",
+          "type": "array"
+        },
+        "policy_version": {
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "run_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "api/1",
+          "default": "api/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_refs": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Snapshot Refs",
+          "type": "array"
+        },
+        "trace_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Trace Ref",
+          "type": "string"
+        },
+        "verdict": {
+          "$ref": "#/$defs/Verdict"
+        },
+        "warnings": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Warning"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "run_id",
+        "effective_mode",
+        "effective_tier",
+        "policy_version",
+        "snapshot_refs",
+        "verdict",
+        "data",
+        "trace_ref"
+      ],
+      "title": "ResultEnvelope[AnalysisRecord]",
+      "type": "object"
+    },
+    "Scope": {
+      "enum": [
+        "separate",
+        "consolidated"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "StockPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date",
+          "title": "As Of",
+          "type": "string"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "stock",
+          "default": "stock",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "as_of",
+        "fiscal_year"
+      ],
+      "title": "StockPeriod",
+      "type": "object"
+    },
+    "TextExportContent": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "content": {
+          "maxLength": 10000000,
+          "title": "Content",
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "md",
+            "json"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "verifier_receipt_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Verifier Receipt Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "format",
+        "content",
+        "verifier_receipt_ref"
+      ],
+      "title": "TextExportContent",
+      "type": "object"
+    },
+    "Tier": {
+      "enum": [
+        "public",
+        "private",
+        "strict_private"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "Verdict": {
+      "enum": [
+        "ANSWER",
+        "ANSWER_WITH_CAVEATS",
+        "ABSTAIN"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "Warning": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_ids": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Affected Ids",
+          "type": "array"
+        },
+        "assumption_ids": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Assumption Ids",
+          "type": "array"
+        },
+        "blocking": {
+          "default": false,
+          "title": "Blocking",
+          "type": "boolean"
+        },
+        "code": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Code",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "message_key": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Message Key",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "BLOCK",
+            "WARN",
+            "INFO"
+          ],
+          "title": "Severity",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message_key",
+        "evidence_ids"
+      ],
+      "title": "Warning",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DomainError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "health": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Health"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "readiness": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Readiness"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "result": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ResultEnvelope_AnalysisRecord_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "text_export": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TextExportContent"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "ApiCatalog",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "integer.wire",
+      "models": [
+        "MonetaryValue",
+        "CountValue"
+      ],
+      "rule": "Reject bool/float and noncanonical strings; unsafe numeric integers require strings; precision38.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_integer"
+    },
+    {
+      "id": "decimal.exact",
+      "models": [
+        "DecimalValue",
+        "ValidationIssue",
+        "ConstantExpr",
+        "RuleDefinition",
+        "ThresholdBoundary",
+        "PillarWeight",
+        "AssessmentPolicy",
+        "ProviderResult"
+      ],
+      "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_decimal"
+    },
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "period.interval",
+      "models": [
+        "FlowPeriod"
+      ],
+      "rule": "start<=end; fiscal_quarter required for quarter.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.FlowPeriod.valid_interval"
+    },
+    {
+      "id": "ratio.infer_scale",
+      "models": [
+        "DecimalValue"
+      ],
+      "rule": "Derive absent scale from the exact fraction without rounding or multiplying by100.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.DecimalValue.infer_scale"
+    },
+    {
+      "id": "ratio.scale",
+      "models": [
+        "DecimalValue"
+      ],
+      "rule": "Declared scale equals fractional decimal places; percentage is display only.",
+      "scope": "pydantic",
+      "symbol": "finagent.store.models.DecimalValue.scale_matches_fraction"
+    }
+  ],
+  "x-finagent-status": "frozen",
+  "x-finagent-version": "api/1"
+}

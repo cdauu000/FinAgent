@@ -1,0 +1,358 @@
+{
+  "$defs": {
+    "FlowPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "derivation_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Derivation Refs",
+          "type": "array"
+        },
+        "end": {
+          "format": "date",
+          "title": "End",
+          "type": "string"
+        },
+        "fiscal_quarter": {
+          "anyOf": [
+            {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fiscal Quarter"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "flow",
+          "default": "flow",
+          "title": "Kind",
+          "type": "string"
+        },
+        "months": {
+          "anyOf": [
+            {
+              "maximum": 12,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Months"
+        },
+        "period_type": {
+          "enum": [
+            "quarter",
+            "ytd",
+            "annual",
+            "ttm",
+            "custom"
+          ],
+          "title": "Period Type",
+          "type": "string"
+        },
+        "start": {
+          "format": "date",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "period_type",
+        "fiscal_year"
+      ],
+      "title": "FlowPeriod",
+      "type": "object"
+    },
+    "GoldCell": {
+      "additionalProperties": false,
+      "properties": {
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RasterBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "concept_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "flags": {
+          "default": [],
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "period": {
+          "discriminator": {
+            "mapping": {
+              "flow": "#/$defs/FlowPeriod",
+              "stock": "#/$defs/StockPeriod"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/StockPeriod"
+            },
+            {
+              "$ref": "#/$defs/FlowPeriod"
+            }
+          ],
+          "title": "Period"
+        },
+        "physical_index": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Physical Index",
+          "type": "integer"
+        },
+        "raw_text": {
+          "title": "Raw Text",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "statement_type": {
+          "enum": [
+            "B01",
+            "B02",
+            "B03",
+            "B09"
+          ],
+          "title": "Statement Type",
+          "type": "string"
+        },
+        "unit": {
+          "default": "VND",
+          "enum": [
+            "VND",
+            "count"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^-?(0|[1-9][0-9]{0,37})$",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "code",
+        "concept_id",
+        "statement_type",
+        "period",
+        "scope",
+        "physical_index",
+        "raw_text",
+        "value",
+        "evidence_refs"
+      ],
+      "title": "GoldCell",
+      "type": "object"
+    },
+    "RasterBox": {
+      "additionalProperties": false,
+      "properties": {
+        "dpi": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Dpi",
+          "type": "integer"
+        },
+        "raster_ref": {
+          "title": "Raster Ref",
+          "type": "string"
+        },
+        "x1": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "X1",
+          "type": "integer"
+        },
+        "x2": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "X2",
+          "type": "integer"
+        },
+        "y1": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Y1",
+          "type": "integer"
+        },
+        "y2": {
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Y2",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+        "dpi",
+        "raster_ref"
+      ],
+      "title": "RasterBox",
+      "type": "object"
+    },
+    "Scope": {
+      "enum": [
+        "separate",
+        "consolidated"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "StockPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date",
+          "title": "As Of",
+          "type": "string"
+        },
+        "fiscal_year": {
+          "maximum": 9999,
+          "minimum": 1900,
+          "title": "Fiscal Year",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "stock",
+          "default": "stock",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "as_of",
+        "fiscal_year"
+      ],
+      "title": "StockPeriod",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approver_ref": {
+      "anyOf": [
+        {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approver Ref"
+    },
+    "cells": {
+      "items": {
+        "$ref": "#/$defs/GoldCell"
+      },
+      "title": "Cells",
+      "type": "array"
+    },
+    "document_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Document Sha256",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "gold/1",
+      "default": "gold/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_conflicts": {
+      "default": [],
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Conflicts",
+      "type": "array"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_sha256",
+    "cells"
+  ],
+  "title": "GoldDocument",
+  "type": "object",
+  "x-finagent-scope": "Phase0 tooling DTO; outside the fourteen frozen groups",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "gold/1"
+}

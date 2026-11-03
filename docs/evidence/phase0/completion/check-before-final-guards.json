@@ -1,0 +1,72 @@
+[
+  {
+    "name": "ruff",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:25:31.804128+00:00"
+  },
+  {
+    "name": "format",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "format",
+      "--check",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "76 files already formatted\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:25:31.889430+00:00"
+  },
+  {
+    "name": "mypy",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "finagent",
+      "eval"
+    ],
+    "exit_code": 0,
+    "stdout": "Success: no issues found in 40 source files\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:25:32.308334+00:00"
+  },
+  {
+    "name": "pytest",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=docs\\evidence\\phase0\\completion\\pytest.xml"
+    ],
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 33%]\n........................................................................ [ 66%]\n.......................................................................  [100%]\n215 passed in 3.01s\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:25:35.889037+00:00"
+  },
+  {
+    "name": "schema_snapshots",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "finagent.schema_catalog",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Schemas: 14 versions; frozen=true\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:25:36.391880+00:00"
+  }
+]

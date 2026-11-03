@@ -1,0 +1,9 @@
+{
+  "version": "canonical/1",
+  "first_real_data_persisted_at": null,
+  "first_write_event_ref": null,
+  "window_open": true,
+  "required_integration_point": "P2.01_before_first_real_canonical_write",
+  "implementation_status": "P2_PERSISTENCE_NOT_IMPLEMENTED",
+  "amendments": []
+}

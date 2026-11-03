@@ -1,0 +1,13 @@
+# Cấu hình khai báo P0.06
+
+[core.json](../config/registries/core.json) nạp bằng `load_bundle` → `registry_bundle` → `validate_bundle` (`registry.bundle`). [Source catalog](../config/registries/source-catalog.json) là metadata quan sát và quy ước kỳ, không phải mapping pháp định đã tổng quát hóa. Template FPT chỉ nhận hash mẫu riêng Q1/2026 đã xem; chưa xác minh authority/effective dates cho mọi mẫu. Không áp321/322/22/24 cho báo cáo khác theo suy đoán.
+
+Registry có **15 core,40 variant,2 reference**. Mười chỉ số flow có biến thể cùng công thức cho annual/YTD/TTM; các biến thể này không quy năm. Năm biến thể annualized_quarter nhân4 có ID riêng, chỉ dùng khi input là quý; không thay default per-period. TTM yêu cầu bốn quý không chồng; hướng annualized6tháng/YTD theo A21 cần chọn đủ tháng và ID riêng ở kernel Phase3, chưa thực thi trong Phase0.
+
+Đã pin: quick default(100−140)/310; cash110 và expanded110+120 tách; phải thu131 và fallback130 chỉ khi thiếu131; debt total liabilities khác reference borrowing; ROA/ROE closing khác average. ROE hợp nhất cần parent profit/equity, không dùng net income/equity không cùng quyền lợi. Decimal38, ROUND_HALF_UP ở hiển thị; ratio value phân số. Thiếu denominator/đầu kỳ/input reference không biến thành0; long-term borrowing zero cần complete-table proof, không suy mọi330 là vay.
+
+Generic pack đi qua cùng loader.43 threshold records giữ draft, inclusive/source/time basis và overlap/gap; không lấp khoảng hoặc tự ưu tiên một ngưỡng. Profile cơ sở good100/medium50/weak0, năm trụ20%, OCF14 hiển thị hai trụ nhưng chỉ score cashflow, caps theo quyết định chủ dự án, Piotroski/Trend weight0. **POLICY_UNAPPROVED**, chưa phát rating, chưa chạy corpus để xin duyệt policy. Điều kiện applicability theo A20 có evidence refs; không tuning trên FPT.
+
+Sáu rule declarations chỉ là phần P0.06 cho equations FPT cốt lõi; catalog đầy đủ A–F và evaluator/repair thuộc Phase2. Không gọi loader thành Ratio Kernel hay Validator runtime.27 declarations ở mốc đầu P0.06 đã được bổ sung30 period variants thành57 trong cấu hình cuối; không thêm chỉ số lõi.
+
+Mọi đường registry đọc đĩa/DB trong code hiện có đều qua `registry.bundle`: business/prompt/model đều qua cùng entry registry_bundle, phân validator theo shape bên trong module. DB là read-only port với fake-source test, **PostgreSQL integration NOT_RUN**. Runtime mặc định chỉ approved entries, model verified; empty draft prompt/model registries chưa eligible. Test spy chặn tất cả đường đĩa/DB tại gate và AST cấm direct construction/deserialization bên ngoài module; khi thêm loader phải bổ sung inventory/test trước nghiệm thu. Việc có thể tạo DTO trong unit tests không cấp quyền bypass runtime.

@@ -1,0 +1,95 @@
+{
+  "$defs": {
+    "GroupSplit": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "split": {
+          "enum": [
+            "train",
+            "dev",
+            "test",
+            "visible_regression",
+            "unassigned"
+          ],
+          "title": "Split",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group_id",
+        "split"
+      ],
+      "title": "GroupSplit",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "groups": {
+      "items": {
+        "$ref": "#/$defs/GroupSplit"
+      },
+      "title": "Groups",
+      "type": "array"
+    },
+    "holdout_entities": {
+      "default": [],
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Holdout Entities",
+      "type": "array"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "split/1",
+      "default": "split/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "seed": {
+      "anyOf": [
+        {
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Seed"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "frozen"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "groups",
+    "reason"
+  ],
+  "title": "SplitManifest",
+  "type": "object",
+  "x-finagent-scope": "Phase0 tooling DTO; outside the fourteen frozen groups",
+  "x-finagent-status": "draft",
+  "x-finagent-version": "split/1"
+}

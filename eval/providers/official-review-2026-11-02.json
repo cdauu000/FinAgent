@@ -1,0 +1,102 @@
+{
+  "schema_version": "provider-doc-review/1",
+  "checked_at": "2026-11-02T10:53:39Z",
+  "method": "official_public_documentation_via_web_read_only",
+  "secondary_section_20_used": false,
+  "quota_values_recorded": false,
+  "model_registry_entries_created": 0,
+  "sources": [
+    {
+      "id": "groq-limits",
+      "provider": "groq",
+      "url": "https://console.groq.com/docs/rate-limits",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Limits are organization-scoped; actual account console still required."
+    },
+    {
+      "id": "groq-structured",
+      "provider": "groq",
+      "url": "https://console.groq.com/docs/structured-outputs",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Structured-output modes and model support differ; probe each task/model before eligibility."
+    },
+    {
+      "id": "groq-data",
+      "provider": "groq",
+      "url": "https://console.groq.com/docs/your-data",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Customer-content retention depends on features, reliability monitoring and account Data Controls; no account policy inferred."
+    },
+    {
+      "id": "groq-service-terms",
+      "provider": "groq",
+      "url": "https://console.groq.com/docs/legal/services-agreement",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Cloud Services Agreement, not website-only Terms of Use, governs service access; no customer acceptance or training policy inferred."
+    },
+    {
+      "id": "groq-dpa",
+      "provider": "groq",
+      "url": "https://console.groq.com/docs/legal/customer-data-processing-addendum",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "DPA incorporates service agreement and processing/deletion provisions; account-specific review remains required."
+    },
+    {
+      "id": "gemini-limits",
+      "provider": "gemini",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Limits are project-scoped, vary by model/tier and link to AI Studio active limits; no quota values recorded."
+    },
+    {
+      "id": "gemini-structured",
+      "provider": "gemini",
+      "url": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Only a JSON Schema subset is supported; application-side validation remains necessary."
+    },
+    {
+      "id": "gemini-service-terms",
+      "provider": "gemini",
+      "url": "https://ai.google.dev/gemini-api/terms",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "Data treatment differs by unpaid/paid service and relevant account/region conditions; none assigned to an unknown tenant account."
+    },
+    {
+      "id": "google-api-terms",
+      "provider": "gemini",
+      "url": "https://developers.google.com/terms",
+      "checked_at": "2026-11-02T10:53:39Z",
+      "status": "READ",
+      "observation": "General Google API terms referenced by Gemini additional terms; not proof of customer account acceptance."
+    }
+  ],
+  "account_console": {
+    "status": "NOT_RUN",
+    "reason": "No account access or keys supplied; no sign-in attempted"
+  },
+  "live_probes": {
+    "status": "NOT_RUN",
+    "reason": "Owner has not supplied runtime/development keys; no calls permitted"
+  },
+  "token_copy_probe": {
+    "status": "NOT_RUN",
+    "threshold": null
+  },
+  "route_order": {
+    "status": "NOT_DETERMINED",
+    "reason": "Requires live measurements and scoped terms/quota evidence"
+  },
+  "training_use": "unknown",
+  "retention": {
+    "kind": "unknown"
+  }
+}

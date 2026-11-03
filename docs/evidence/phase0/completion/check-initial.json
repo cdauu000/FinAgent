@@ -1,0 +1,72 @@
+[
+  {
+    "name": "ruff",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "."
+    ],
+    "exit_code": 1,
+    "stdout": "E501 Line too long (101 > 100)\n  --> finagent\\api\\app.py:21:101\n   |\n19 |             \"frozen\": True,\n20 |             \"groups\": 14,\n21 |             \"scope\": \"Frozen DTOs, preflight and loader validators; not deployed business endpoints\",\n   |                                                                                                     ^\n22 |             \"approval\": \"project_owner_explicit_freeze\",\n23 |             \"deferred_controls\": [\n   |\n\nFound 1 error.\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:21:20.425199+00:00"
+  },
+  {
+    "name": "format",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "format",
+      "--check",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "76 files already formatted\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:21:20.516352+00:00"
+  },
+  {
+    "name": "mypy",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "finagent",
+      "eval"
+    ],
+    "exit_code": 0,
+    "stdout": "Success: no issues found in 40 source files\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:21:20.992003+00:00"
+  },
+  {
+    "name": "pytest",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=docs\\evidence\\phase0\\completion\\pytest.xml"
+    ],
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 33%]\n........................................................................ [ 67%]\n......................................................................   [100%]\n214 passed in 3.03s\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:21:24.606201+00:00"
+  },
+  {
+    "name": "schema_snapshots",
+    "command": [
+      "C:\\FinAgent\\.venv\\Scripts\\python.exe",
+      "-m",
+      "finagent.schema_catalog",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Schemas: 14 versions; frozen=true\n",
+    "stderr": "",
+    "checked_at": "2026-11-02T11:21:25.100423+00:00"
+  }
+]

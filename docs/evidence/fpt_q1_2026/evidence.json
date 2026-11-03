@@ -1,0 +1,112 @@
+{
+  "source_sha256": "11c9709914cdc5f1561f47045283598c359f7466f94e5ffbc21893e28b0315fa",
+  "checked_at": "2026-11-02",
+  "renderer": "Windows.Data.Pdf",
+  "requested_dpi": 400,
+  "crop_method": "System.Drawing.Bitmap.Clone; original pixels",
+  "rasters": [
+    {
+      "path": "page-06-400dpi.png",
+      "sha256": "ac41c4e53c0205824ac62ce624024bb0a501f66c520f838ee77556383e7b525d",
+      "width": 5848,
+      "height": 4135
+    },
+    {
+      "path": "page-08-400dpi.png",
+      "sha256": "c3270a4a98c1d2ae437f1912d0c3a8237ece9f853a6f449b27378a98da349190",
+      "width": 4135,
+      "height": 5848
+    },
+    {
+      "path": "page-09-400dpi.png",
+      "sha256": "c8ff37213a867fc338097f9b1789642ad0bdf1a4fe61a18d45385f5e55b273c2",
+      "width": 4135,
+      "height": 5848
+    },
+    {
+      "path": "page-25-400dpi.png",
+      "sha256": "eac54d674d1d5486db86b6c37e8a1be7ac9f5989d682513823737f5a9ce24fee",
+      "width": 4135,
+      "height": 5848
+    }
+  ],
+  "crops": [
+    {
+      "path": "b02-rows20-30.png",
+      "sha256": "65d3c1109d5f506eaa365ddd58c2da1dce3234c14d5760b774bc5791b95aafbe",
+      "width": 4950,
+      "height": 1300,
+      "physical_page": 6,
+      "bbox_xyxy": [
+        680,
+        1150,
+        5630,
+        2450
+      ]
+    },
+    {
+      "path": "b02-code23-digits.png",
+      "sha256": "4f4221a03151c4719a516b2a56b9ea8b80ea51ff1b0592573d628dc3809a712d",
+      "width": 1320,
+      "height": 500,
+      "physical_page": 6,
+      "bbox_xyxy": [
+        3070,
+        1850,
+        4390,
+        2350
+      ]
+    },
+    {
+      "path": "note18-finance-costs.png",
+      "sha256": "3fbaec549da28e7f7f22e125db991b6e8d08d8613c6eb3da3b08e1cfa6d393a0",
+      "width": 3100,
+      "height": 760,
+      "physical_page": 25,
+      "bbox_xyxy": [
+        660,
+        720,
+        3760,
+        1480
+      ]
+    },
+    {
+      "path": "cf04-current-prior.png",
+      "sha256": "fcbfc184007b0c788ddc89e40f9680ea6a170d3afe9c996dbf41e49c6bb4bc05",
+      "width": 3200,
+      "height": 1100,
+      "physical_page": 8,
+      "bbox_xyxy": [
+        650,
+        1050,
+        3850,
+        2150
+      ]
+    },
+    {
+      "path": "cf61-current-prior.png",
+      "sha256": "ed3e31c03ce6e09c980d7b7719c0c4eab961f1406cefb1ac1ccc75ad7e78d9a9",
+      "width": 3200,
+      "height": 1350,
+      "physical_page": 9,
+      "bbox_xyxy": [
+        650,
+        1100,
+        3850,
+        2450
+      ]
+    }
+  ],
+  "read_values_vnd": {
+    "B02_23": "97623991644",
+    "B02_30": "1837469291998",
+    "TM18_FX": "-1685413336",
+    "CF04": "-1685263219",
+    "CF61": "-150117",
+    "prior_TM18_FX": "-1533326629",
+    "prior_CF04": "-1498048003",
+    "prior_CF61": "-35278716"
+  },
+  "bridge_status": "UNVERIFIED",
+  "warning": "CLASSIFICATION_DIFFERENCE_UNRESOLVED"
+}

@@ -1,0 +1,593 @@
+{
+  "$defs": {
+    "AssessmentPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "basis_approval_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Basis Approval Ref",
+          "type": "string"
+        },
+        "corpus_run_approval_ref": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Corpus Run Approval Ref"
+        },
+        "disclaimer_key": {
+          "const": "assessment.convention_unvalidated_not_investment_advice",
+          "default": "assessment.convention_unvalidated_not_investment_advice",
+          "title": "Disclaimer Key",
+          "type": "string"
+        },
+        "good_grade_from": {
+          "const": 75,
+          "default": 75,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Good Grade From",
+          "type": "integer"
+        },
+        "good_points": {
+          "const": 100,
+          "default": 100,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Good Points",
+          "type": "integer"
+        },
+        "low_icr_boundary": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "default": "1.5",
+          "title": "Low Icr Boundary"
+        },
+        "medium_grade_from": {
+          "const": 50,
+          "default": 50,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Medium Grade From",
+          "type": "integer"
+        },
+        "medium_points": {
+          "const": 50,
+          "default": 50,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Medium Points",
+          "type": "integer"
+        },
+        "negative_equity_cap": {
+          "const": "weak",
+          "default": "weak",
+          "title": "Negative Equity Cap",
+          "type": "string"
+        },
+        "negative_ocf_and_low_icr_cap": {
+          "const": "medium",
+          "default": "medium",
+          "title": "Negative Ocf And Low Icr Cap",
+          "type": "string"
+        },
+        "ocf_ratio_id": {
+          "default": "ocf_current_liabilities",
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Ocf Ratio Id",
+          "type": "string"
+        },
+        "ocf_scoring_pillar": {
+          "const": "cashflow",
+          "default": "cashflow",
+          "title": "Ocf Scoring Pillar",
+          "type": "string"
+        },
+        "pillar_weights": {
+          "items": {
+            "$ref": "#/$defs/PillarWeight"
+          },
+          "maxItems": 5,
+          "minItems": 5,
+          "title": "Pillar Weights",
+          "type": "array"
+        },
+        "piotroski_weight": {
+          "const": 0,
+          "default": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Piotroski Weight",
+          "type": "integer"
+        },
+        "profile_id": {
+          "const": "generic-score/0",
+          "default": "generic-score/0",
+          "title": "Profile Id",
+          "type": "string"
+        },
+        "requires_coverage": {
+          "const": true,
+          "default": true,
+          "title": "Requires Coverage",
+          "type": "boolean"
+        },
+        "requires_verified": {
+          "const": true,
+          "default": true,
+          "title": "Requires Verified",
+          "type": "boolean"
+        },
+        "trend_weight": {
+          "const": 0,
+          "default": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Trend Weight",
+          "type": "integer"
+        },
+        "unclassified_action": {
+          "const": "exclude_from_score",
+          "default": "exclude_from_score",
+          "title": "Unclassified Action",
+          "type": "string"
+        },
+        "validation_status": {
+          "default": "POLICY_UNAPPROVED",
+          "enum": [
+            "POLICY_UNAPPROVED",
+            "APPROVED"
+          ],
+          "title": "Validation Status",
+          "type": "string"
+        },
+        "weak_points": {
+          "const": 0,
+          "default": 0,
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "title": "Weak Points",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "basis_approval_ref",
+        "pillar_weights"
+      ],
+      "title": "AssessmentPolicy",
+      "type": "object"
+    },
+    "PillarWeight": {
+      "additionalProperties": false,
+      "properties": {
+        "pillar_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Pillar Id",
+          "type": "string"
+        },
+        "weight": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "title": "Weight"
+        }
+      },
+      "required": [
+        "pillar_id",
+        "weight"
+      ],
+      "title": "PillarWeight",
+      "type": "object"
+    },
+    "RatioMembership": {
+      "additionalProperties": false,
+      "properties": {
+        "display_pillars": {
+          "items": {
+            "maxLength": 160,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Display Pillars",
+          "type": "array"
+        },
+        "ratio_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "role": {
+          "enum": [
+            "scoring",
+            "reference",
+            "hidden"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "scoring_pillar": {
+          "anyOf": [
+            {
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scoring Pillar"
+        }
+      },
+      "required": [
+        "ratio_ref",
+        "display_pillars",
+        "role"
+      ],
+      "title": "RatioMembership",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    },
+    "ThresholdBand": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "enum": [
+            "good",
+            "medium",
+            "weak"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "lower": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ThresholdBoundary"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "period_basis": {
+          "enum": [
+            "stock",
+            "quarter",
+            "annual",
+            "ytd",
+            "ttm"
+          ],
+          "title": "Period Basis",
+          "type": "string"
+        },
+        "ratio_ref": {
+          "$ref": "#/$defs/RegistryRef"
+        },
+        "source_ref": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Source Ref",
+          "type": "string"
+        },
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "approved"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ThresholdBoundary"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "ratio_ref",
+        "label",
+        "period_basis",
+        "source_ref"
+      ],
+      "title": "ThresholdBand",
+      "type": "object"
+    },
+    "ThresholdBoundary": {
+      "additionalProperties": false,
+      "properties": {
+        "inclusive": {
+          "title": "Inclusive",
+          "type": "boolean"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "inclusive"
+      ],
+      "title": "ThresholdBoundary",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "applicability_refs": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RegistryRef"
+      },
+      "title": "Applicability Refs",
+      "type": "array"
+    },
+    "assessment_policy": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AssessmentPolicy"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "forbidden_claim_keys": {
+      "default": [],
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Forbidden Claim Keys",
+      "type": "array"
+    },
+    "id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "mandatory_test_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Mandatory Test Refs",
+      "type": "array"
+    },
+    "min_core_version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Min Core Version",
+      "type": "string"
+    },
+    "piotroski_policy": {
+      "default": "standard",
+      "enum": [
+        "standard",
+        "variant",
+        "not_applicable"
+      ],
+      "title": "Piotroski Policy",
+      "type": "string"
+    },
+    "ratio_memberships": {
+      "items": {
+        "$ref": "#/$defs/RatioMembership"
+      },
+      "title": "Ratio Memberships",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "spack/1",
+      "default": "spack/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "template_refs": {
+      "items": {
+        "$ref": "#/$defs/RegistryRef"
+      },
+      "title": "Template Refs",
+      "type": "array"
+    },
+    "thresholds": {
+      "items": {
+        "$ref": "#/$defs/ThresholdBand"
+      },
+      "title": "Thresholds",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "source_refs",
+    "mandatory_test_refs",
+    "min_core_version",
+    "template_refs",
+    "ratio_memberships",
+    "thresholds"
+  ],
+  "title": "SectorPack",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "decimal.exact",
+      "models": [
+        "DecimalValue",
+        "ValidationIssue",
+        "ConstantExpr",
+        "RuleDefinition",
+        "ThresholdBoundary",
+        "PillarWeight",
+        "AssessmentPolicy",
+        "ProviderResult"
+      ],
+      "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_decimal"
+    },
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "threshold.bounds",
+      "models": [
+        "ThresholdBand"
+      ],
+      "rule": "Bounds ordered; equal endpoints require both inclusive. Overlap/gap classification remains Phase3.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.ThresholdBand.ordered_bounds"
+    },
+    {
+      "id": "membership.scoring",
+      "models": [
+        "RatioMembership"
+      ],
+      "rule": "Scoring pillar is displayed; scoring role and pillar presence agree.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.RatioMembership.scoring_is_displayed"
+    },
+    {
+      "id": "assessment.owner_policy",
+      "models": [
+        "AssessmentPolicy"
+      ],
+      "rule": "Five distinct equal pillars, fixed ICR cap boundary; APPROVED requires corpus-run approval ref.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.AssessmentPolicy.profile_matches_owner_decision"
+    },
+    {
+      "id": "pack.memberships",
+      "models": [
+        "SectorPack"
+      ],
+      "rule": "No duplicate ratio membership; OCF14 scores only at cashflow.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.SectorPack.single_scoring_membership"
+    },
+    {
+      "id": "registry.bundle",
+      "models": [
+        "TemplateDefinition",
+        "RatioDefinition",
+        "RuleDefinition",
+        "SectorPack",
+        "RoleDefinition",
+        "ToolDefinition",
+        "ApplicabilityDefinition"
+      ],
+      "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+      "scope": "loader",
+      "symbol": "finagent.policy.registry.validate_bundle"
+    }
+  ],
+  "x-finagent-status": "draft",
+  "x-finagent-version": "spack/1"
+}

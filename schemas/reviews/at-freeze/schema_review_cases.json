@@ -1,0 +1,1925 @@
+{
+  "cases": [
+    {
+      "id": "canonical-1-large-money-string",
+      "group": "canonical/1",
+      "expect": "valid",
+      "payload": {
+        "lines": [
+          {
+            "id": "synthetic-a",
+            "tenant_id": "tenant-a",
+            "created_at": "2026-11-02T00:00:00Z",
+            "pipeline_version": "draft",
+            "statement_id": "statement-a",
+            "statement_revision": 1,
+            "source_column_id": "current",
+            "code": "10",
+            "canonical_id": "assets",
+            "label_vi": "Synthetic",
+            "presence": "value",
+            "financial_value": {
+              "kind": "money",
+              "value": "9007199254740992"
+            },
+            "trust_grade": "A",
+            "provenance_refs": [
+              "prov-a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "canonical-1-fraction",
+      "group": "canonical/1",
+      "expect": "valid",
+      "payload": {
+        "lines": [
+          {
+            "id": "synthetic-a",
+            "tenant_id": "tenant-a",
+            "created_at": "2026-11-02T00:00:00Z",
+            "pipeline_version": "draft",
+            "statement_id": "statement-a",
+            "statement_revision": 1,
+            "source_column_id": "current",
+            "code": "10",
+            "canonical_id": "assets",
+            "label_vi": "Synthetic",
+            "presence": "value",
+            "financial_value": {
+              "kind": "ratio",
+              "value": "0.1250",
+              "display_kind": "percent"
+            },
+            "trust_grade": "A",
+            "provenance_refs": [
+              "prov-a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "canonical-1-long-citation",
+      "group": "canonical/1",
+      "expect": "valid",
+      "payload": {
+        "source_quotes": [
+          {
+            "evidence_ref": "evidence-a",
+            "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "provenance_refs": [
+              "prov-a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "canonical-1-unsafe-integer",
+      "group": "canonical/1",
+      "expect": "invalid",
+      "payload": {
+        "lines": [
+          {
+            "id": "synthetic-a",
+            "tenant_id": "tenant-a",
+            "created_at": "2026-11-02T00:00:00Z",
+            "pipeline_version": "draft",
+            "statement_id": "statement-a",
+            "statement_revision": 1,
+            "source_column_id": "current",
+            "code": "10",
+            "canonical_id": "assets",
+            "label_vi": "Synthetic",
+            "presence": "value",
+            "financial_value": {
+              "kind": "money",
+              "value": 9007199254740992
+            },
+            "trust_grade": "A",
+            "provenance_refs": [
+              "prov-a"
+            ]
+          }
+        ]
+      },
+      "expected_error": "UNSAFE_JSON_INTEGER"
+    },
+    {
+      "id": "canonical-1-derived-zero-lineage",
+      "group": "canonical/1",
+      "expect": "invalid",
+      "payload": {
+        "lines": [
+          {
+            "id": "synthetic-a",
+            "tenant_id": "tenant-a",
+            "created_at": "2026-11-02T00:00:00Z",
+            "pipeline_version": "draft",
+            "statement_id": "statement-a",
+            "statement_revision": 1,
+            "source_column_id": "current",
+            "code": "10",
+            "canonical_id": "assets",
+            "label_vi": "Synthetic",
+            "presence": "derived_zero",
+            "financial_value": {
+              "kind": "money",
+              "value": "0"
+            },
+            "trust_grade": "A",
+            "provenance_refs": [
+              "prov-a"
+            ]
+          }
+        ]
+      },
+      "expected_error": "DERIVED_ZERO_LINEAGE_REQUIRED"
+    },
+    {
+      "id": "api-1-typed-result",
+      "group": "api/1",
+      "expect": "valid",
+      "payload": {
+        "result": {
+          "run_id": "run-a",
+          "effective_mode": "strict",
+          "effective_tier": "private",
+          "policy_version": "1",
+          "snapshot_refs": [
+            "snapshot-a"
+          ],
+          "verdict": "ANSWER",
+          "data": {
+            "id": "synthetic-a",
+            "tenant_id": "tenant-a",
+            "created_at": "2026-11-02T00:00:00Z",
+            "pipeline_version": "draft",
+            "snapshot_ref": "snapshot-a",
+            "policy_ref": {
+              "id": "source-a",
+              "version": "1"
+            },
+            "claims": [
+              {
+                "claim_id": "claim-a",
+                "financial_value": {
+                  "kind": "money",
+                  "value": "1"
+                },
+                "entity_id": "entity-a",
+                "scope": "separate",
+                "period": {
+                  "kind": "stock",
+                  "as_of": "2026-03-31",
+                  "fiscal_year": 2026
+                },
+                "variant_id": "closing",
+                "evidence_refs": [
+                  "evidence-a"
+                ],
+                "allowed_display_strings": [
+                  "1"
+                ]
+              }
+            ],
+            "verdict": "ANSWER",
+            "warning_codes": [],
+            "assumption_ids": [],
+            "missing_refs": [],
+            "trace_ref": "trace-a"
+          },
+          "trace_ref": "trace-a"
+        }
+      }
+    },
+    {
+      "id": "api-1-long-export",
+      "group": "api/1",
+      "expect": "valid",
+      "payload": {
+        "text_export": {
+          "artifact_id": "export-a",
+          "format": "md",
+          "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "verifier_receipt_ref": "receipt-a"
+        }
+      }
+    },
+    {
+      "id": "api-1-missing-export-receipt",
+      "group": "api/1",
+      "expect": "invalid",
+      "payload": {
+        "text_export": {
+          "artifact_id": "export-a",
+          "format": "md",
+          "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+      }
+    },
+    {
+      "id": "api-1-bool-money",
+      "group": "api/1",
+      "expect": "invalid",
+      "payload": {
+        "result": {
+          "run_id": "run-a",
+          "effective_mode": "strict",
+          "effective_tier": "private",
+          "policy_version": "1",
+          "snapshot_refs": [
+            "snapshot-a"
+          ],
+          "verdict": "ANSWER",
+          "data": {
+            "id": "synthetic-a",
+            "tenant_id": "tenant-a",
+            "created_at": "2026-11-02T00:00:00Z",
+            "pipeline_version": "draft",
+            "snapshot_ref": "snapshot-a",
+            "policy_ref": {
+              "id": "source-a",
+              "version": "1"
+            },
+            "claims": [
+              {
+                "claim_id": "claim-a",
+                "financial_value": {
+                  "kind": "money",
+                  "value": true
+                },
+                "entity_id": "entity-a",
+                "scope": "separate",
+                "period": {
+                  "kind": "stock",
+                  "as_of": "2026-03-31",
+                  "fiscal_year": 2026
+                },
+                "variant_id": "closing",
+                "evidence_refs": [
+                  "evidence-a"
+                ],
+                "allowed_display_strings": [
+                  "1"
+                ]
+              }
+            ],
+            "verdict": "ANSWER",
+            "warning_codes": [],
+            "assumption_ids": [],
+            "missing_refs": [],
+            "trace_ref": "trace-a"
+          },
+          "trace_ref": "trace-a"
+        }
+      },
+      "expected_error": "INTEGER_REQUIRED"
+    },
+    {
+      "id": "event-1-progress",
+      "group": "event/1",
+      "expect": "valid",
+      "payload": {
+        "event_id": "event-a",
+        "seq": 1,
+        "time_utc": "2026-11-02T00:00:00Z",
+        "tenant_id": "tenant-a",
+        "resource_id": "run-a",
+        "trace_id": "trace-a",
+        "mode": "strict",
+        "source_tier": "private",
+        "policy_version": "1",
+        "payload": {
+          "kind": "progress",
+          "stage": "validation",
+          "status": "running",
+          "message_key": "job.running"
+        }
+      }
+    },
+    {
+      "id": "event-1-verified-ref",
+      "group": "event/1",
+      "expect": "valid",
+      "payload": {
+        "event_id": "event-a",
+        "seq": 1,
+        "time_utc": "2026-11-02T00:00:00Z",
+        "tenant_id": "tenant-a",
+        "resource_id": "run-a",
+        "trace_id": "trace-a",
+        "mode": "strict",
+        "source_tier": "private",
+        "policy_version": "1",
+        "payload": {
+          "kind": "result_ref",
+          "result_ref": "result-a",
+          "verifier_receipt_ref": "receipt-a"
+        }
+      }
+    },
+    {
+      "id": "event-1-answer-in-progress",
+      "group": "event/1",
+      "expect": "invalid",
+      "payload": {
+        "event_id": "event-a",
+        "seq": 1,
+        "time_utc": "2026-11-02T00:00:00Z",
+        "tenant_id": "tenant-a",
+        "resource_id": "run-a",
+        "trace_id": "trace-a",
+        "mode": "strict",
+        "source_tier": "private",
+        "policy_version": "1",
+        "payload": {
+          "kind": "progress",
+          "stage": "validation",
+          "status": "running",
+          "message_key": "job.running",
+          "answer": "FORBIDDEN"
+        }
+      }
+    },
+    {
+      "id": "event-1-unsafe-sequence",
+      "group": "event/1",
+      "expect": "invalid",
+      "payload": {
+        "event_id": "event-a",
+        "seq": 9007199254740992,
+        "time_utc": "2026-11-02T00:00:00Z",
+        "tenant_id": "tenant-a",
+        "resource_id": "run-a",
+        "trace_id": "trace-a",
+        "mode": "strict",
+        "source_tier": "private",
+        "policy_version": "1",
+        "payload": {
+          "kind": "progress",
+          "stage": "validation",
+          "status": "running",
+          "message_key": "job.running"
+        }
+      },
+      "expected_error": "UNSAFE_METADATA_INTEGER"
+    },
+    {
+      "id": "spack-1-generic-policy",
+      "group": "spack/1",
+      "expect": "valid",
+      "payload": {
+        "id": "generic",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "min_core_version": "0.0.1",
+        "template_refs": [],
+        "ratio_memberships": [
+          {
+            "ratio_ref": {
+              "id": "ocf_current_liabilities",
+              "version": "1"
+            },
+            "display_pillars": [
+              "liquidity",
+              "cashflow"
+            ],
+            "scoring_pillar": "cashflow",
+            "role": "scoring"
+          }
+        ],
+        "thresholds": [],
+        "assessment_policy": {
+          "basis_approval_ref": "owner-2026-11-02",
+          "pillar_weights": [
+            {
+              "pillar_id": "liquidity",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "leverage",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "efficiency",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "profitability",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "cashflow",
+              "weight": "0.2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spack-1-reference-membership",
+      "group": "spack/1",
+      "expect": "valid",
+      "payload": {
+        "id": "generic",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "min_core_version": "0.0.1",
+        "template_refs": [],
+        "ratio_memberships": [
+          {
+            "ratio_ref": {
+              "id": "ocf_current_liabilities",
+              "version": "1"
+            },
+            "display_pillars": [
+              "liquidity",
+              "cashflow"
+            ],
+            "scoring_pillar": null,
+            "role": "reference"
+          }
+        ],
+        "thresholds": [],
+        "assessment_policy": {
+          "basis_approval_ref": "owner-2026-11-02",
+          "pillar_weights": [
+            {
+              "pillar_id": "liquidity",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "leverage",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "efficiency",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "profitability",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "cashflow",
+              "weight": "0.2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spack-1-duplicate-member",
+      "group": "spack/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "generic",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "min_core_version": "0.0.1",
+        "template_refs": [],
+        "ratio_memberships": [
+          {
+            "ratio_ref": {
+              "id": "ocf_current_liabilities",
+              "version": "1"
+            },
+            "display_pillars": [
+              "liquidity",
+              "cashflow"
+            ],
+            "scoring_pillar": "cashflow",
+            "role": "scoring"
+          },
+          {
+            "ratio_ref": {
+              "id": "ocf_current_liabilities",
+              "version": "1"
+            },
+            "display_pillars": [
+              "liquidity",
+              "cashflow"
+            ],
+            "scoring_pillar": "cashflow",
+            "role": "scoring"
+          }
+        ],
+        "thresholds": [],
+        "assessment_policy": {
+          "basis_approval_ref": "owner-2026-11-02",
+          "pillar_weights": [
+            {
+              "pillar_id": "liquidity",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "leverage",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "efficiency",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "profitability",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "cashflow",
+              "weight": "0.2"
+            }
+          ]
+        }
+      },
+      "expected_error": "DUPLICATE_RATIO_MEMBERSHIP"
+    },
+    {
+      "id": "spack-1-ocf-double-score",
+      "group": "spack/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "generic",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "min_core_version": "0.0.1",
+        "template_refs": [],
+        "ratio_memberships": [
+          {
+            "ratio_ref": {
+              "id": "ocf_current_liabilities",
+              "version": "1"
+            },
+            "display_pillars": [
+              "liquidity",
+              "cashflow"
+            ],
+            "scoring_pillar": "liquidity",
+            "role": "scoring"
+          }
+        ],
+        "thresholds": [],
+        "assessment_policy": {
+          "basis_approval_ref": "owner-2026-11-02",
+          "pillar_weights": [
+            {
+              "pillar_id": "liquidity",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "leverage",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "efficiency",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "profitability",
+              "weight": "0.2"
+            },
+            {
+              "pillar_id": "cashflow",
+              "weight": "0.2"
+            }
+          ]
+        }
+      },
+      "expected_error": "OCF_SCORED_ONLY_IN_CASHFLOW"
+    },
+    {
+      "id": "role-1-definition",
+      "group": "role/1",
+      "expect": "valid",
+      "payload": {
+        "definition": {
+          "id": "fixture-a",
+          "version": "1",
+          "source_refs": [
+            "synthetic-source"
+          ],
+          "mandatory_test_refs": [
+            "synthetic-test"
+          ],
+          "purpose_key": "role.synthetic",
+          "allowed_tool_refs": [],
+          "input_schema_ref": "Input",
+          "output_schema_ref": "Output",
+          "max_tool_calls": 1,
+          "max_tokens": 1,
+          "deadline_seconds": 1
+        }
+      }
+    },
+    {
+      "id": "role-1-message",
+      "group": "role/1",
+      "expect": "valid",
+      "payload": {
+        "message": {
+          "message_id": "message-a",
+          "run_id": "run-a",
+          "from_role": "orchestrator",
+          "to_role": "orchestrator",
+          "purpose": "analysis",
+          "input_ref": "input-a",
+          "evidence_ids": [],
+          "policy_ref": {
+            "id": "source-a",
+            "version": "1"
+          },
+          "source_tier": "private",
+          "mode": "strict",
+          "consumed_steps": 0,
+          "consumed_tokens": 0
+        }
+      }
+    },
+    {
+      "id": "role-1-zero-budget",
+      "group": "role/1",
+      "expect": "invalid",
+      "payload": {
+        "definition": {
+          "id": "fixture-a",
+          "version": "1",
+          "source_refs": [
+            "synthetic-source"
+          ],
+          "mandatory_test_refs": [
+            "synthetic-test"
+          ],
+          "purpose_key": "role.synthetic",
+          "allowed_tool_refs": [],
+          "input_schema_ref": "Input",
+          "output_schema_ref": "Output",
+          "max_tool_calls": 0,
+          "max_tokens": 1,
+          "deadline_seconds": 1
+        }
+      }
+    },
+    {
+      "id": "role-1-free-value-message",
+      "group": "role/1",
+      "expect": "invalid",
+      "payload": {
+        "message": {
+          "message_id": "message-a",
+          "run_id": "run-a",
+          "from_role": "orchestrator",
+          "to_role": "orchestrator",
+          "purpose": "analysis",
+          "input_ref": "input-a",
+          "evidence_ids": [],
+          "policy_ref": {
+            "id": "source-a",
+            "version": "1"
+          },
+          "source_tier": "private",
+          "mode": "strict",
+          "consumed_steps": 0,
+          "consumed_tokens": 0,
+          "financial_value": "1"
+        }
+      }
+    },
+    {
+      "id": "tool-1-read-tool",
+      "group": "tool/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "input_schema_ref": "Input",
+        "output_schema_ref": "Output",
+        "permissions": [
+          "analysis:read"
+        ],
+        "side_effect": false,
+        "budget_class": "interactive"
+      }
+    },
+    {
+      "id": "tool-1-write-tool",
+      "group": "tool/1",
+      "expect": "valid",
+      "payload": {
+        "id": "export_result",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "input_schema_ref": "Input",
+        "output_schema_ref": "Output",
+        "permissions": [
+          "export:create"
+        ],
+        "side_effect": true,
+        "budget_class": "interactive"
+      }
+    },
+    {
+      "id": "tool-1-missing-permission",
+      "group": "tool/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "input_schema_ref": "Input",
+        "output_schema_ref": "Output",
+        "side_effect": false,
+        "budget_class": "interactive"
+      }
+    },
+    {
+      "id": "tool-1-executable-handler",
+      "group": "tool/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "input_schema_ref": "Input",
+        "output_schema_ref": "Output",
+        "permissions": [
+          "analysis:read"
+        ],
+        "side_effect": false,
+        "budget_class": "interactive",
+        "handler_code": "eval(1)"
+      }
+    },
+    {
+      "id": "template-1-leading-zero-code",
+      "group": "template/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "statement_family": "corporate",
+        "observed_source_hashes": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "mappings": [
+          {
+            "statement_type": "B01",
+            "code": "01",
+            "concept_id": "assets"
+          }
+        ],
+        "required_total_codes": [
+          "280"
+        ]
+      }
+    },
+    {
+      "id": "template-1-memo-code",
+      "group": "template/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "statement_family": "corporate",
+        "observed_source_hashes": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "mappings": [
+          {
+            "statement_type": "B02",
+            "code": "24",
+            "concept_id": "interest",
+            "is_memo": true
+          }
+        ],
+        "required_total_codes": [
+          "280"
+        ]
+      }
+    },
+    {
+      "id": "template-1-duplicate-code",
+      "group": "template/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "statement_family": "corporate",
+        "observed_source_hashes": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "mappings": [
+          {
+            "statement_type": "B01",
+            "code": "01",
+            "concept_id": "assets"
+          },
+          {
+            "statement_type": "B01",
+            "code": "01",
+            "concept_id": "assets"
+          }
+        ],
+        "required_total_codes": [
+          "280"
+        ]
+      },
+      "expected_error": "DUPLICATE_TEMPLATE_CODE"
+    },
+    {
+      "id": "template-1-non-code",
+      "group": "template/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "statement_family": "corporate",
+        "observed_source_hashes": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "mappings": [
+          {
+            "statement_type": "B01",
+            "code": "eval(1)",
+            "concept_id": "assets"
+          }
+        ],
+        "required_total_codes": [
+          "280"
+        ]
+      }
+    },
+    {
+      "id": "ratio-def-1-fact-expression",
+      "group": "ratio-def/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "formula": {
+          "kind": "fact",
+          "concept_id": "assets",
+          "period_role": "closing"
+        },
+        "input_concepts": [
+          "assets"
+        ],
+        "measure_kind": "ratio",
+        "period_basis": "stock",
+        "display_kind": "decimal",
+        "definition_role": "experimental"
+      }
+    },
+    {
+      "id": "ratio-def-1-aggregate",
+      "group": "ratio-def/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "formula": {
+          "kind": "aggregate",
+          "op": "average",
+          "inputs": [
+            {
+              "kind": "constant",
+              "value": "1"
+            },
+            {
+              "kind": "constant",
+              "value": "1"
+            }
+          ]
+        },
+        "input_concepts": [
+          "assets"
+        ],
+        "measure_kind": "ratio",
+        "period_basis": "stock",
+        "display_kind": "decimal",
+        "definition_role": "experimental"
+      }
+    },
+    {
+      "id": "ratio-def-1-executable-op",
+      "group": "ratio-def/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "formula": {
+          "kind": "binary",
+          "op": "eval",
+          "left": {
+            "kind": "constant",
+            "value": "1"
+          },
+          "right": {
+            "kind": "constant",
+            "value": "1"
+          }
+        },
+        "input_concepts": [
+          "assets"
+        ],
+        "measure_kind": "ratio",
+        "period_basis": "stock",
+        "display_kind": "decimal",
+        "definition_role": "experimental"
+      }
+    },
+    {
+      "id": "ratio-def-1-exponent-literal",
+      "group": "ratio-def/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "formula": {
+          "kind": "constant",
+          "value": "1e3"
+        },
+        "input_concepts": [
+          "assets"
+        ],
+        "measure_kind": "ratio",
+        "period_basis": "stock",
+        "display_kind": "decimal",
+        "definition_role": "experimental"
+      },
+      "expected_error": "CANONICAL_DECIMAL_REQUIRED"
+    },
+    {
+      "id": "rule-1-exact-equation",
+      "group": "rule/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "template_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "group": "B",
+        "severity": "BLOCK",
+        "left": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "right": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "comparison": "equal",
+        "tolerance": "0"
+      }
+    },
+    {
+      "id": "rule-1-heuristic",
+      "group": "rule/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "template_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "group": "E",
+        "severity": "WARN",
+        "left": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "right": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "comparison": "less_equal",
+        "tolerance": "0"
+      }
+    },
+    {
+      "id": "rule-1-negative-tolerance",
+      "group": "rule/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "template_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "group": "B",
+        "severity": "BLOCK",
+        "left": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "right": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "comparison": "equal",
+        "tolerance": "-0.1"
+      },
+      "expected_error": "NEGATIVE_TOLERANCE"
+    },
+    {
+      "id": "rule-1-excessive-depth",
+      "group": "rule/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "template_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "group": "B",
+        "severity": "BLOCK",
+        "left": {
+          "kind": "aggregate",
+          "op": "sum",
+          "inputs": [
+            {
+              "kind": "aggregate",
+              "op": "sum",
+              "inputs": [
+                {
+                  "kind": "aggregate",
+                  "op": "sum",
+                  "inputs": [
+                    {
+                      "kind": "aggregate",
+                      "op": "sum",
+                      "inputs": [
+                        {
+                          "kind": "aggregate",
+                          "op": "sum",
+                          "inputs": [
+                            {
+                              "kind": "aggregate",
+                              "op": "sum",
+                              "inputs": [
+                                {
+                                  "kind": "aggregate",
+                                  "op": "sum",
+                                  "inputs": [
+                                    {
+                                      "kind": "aggregate",
+                                      "op": "sum",
+                                      "inputs": [
+                                        {
+                                          "kind": "aggregate",
+                                          "op": "sum",
+                                          "inputs": [
+                                            {
+                                              "kind": "aggregate",
+                                              "op": "sum",
+                                              "inputs": [
+                                                {
+                                                  "kind": "aggregate",
+                                                  "op": "sum",
+                                                  "inputs": [
+                                                    {
+                                                      "kind": "aggregate",
+                                                      "op": "sum",
+                                                      "inputs": [
+                                                        {
+                                                          "kind": "aggregate",
+                                                          "op": "sum",
+                                                          "inputs": [
+                                                            {
+                                                              "kind": "aggregate",
+                                                              "op": "sum",
+                                                              "inputs": [
+                                                                {
+                                                                  "kind": "aggregate",
+                                                                  "op": "sum",
+                                                                  "inputs": [
+                                                                    {
+                                                                      "kind": "aggregate",
+                                                                      "op": "sum",
+                                                                      "inputs": [
+                                                                        {
+                                                                          "kind": "aggregate",
+                                                                          "op": "sum",
+                                                                          "inputs": [
+                                                                            {
+                                                                              "kind": "aggregate",
+                                                                              "op": "sum",
+                                                                              "inputs": [
+                                                                                {
+                                                                                  "kind": "aggregate",
+                                                                                  "op": "sum",
+                                                                                  "inputs": [
+                                                                                    {
+                                                                                      "kind": "aggregate",
+                                                                                      "op": "sum",
+                                                                                      "inputs": [
+                                                                                        {
+                                                                                          "kind": "aggregate",
+                                                                                          "op": "sum",
+                                                                                          "inputs": [
+                                                                                            {
+                                                                                              "kind": "aggregate",
+                                                                                              "op": "sum",
+                                                                                              "inputs": [
+                                                                                                {
+                                                                                                  "kind": "aggregate",
+                                                                                                  "op": "sum",
+                                                                                                  "inputs": [
+                                                                                                    {
+                                                                                                      "kind": "aggregate",
+                                                                                                      "op": "sum",
+                                                                                                      "inputs": [
+                                                                                                        {
+                                                                                                          "kind": "aggregate",
+                                                                                                          "op": "sum",
+                                                                                                          "inputs": [
+                                                                                                            {
+                                                                                                              "kind": "aggregate",
+                                                                                                              "op": "sum",
+                                                                                                              "inputs": [
+                                                                                                                {
+                                                                                                                  "kind": "aggregate",
+                                                                                                                  "op": "sum",
+                                                                                                                  "inputs": [
+                                                                                                                    {
+                                                                                                                      "kind": "aggregate",
+                                                                                                                      "op": "sum",
+                                                                                                                      "inputs": [
+                                                                                                                        {
+                                                                                                                          "kind": "aggregate",
+                                                                                                                          "op": "sum",
+                                                                                                                          "inputs": [
+                                                                                                                            {
+                                                                                                                              "kind": "aggregate",
+                                                                                                                              "op": "sum",
+                                                                                                                              "inputs": [
+                                                                                                                                {
+                                                                                                                                  "kind": "aggregate",
+                                                                                                                                  "op": "sum",
+                                                                                                                                  "inputs": [
+                                                                                                                                    {
+                                                                                                                                      "kind": "aggregate",
+                                                                                                                                      "op": "sum",
+                                                                                                                                      "inputs": [
+                                                                                                                                        {
+                                                                                                                                          "kind": "constant",
+                                                                                                                                          "value": "1"
+                                                                                                                                        }
+                                                                                                                                      ]
+                                                                                                                                    }
+                                                                                                                                  ]
+                                                                                                                                }
+                                                                                                                              ]
+                                                                                                                            }
+                                                                                                                          ]
+                                                                                                                        }
+                                                                                                                      ]
+                                                                                                                    }
+                                                                                                                  ]
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "right": {
+          "kind": "constant",
+          "value": "1"
+        },
+        "comparison": "equal",
+        "tolerance": "0"
+      },
+      "expected_error": "AST_MAX_DEPTH_EXCEEDED"
+    },
+    {
+      "id": "policy-1-private-defaults",
+      "group": "policy/1",
+      "expect": "valid",
+      "payload": {
+        "policy_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "mode": "strict",
+        "registry_refs": [],
+        "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resolved_at": "2026-11-02T00:00:00Z"
+      }
+    },
+    {
+      "id": "policy-1-strict-private",
+      "group": "policy/1",
+      "expect": "valid",
+      "payload": {
+        "policy_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "mode": "strict",
+        "registry_refs": [],
+        "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resolved_at": "2026-11-02T00:00:00Z",
+        "source_tier": "strict_private"
+      }
+    },
+    {
+      "id": "policy-1-negative-retention",
+      "group": "policy/1",
+      "expect": "invalid",
+      "payload": {
+        "policy_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "mode": "strict",
+        "registry_refs": [],
+        "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resolved_at": "2026-11-02T00:00:00Z",
+        "private": {
+          "max_retention_days": -1
+        }
+      }
+    },
+    {
+      "id": "policy-1-override-file-limit",
+      "group": "policy/1",
+      "expect": "invalid",
+      "payload": {
+        "policy_ref": {
+          "id": "source-a",
+          "version": "1"
+        },
+        "mode": "strict",
+        "registry_refs": [],
+        "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resolved_at": "2026-11-02T00:00:00Z",
+        "limits": {
+          "file_bytes": 1
+        }
+      }
+    },
+    {
+      "id": "applicability-1-not-applicable",
+      "group": "applicability/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "condition_refs": [
+          "condition-a"
+        ],
+        "required_evidence_concepts": [
+          "inventory"
+        ],
+        "effect": "N_A",
+        "warning_codes": [
+          "NOT_APPLICABLE"
+        ]
+      }
+    },
+    {
+      "id": "applicability-1-not-meaningful",
+      "group": "applicability/1",
+      "expect": "valid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "condition_refs": [
+          "condition-a"
+        ],
+        "required_evidence_concepts": [
+          "inventory"
+        ],
+        "effect": "NOT_MEANINGFUL",
+        "warning_codes": [
+          "NOT_APPLICABLE"
+        ]
+      }
+    },
+    {
+      "id": "applicability-1-unknown-effect",
+      "group": "applicability/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "condition_refs": [
+          "condition-a"
+        ],
+        "required_evidence_concepts": [
+          "inventory"
+        ],
+        "effect": "AVAILABLE",
+        "warning_codes": [
+          "NOT_APPLICABLE"
+        ]
+      }
+    },
+    {
+      "id": "applicability-1-executable-condition",
+      "group": "applicability/1",
+      "expect": "invalid",
+      "payload": {
+        "id": "fixture-a",
+        "version": "1",
+        "source_refs": [
+          "synthetic-source"
+        ],
+        "mandatory_test_refs": [
+          "synthetic-test"
+        ],
+        "condition_refs": [
+          "condition-a"
+        ],
+        "required_evidence_concepts": [
+          "inventory"
+        ],
+        "effect": "N_A",
+        "warning_codes": [
+          "NOT_APPLICABLE"
+        ],
+        "code": "eval(1)"
+      }
+    },
+    {
+      "id": "gateway-1-typed-provider-request",
+      "group": "gateway/1",
+      "expect": "valid",
+      "payload": {
+        "provider_request": {
+          "provider": "synthetic",
+          "model": "synthetic",
+          "task": "intent_parse",
+          "messages": [
+            {
+              "content": "Static synthetic prompt",
+              "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "payload": {
+                "task": "intent_parse",
+                "query": "Synthetic query",
+                "selection": {
+                  "selection_revision": 1,
+                  "entity_token": "ent_23456789"
+                },
+                "number_placeholders": [
+                  "num_abcd1234"
+                ]
+              }
+            }
+          ],
+          "prompt_ref": {
+            "id": "source-a",
+            "version": "1"
+          },
+          "output_schema_ref": "IntentPlan",
+          "structured_strategy": "native_schema",
+          "timeout_seconds": 1,
+          "permit_id": "permit-a"
+        }
+      }
+    },
+    {
+      "id": "gateway-1-reference-manifest",
+      "group": "gateway/1",
+      "expect": "valid",
+      "payload": {
+        "manifest": {
+          "claim_ids": [
+            "claim-a"
+          ],
+          "required_claim_ids": [
+            "claim-a"
+          ],
+          "warning_codes": [
+            "WARN_A"
+          ],
+          "required_warning_codes": [
+            "WARN_A"
+          ],
+          "entity_tokens": [
+            "ent_23456789"
+          ],
+          "required_slots": [
+            {
+              "claim_id": "claim-a",
+              "render": "value"
+            }
+          ],
+          "version": "draft"
+        }
+      }
+    },
+    {
+      "id": "gateway-1-old-long-alias",
+      "group": "gateway/1",
+      "expect": "invalid",
+      "payload": {
+        "provider_request": {
+          "provider": "synthetic",
+          "model": "synthetic",
+          "task": "intent_parse",
+          "messages": [
+            {
+              "content": "Static synthetic prompt",
+              "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "payload": {
+                "task": "intent_parse",
+                "query": "Synthetic query",
+                "selection": {
+                  "selection_revision": 1,
+                  "entity_token": "ent_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "number_placeholders": [
+                  "num_abcd1234"
+                ]
+              }
+            }
+          ],
+          "prompt_ref": {
+            "id": "source-a",
+            "version": "1"
+          },
+          "output_schema_ref": "IntentPlan",
+          "structured_strategy": "native_schema",
+          "timeout_seconds": 1,
+          "permit_id": "permit-a"
+        }
+      }
+    },
+    {
+      "id": "gateway-1-streaming",
+      "group": "gateway/1",
+      "expect": "invalid",
+      "payload": {
+        "provider_request": {
+          "provider": "synthetic",
+          "model": "synthetic",
+          "task": "intent_parse",
+          "messages": [
+            {
+              "content": "Static synthetic prompt",
+              "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "payload": {
+                "task": "intent_parse",
+                "query": "Synthetic query",
+                "selection": {
+                  "selection_revision": 1,
+                  "entity_token": "ent_23456789"
+                },
+                "number_placeholders": [
+                  "num_abcd1234"
+                ]
+              }
+            }
+          ],
+          "prompt_ref": {
+            "id": "source-a",
+            "version": "1"
+          },
+          "output_schema_ref": "IntentPlan",
+          "structured_strategy": "native_schema",
+          "timeout_seconds": 1,
+          "permit_id": "permit-a",
+          "stream": true
+        }
+      }
+    },
+    {
+      "id": "gateway-1-unknown-required-claim",
+      "group": "gateway/1",
+      "expect": "invalid",
+      "payload": {
+        "manifest": {
+          "claim_ids": [
+            "claim-a"
+          ],
+          "required_claim_ids": [
+            "unknown"
+          ],
+          "warning_codes": [
+            "WARN_A"
+          ],
+          "required_warning_codes": [
+            "WARN_A"
+          ],
+          "entity_tokens": [
+            "ent_23456789"
+          ],
+          "required_slots": [
+            {
+              "claim_id": "claim-a",
+              "render": "value"
+            }
+          ],
+          "version": "draft"
+        }
+      },
+      "expected_error": "UNKNOWN_REQUIRED_CLAIM"
+    },
+    {
+      "id": "gateway-1-compose-value-channel",
+      "group": "gateway/1",
+      "expect": "invalid",
+      "payload": {
+        "provider_request": {
+          "provider": "synthetic",
+          "model": "synthetic",
+          "task": "answer_compose",
+          "messages": [
+            {
+              "content": "Static synthetic prompt",
+              "prompt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "payload": {
+                "task": "answer_compose",
+                "status": "ANSWER",
+                "claims": [
+                  {
+                    "claim_id": "claim-a",
+                    "concept_label": "ratios.current",
+                    "status": "NORMAL",
+                    "period_code": "q1_2026",
+                    "scope": "separate",
+                    "value": "123"
+                  }
+                ]
+              }
+            }
+          ],
+          "prompt_ref": {
+            "id": "source-a",
+            "version": "1"
+          },
+          "output_schema_ref": "AnswerDraft",
+          "structured_strategy": "native_schema",
+          "timeout_seconds": 1,
+          "permit_id": "permit-a"
+        }
+      }
+    },
+    {
+      "id": "prompt-1-intent",
+      "group": "prompt/1",
+      "expect": "valid",
+      "payload": {
+        "entries": [
+          {
+            "id": "fixture-a",
+            "version": "1",
+            "mandatory_test_refs": [
+              "synthetic-test"
+            ],
+            "task": "intent_parse",
+            "language": "vi",
+            "template": "Return only the requested typed synthetic result.",
+            "template_sha256": "7ff17724ec287c51fee2e968efce2438e2e0eeac7e48cc0e2a914694ee3755e4",
+            "input_schema_ref": "IntentPayload",
+            "output_schema_ref": "IntentPlan"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prompt-1-compose",
+      "group": "prompt/1",
+      "expect": "valid",
+      "payload": {
+        "entries": [
+          {
+            "id": "fixture-a",
+            "version": "1",
+            "mandatory_test_refs": [
+              "synthetic-test"
+            ],
+            "task": "answer_compose",
+            "language": "vi",
+            "template": "Return only the requested typed synthetic result.",
+            "template_sha256": "7ff17724ec287c51fee2e968efce2438e2e0eeac7e48cc0e2a914694ee3755e4",
+            "input_schema_ref": "FinalAnswerPayload",
+            "output_schema_ref": "AnswerDraft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prompt-1-bad-hash",
+      "group": "prompt/1",
+      "expect": "invalid",
+      "payload": {
+        "entries": [
+          {
+            "id": "fixture-a",
+            "version": "1",
+            "mandatory_test_refs": [
+              "synthetic-test"
+            ],
+            "task": "intent_parse",
+            "language": "vi",
+            "template": "Return only the requested typed synthetic result.",
+            "template_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "input_schema_ref": "IntentPayload",
+            "output_schema_ref": "IntentPlan"
+          }
+        ]
+      },
+      "expected_error": "PROMPT_HASH_MISMATCH"
+    },
+    {
+      "id": "prompt-1-wrong-task-schema",
+      "group": "prompt/1",
+      "expect": "invalid",
+      "payload": {
+        "entries": [
+          {
+            "id": "fixture-a",
+            "version": "1",
+            "mandatory_test_refs": [
+              "synthetic-test"
+            ],
+            "task": "answer_compose",
+            "language": "vi",
+            "template": "Return only the requested typed synthetic result.",
+            "template_sha256": "7ff17724ec287c51fee2e968efce2438e2e0eeac7e48cc0e2a914694ee3755e4",
+            "input_schema_ref": "FinalAnswerPayload",
+            "output_schema_ref": "IntentPlan"
+          }
+        ]
+      },
+      "expected_error": "PROMPT_TASK_SCHEMA_MISMATCH"
+    },
+    {
+      "id": "model-registry-1-unverified",
+      "group": "model-registry/1",
+      "expect": "valid",
+      "payload": {
+        "entries": [
+          {
+            "provider": "synthetic",
+            "model": "synthetic",
+            "account_scope": "synthetic-account"
+          }
+        ]
+      }
+    },
+    {
+      "id": "model-registry-1-synthetic-capability-evidence",
+      "group": "model-registry/1",
+      "expect": "valid",
+      "payload": {
+        "entries": [
+          {
+            "provider": "synthetic",
+            "model": "synthetic",
+            "account_scope": "synthetic-account",
+            "status": "verified",
+            "checked_at": "2026-11-02T00:00:00Z",
+            "evidence_refs": [
+              "synthetic-probe"
+            ],
+            "structured_capabilities": [
+              {
+                "task": "intent_parse",
+                "structured_strategy": "native_schema",
+                "checked_at": "2026-11-02T00:00:00Z",
+                "probe_evidence_ref": "synthetic-probe"
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "synthetic-probe",
+            "official_url": "https://example.invalid/synthetic-only",
+            "checked_at": "2026-11-02T00:00:00Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "model-registry-1-unresolved-terms",
+      "group": "model-registry/1",
+      "expect": "invalid",
+      "payload": {
+        "entries": [
+          {
+            "provider": "synthetic",
+            "model": "synthetic",
+            "account_scope": "synthetic-account",
+            "training_use": "none_verified",
+            "terms_evidence_refs": [
+              "missing"
+            ]
+          }
+        ]
+      },
+      "expected_error": "UNKNOWN_MODEL_EVIDENCE"
+    },
+    {
+      "id": "model-registry-1-legacy-data-use",
+      "group": "model-registry/1",
+      "expect": "invalid",
+      "payload": {
+        "entries": [
+          {
+            "provider": "synthetic",
+            "model": "synthetic",
+            "account_scope": "synthetic-account",
+            "data_use": "none"
+          }
+        ]
+      }
+    }
+  ]
+}

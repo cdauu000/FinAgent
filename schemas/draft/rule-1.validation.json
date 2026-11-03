@@ -1,0 +1,465 @@
+{
+  "$defs": {
+    "AggregateExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "inputs": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "aggregate": "#/$defs/AggregateExpr",
+                "binary": "#/$defs/BinaryExpr",
+                "constant": "#/$defs/ConstantExpr",
+                "fact": "#/$defs/FactExpr"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/ConstantExpr"
+              },
+              {
+                "$ref": "#/$defs/FactExpr"
+              },
+              {
+                "$ref": "#/$defs/BinaryExpr"
+              },
+              {
+                "$ref": "#/$defs/AggregateExpr"
+              }
+            ]
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Inputs",
+          "type": "array"
+        },
+        "kind": {
+          "const": "aggregate",
+          "default": "aggregate",
+          "title": "Kind",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "sum",
+            "average"
+          ],
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "inputs"
+      ],
+      "title": "AggregateExpr",
+      "type": "object"
+    },
+    "BinaryExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "binary",
+          "default": "binary",
+          "title": "Kind",
+          "type": "string"
+        },
+        "left": {
+          "discriminator": {
+            "mapping": {
+              "aggregate": "#/$defs/AggregateExpr",
+              "binary": "#/$defs/BinaryExpr",
+              "constant": "#/$defs/ConstantExpr",
+              "fact": "#/$defs/FactExpr"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantExpr"
+            },
+            {
+              "$ref": "#/$defs/FactExpr"
+            },
+            {
+              "$ref": "#/$defs/BinaryExpr"
+            },
+            {
+              "$ref": "#/$defs/AggregateExpr"
+            }
+          ],
+          "title": "Left"
+        },
+        "op": {
+          "enum": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "right": {
+          "discriminator": {
+            "mapping": {
+              "aggregate": "#/$defs/AggregateExpr",
+              "binary": "#/$defs/BinaryExpr",
+              "constant": "#/$defs/ConstantExpr",
+              "fact": "#/$defs/FactExpr"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ConstantExpr"
+            },
+            {
+              "$ref": "#/$defs/FactExpr"
+            },
+            {
+              "$ref": "#/$defs/BinaryExpr"
+            },
+            {
+              "$ref": "#/$defs/AggregateExpr"
+            }
+          ],
+          "title": "Right"
+        }
+      },
+      "required": [
+        "op",
+        "left",
+        "right"
+      ],
+      "title": "BinaryExpr",
+      "type": "object"
+    },
+    "ConstantExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "constant",
+          "default": "constant",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "ConstantExpr",
+      "type": "object"
+    },
+    "FactExpr": {
+      "additionalProperties": false,
+      "properties": {
+        "concept_id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "fact",
+          "default": "fact",
+          "title": "Kind",
+          "type": "string"
+        },
+        "period_role": {
+          "enum": [
+            "selected",
+            "opening",
+            "closing",
+            "prior_comparable"
+          ],
+          "title": "Period Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "concept_id",
+        "period_role"
+      ],
+      "title": "FactExpr",
+      "type": "object"
+    },
+    "RegistryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "RegistryRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "comparison": {
+      "enum": [
+        "equal",
+        "less_equal",
+        "greater_equal"
+      ],
+      "title": "Comparison",
+      "type": "string"
+    },
+    "group": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "title": "Group",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "left": {
+      "discriminator": {
+        "mapping": {
+          "aggregate": "#/$defs/AggregateExpr",
+          "binary": "#/$defs/BinaryExpr",
+          "constant": "#/$defs/ConstantExpr",
+          "fact": "#/$defs/FactExpr"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ConstantExpr"
+        },
+        {
+          "$ref": "#/$defs/FactExpr"
+        },
+        {
+          "$ref": "#/$defs/BinaryExpr"
+        },
+        {
+          "$ref": "#/$defs/AggregateExpr"
+        }
+      ],
+      "title": "Left"
+    },
+    "mandatory_test_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Mandatory Test Refs",
+      "type": "array"
+    },
+    "right": {
+      "discriminator": {
+        "mapping": {
+          "aggregate": "#/$defs/AggregateExpr",
+          "binary": "#/$defs/BinaryExpr",
+          "constant": "#/$defs/ConstantExpr",
+          "fact": "#/$defs/FactExpr"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ConstantExpr"
+        },
+        {
+          "$ref": "#/$defs/FactExpr"
+        },
+        {
+          "$ref": "#/$defs/BinaryExpr"
+        },
+        {
+          "$ref": "#/$defs/AggregateExpr"
+        }
+      ],
+      "title": "Right"
+    },
+    "schema_version": {
+      "const": "rule/1",
+      "default": "rule/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "BLOCK",
+        "WARN",
+        "INFO"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "maxLength": 160,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "approved",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "template_ref": {
+      "$ref": "#/$defs/RegistryRef"
+    },
+    "tolerance": {
+      "anyOf": [
+        {
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      ],
+      "title": "Tolerance"
+    },
+    "version": {
+      "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "source_refs",
+    "mandatory_test_refs",
+    "template_ref",
+    "group",
+    "severity",
+    "left",
+    "right",
+    "comparison",
+    "tolerance"
+  ],
+  "title": "RuleDefinition",
+  "type": "object",
+  "x-finagent-custom-validators": [
+    {
+      "id": "decimal.exact",
+      "models": [
+        "DecimalValue",
+        "ValidationIssue",
+        "ConstantExpr",
+        "RuleDefinition",
+        "ThresholdBoundary",
+        "PillarWeight",
+        "AssessmentPolicy",
+        "ProviderResult"
+      ],
+      "rule": "Reject float/bool/nonfinite/exponent text; precision and scale38; unsafe integer tokens denied.",
+      "scope": "pydantic",
+      "symbol": "finagent.contracts.base.exact_decimal"
+    },
+    {
+      "id": "integer.metadata",
+      "models": [],
+      "rule": "Metadata integers stay within the JSON safe range; narrower Field bounds remain in force.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.safe_metadata_integer"
+    },
+    {
+      "id": "integer.schema_bounds",
+      "models": [],
+      "rule": "Normalize constrained integer keywords, then intersect safe bounds without widening fields.",
+      "scope": "common",
+      "symbol": "finagent.contracts.base.Contract.__get_pydantic_json_schema__"
+    },
+    {
+      "id": "ast.budget",
+      "models": [
+        "RatioDefinition",
+        "RuleDefinition"
+      ],
+      "rule": "Iterative pre-validation: depth32, total1024 occurrences, fanout100; reject cycles.",
+      "scope": "preflight",
+      "symbol": "finagent.policy.expression_limits.guard_expression"
+    },
+    {
+      "id": "rule.combined_budget",
+      "models": [
+        "RuleDefinition"
+      ],
+      "rule": "Node budget shared by both rule expression sides.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.RuleDefinition.combined_expression_budget"
+    },
+    {
+      "id": "rule.tolerance",
+      "models": [
+        "RuleDefinition"
+      ],
+      "rule": "Tolerance cannot be negative.",
+      "scope": "pydantic",
+      "symbol": "finagent.policy.contracts.RuleDefinition.nonnegative_tolerance"
+    },
+    {
+      "id": "registry.bundle",
+      "models": [
+        "TemplateDefinition",
+        "RatioDefinition",
+        "RuleDefinition",
+        "SectorPack",
+        "RoleDefinition",
+        "ToolDefinition",
+        "ApplicabilityDefinition"
+      ],
+      "rule": "Separate loader: unique/versioned entries, approved/source/test refs, known refs, compatible core/strategy, DAG, generic pack.",
+      "scope": "loader",
+      "symbol": "finagent.policy.registry.validate_bundle"
+    }
+  ],
+  "x-finagent-status": "draft",
+  "x-finagent-version": "rule/1"
+}

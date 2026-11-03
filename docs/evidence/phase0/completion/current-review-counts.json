@@ -1,0 +1,100 @@
+{
+  "canonical/1": {
+    "positive_cases": 3,
+    "negative_cases": 5,
+    "positive_passed": 3,
+    "negative_passed": 5,
+    "failed": 0
+  },
+  "api/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "event/1": {
+    "positive_cases": 2,
+    "negative_cases": 7,
+    "positive_passed": 2,
+    "negative_passed": 7,
+    "failed": 0
+  },
+  "spack/1": {
+    "positive_cases": 2,
+    "negative_cases": 3,
+    "positive_passed": 2,
+    "negative_passed": 3,
+    "failed": 0
+  },
+  "role/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "tool/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "template/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "ratio-def/1": {
+    "positive_cases": 2,
+    "negative_cases": 4,
+    "positive_passed": 2,
+    "negative_passed": 4,
+    "failed": 0
+  },
+  "rule/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "policy/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "applicability/1": {
+    "positive_cases": 2,
+    "negative_cases": 3,
+    "positive_passed": 2,
+    "negative_passed": 3,
+    "failed": 0
+  },
+  "gateway/1": {
+    "positive_cases": 2,
+    "negative_cases": 10,
+    "positive_passed": 2,
+    "negative_passed": 10,
+    "failed": 0
+  },
+  "prompt/1": {
+    "positive_cases": 2,
+    "negative_cases": 2,
+    "positive_passed": 2,
+    "negative_passed": 2,
+    "failed": 0
+  },
+  "model-registry/1": {
+    "positive_cases": 2,
+    "negative_cases": 3,
+    "positive_passed": 2,
+    "negative_passed": 3,
+    "failed": 0
+  }
+}
